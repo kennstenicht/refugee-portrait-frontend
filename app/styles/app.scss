@@ -1,0 +1,42 @@
+// Settings
+$inuit-base-font-size:   12px;
+$inuit-base-line-height: 18px;
+$inuit-base-text-color: #333;
+$inuit-base-background-color: #fff;
+@import "bower_components/inuit-defaults/settings.defaults";
+// @import "settings.colors";
+
+
+// Tools
+@import "bower_components/inuit-functions/tools.functions";
+@import "bower_components/inuit-mixins/tools.mixins";
+@import "bower_components/inuit-tools-widths/tools.widths";
+// @import "tools.aliases";
+
+
+// Generics
+@import "bower_components/inuit-normalize/generic.normalize";
+@import "bower_components/inuit-reset/generic.reset";
+@import "bower_components/inuit-box-sizing/generic.box-sizing";
+@import "bower_components/inuit-shared/generic.shared";
+
+
+// Base
+@import "bower_components/inuit-page/base.page";
+@import "bower_components/inuit-headings/base.headings";
+@import "bower_components/inuit-lists/base.lists";
+@import "bower_components/inuit-images/base.images";
+// @import "base.links";
+
+
+// Objects
+@import "bower_components/inuit-layout/objects.layout";
+
+
+// Components
+// @import "components/page-head";
+
+
+// Trumps
+@import "bower_components/inuit-clearfix/trumps.clearfix";
+// @import "trumps.widths";
