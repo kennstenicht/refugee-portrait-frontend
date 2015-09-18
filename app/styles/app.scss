@@ -1,8 +1,5 @@
 // Settings
-$inuit-base-font-size:   12px;
-$inuit-base-line-height: 18px;
-$inuit-base-text-color: #333;
-$inuit-base-background-color: #fff;
+@import "settings.default";
 @import "bower_components/inuit-defaults/settings.defaults";
 // @import "settings.colors";
 
@@ -22,11 +19,12 @@ $inuit-base-background-color: #fff;
 
 
 // Base
+@import "base.page";
 @import "bower_components/inuit-page/base.page";
 @import "bower_components/inuit-headings/base.headings";
 @import "bower_components/inuit-lists/base.lists";
 @import "bower_components/inuit-images/base.images";
-// @import "base.links";
+@import "base.links";
 
 
 // Objects

@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    #Links
+\*------------------------------------*/
+
+/**
+ * Links and inverted Links
+ */
+
+// Predefine the variables below in order to alter and enable specific features.
+$link-color: #0d7690 !default;
+$link-color-hover: #073f4d !default;
+$link-color-invert: #fff !default;
+$link-color-invert-hover: #c3c3c3 !default;
+
+a,
+a:visited {
+  color: $link-color;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: $link-color-hover;
+}
+
+a.invert,
+a.invert:visited {
+  color: $link-color-invert;
+}
+
+a.invert:hover,
+a.invert:active {
+  color: $link-color-invert-hover;
+}
