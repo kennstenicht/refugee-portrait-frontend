@@ -30,6 +30,7 @@
     "inuit-images": "~0.3.3",
     "inuit-layout": "~0.3.2",
     "inuit-clearfix": "~0.2.2",
-    "lodash": "^2.4.0"
+    "lodash": "^2.4.0",
+    "mapbox-gl-js": "0.10.0"
   }
 }

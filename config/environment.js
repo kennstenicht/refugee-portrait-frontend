@@ -19,13 +19,14 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'img-src': "'self' data:",
+      'img-src': "'self' data: *.mapbox.com",
+      'child-src': "blob:",
       'media-src': "'self'",
       'font-src': "'self' data: fonts.gstatic.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
         "apis.google.com",
-      'connect-src': "'self' http://localhost:5000 ws://localhost:5000",
+      'connect-src': "'self' *.mapbox.com http://localhost:5000 ws://localhost:5000",
     }
   };
 
