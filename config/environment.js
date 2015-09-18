@@ -27,7 +27,13 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
         "apis.google.com",
       'connect-src': "'self' *.mapbox.com http://localhost:5000 ws://localhost:5000",
-    }
+    },
+
+    mapbox: {
+      accessToken: 'pk.eyJ1Ijoia2VubnN0ZW5pY2h0IiwiYSI6ImNpZXBpMGZ5ejAwNHlzcGt1b3NwcWI1aWQifQ.SRy8JsaaUHRDdLGjKiE_kQ',
+    },
+
+    tuioTouchDebug: true
   };
 
   if (environment === 'development') {
