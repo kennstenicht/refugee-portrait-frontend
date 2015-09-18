@@ -22,7 +22,7 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `ember server`
-* Visit your app at [http://localhost:6000](http://localhost:6000).
+* Visit your app at [http://localhost:7000](http://localhost:7000).
 
 ### Code Generators
 
