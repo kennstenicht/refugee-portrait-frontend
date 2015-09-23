@@ -1,29 +1,14 @@
 import Ember from 'ember';
 import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
-import Gestures from 'ember-cli-tuio/mixins/gestures';
 
-export default Ember.Component.extend(MapboxGl, Gestures, {
+export default Ember.Component.extend(MapboxGl, {
   classNames: ['mapbox-map'],
 
-  gestures: ['tap', 'pinch', 'pinchstart'],
-
-  recognizers: {
-    tap: { threshold: 40 },
-    pinch: { enable: true}
-  },
-
-  tap: function() {
-
-  },
-  click: (e) => {
-    console.log(e);
-  },
-
-  touchStart: function(e) {
-    console.log(e.originalEvent.changedTouches[0]);
-  },
-
-  pinch: function() {
-    console.log('pinch');
+  mapSettings: {
+    style: "mapbox://styles/mapbox/dark-v8",
+    lat: 52.520007,
+    lng: 13.404954,
+    zoom: 12,
+    interactive: true
   }
 });
