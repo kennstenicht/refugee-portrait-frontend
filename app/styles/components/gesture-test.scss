@@ -1,0 +1,14 @@
+.gesture-test {
+  position: fixed;
+  top: -40%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  z-index: 100;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+
+  &--is-open {
+    top: 25%;
+  }
+}
