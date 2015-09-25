@@ -4,6 +4,8 @@
   left: 0px;
   width: 200px;
   height: 200px;
+  border-radius: 50%;
   z-index: 800;
-  background: #fff;
+  background: rgba(41, 177, 172, 0.6);
+  transform: translate(-50%, -50%);
 }
