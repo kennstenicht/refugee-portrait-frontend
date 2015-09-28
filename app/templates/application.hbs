@@ -2,7 +2,7 @@
 
 {{gesture-test}}
 
-{{#each object in activeObjects}}
+{{#each activeObjects as |object|}}
   {{object-test object=object}}
 {{/each}}
 
