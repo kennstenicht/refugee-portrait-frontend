@@ -6,6 +6,19 @@
   height: 200px;
   border-radius: 50%;
   z-index: 800;
-  background: rgba(41, 177, 172, 0.6);
+  background: rgba(31, 31, 31, 0.9);
   transform: translate(-50%, -50%);
+
+  &__buttons {
+    position: absolute;
+    top: 230px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 20px;
+
+    &__button {
+      @extend %btn;
+    }
+  }
 }

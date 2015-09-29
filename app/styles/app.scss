@@ -32,10 +32,13 @@
 @import "bower_components/inuit-buttons/objects.buttons";
 
 
+@import "demo";
+
 // Components
 @import "components/mapbox-map";
-@import "components/gesture-test";
 @import "components/object-test";
+@import "components/pan-test";
+@import "components/preview-test";
 
 
 // Trumps

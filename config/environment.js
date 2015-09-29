@@ -19,7 +19,7 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'img-src': "'self' data: *.mapbox.com",
+      'img-src': "'self' data: blob: *.mapbox.com",
       'child-src': "blob:",
       'media-src': "'self'",
       'font-src': "'self' data: fonts.gstatic.com",

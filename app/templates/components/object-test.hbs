@@ -9,4 +9,9 @@
 {{#if (eq object.symbolId 3)}}
   Berlin
 {{/if}}
+
+<div class="object-test__buttons">
+  <div class="object-test__buttons__button" {{action 'easeIn' on='press'}}>easeIn</div>
+  <div class="object-test__buttons__button" {{action 'easeOut' on='press'}}>easeOut</div>
+</div>
 {{yield}}
