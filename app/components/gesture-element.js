@@ -5,16 +5,23 @@ const {
   Component
 } = Ember;
 
-export default Component.extend(Gestures, {
-  didInsertElement: function() {
-    console.log(this.get('tap'));
+export default Component.extend(Gesture, {
+  gestures: ['tap', 'press'],
+
+  recognizers: {
+    tap: {threshold: 30},
+    press: {threshold: 30}
   },
 
   tap: function() {
-    this.sendAction('tap');
+    if(this.get('tap')) {
+      this.sendAction('tap');
+    }
   },
 
   press: function() {
-    this.sendAction('press');
+    if(this.get('press')) {
+      this.sendAction('press');
+    }
   }
 });
