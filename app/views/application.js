@@ -1,7 +1,10 @@
 import Ember from 'ember';
 
 const {
-  View
+  View,
+  run: {
+    later
+  }
 } = Ember;
 
 export default View.extend({
@@ -26,8 +29,14 @@ export default View.extend({
   objectRemoved: function(e) {
     let activeObjects = this.get('controller.activeObjects');
 
-    activeObjects.removeObject(
-      activeObjects.findBy('symbolId', e.symbolId)
-    );
+    later(this, function() {
+      console.log(e);
+      if( activeObjects.findBy('symbolId', e.symbolId) ) {
+        activeObjects.removeObject(
+          activeObjects.findBy('symbolId', e.symbolId)
+        );
+      }
+    },300);
+
   }
 });
