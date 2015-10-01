@@ -1,7 +1,7 @@
 {{mapbox-map target=target}}
 
-{{#each activeObjects as |object|}}
-  {{object-test object=object setTarget='setTarget'}}
+{{#each activeIds as |activeId|}}
+  {{object-test activeId=activeId activeObjects=activeObjects setTarget='setTarget'}}
 {{/each}}
 
 {{pan-test}}

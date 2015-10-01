@@ -47,11 +47,11 @@ export default Component.extend(Gestures, {
 
   pinchmove: function(e) {
     let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth(),
-      pinchDistance = e.gesture.distance * 10;
-
+      pinchDistance = e.gesture.distance;
+      console.log(e.gesture.deltaX);
     this.$().find('.time-line__slider').css({
-      left: this.get('startPos') - ( pinchDistance * pinchLeftRelative ),
-      width: this.get('startWidth') + pinchDistance
+      left: this.get('startPos') - ( this.get('startWidth') * pinchDistance * pinchLeftRelative ),
+      width: this.get('startWidth') * pinchDistance
     });
   }
 });

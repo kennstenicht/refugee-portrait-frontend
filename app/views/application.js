@@ -12,7 +12,9 @@ export default View.extend({
 
   objectAdded: function(e) {
     let activeObjects = this.get('controller.activeObjects');
+    let activeIds = this.get('controller.activeIds');
 
+    activeIds.pushObject(e.symbolId);
     activeObjects.pushObject(e);
   },
 
@@ -28,6 +30,9 @@ export default View.extend({
 
   objectRemoved: function(e) {
     let activeObjects = this.get('controller.activeObjects');
+    let activeIds = this.get('controller.activeIds');
+
+    activeIds.removeObject(e.symbolId);
 
     later(this, e, function() {
       if( activeObjects.findBy('symbolId', e.symbolId) ) {
