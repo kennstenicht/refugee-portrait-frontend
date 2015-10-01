@@ -49,7 +49,6 @@ export default Component.extend(Gestures, {
     let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth(),
       pinchDistance = e.gesture.distance * 10;
 
-      console.log(e.gesture);
     this.$().find('.time-line__slider').css({
       left: this.get('startPos') - ( pinchDistance * pinchLeftRelative ),
       width: this.get('startWidth') + pinchDistance
