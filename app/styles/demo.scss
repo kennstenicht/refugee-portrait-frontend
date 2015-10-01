@@ -6,10 +6,11 @@
   background: rgba(31, 31, 31, 0.9);
   color: #fff;
   padding: 50px 0;
-  @extend %layout--middle;
-  @extend %layout--center;
   z-index: 2;
   &__item {
+    @extend %layout--middle;
+    @extend %layout--center;
+
     &__gallery {
       @extend %layout__item;
       @extend .u-4-of-16;
@@ -39,6 +40,7 @@
     &__description {
       @extend %layout__item;
       @extend .u-7-of-16;
+      text-align: left;
     }
   }
 }
