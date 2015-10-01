@@ -5,7 +5,7 @@ const {
   Component
 } = Ember;
 
-export default Component.extend(Gesture, {
+export default Component.extend(Gestures, {
   didInsertElement: function() {
     console.log(this.get('tap'));
   },

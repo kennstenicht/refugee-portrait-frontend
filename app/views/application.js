@@ -29,7 +29,7 @@ export default View.extend({
   objectRemoved: function(e) {
     let activeObjects = this.get('controller.activeObjects');
 
-    later(this, function() {
+    later(this, e, function() {
       console.log(e);
       if( activeObjects.findBy('symbolId', e.symbolId) ) {
         activeObjects.removeObject(

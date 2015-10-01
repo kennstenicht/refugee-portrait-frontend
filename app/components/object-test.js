@@ -4,7 +4,7 @@ const {
   Component
 } = Ember;
 
-export default Component.extend(Gestures, {
+export default Component.extend({
   classNames: ['object-test'],
 
   didInsertElement: function() {
