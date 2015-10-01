@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
   Component
@@ -7,8 +6,6 @@ const {
 
 export default Component.extend(Gestures, {
   classNames: ['object-test'],
-
-  gestures: ['press'],
 
   didInsertElement: function() {
     this.$().css({
