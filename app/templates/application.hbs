@@ -1,33 +1,40 @@
 {{mapbox-map target=target}}
 
-<div class="content">
-  <div class="content__gallery">
-    {{#slick-slider arrows=false}}
-      <div class="box box--one"></div>
-      <div class="box box--two"></div>
-      <div class="box box--three"></div>
-      <div class="box box--four"></div>
-    {{/slick-slider}}
-  </div><!--
-  --><div class="content__description">
-    {{#if (eq target 'muc')}}
-      <h1>München</h1>
-      <p>
-        Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?  {{#preview-test setTarget='setTarget' target='ber'}}Berlin!{{/preview-test}}Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet.
-      </p>
-    {{else}}
-      <h1>Berlin</h1>
-      <p>
-        der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. {{#preview-test setTarget='setTarget' target='muc'}}München!{{/preview-test}} Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?  Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet.
-      </p>
-    {{/if}}
-  </div>
-</div>
-
 {{#each activeObjects as |object|}}
   {{object-test object=object setTarget='setTarget'}}
 {{/each}}
 
 {{pan-test}}
+
+<div class="content">
+  {{#if isItem}}
+    <div class="content__item">
+      <div class="content__itrm__gallery">
+        {{#slick-slider arrows=false}}
+          <div class="box box--one"></div>
+          <div class="box box--two"></div>
+          <div class="box box--three"></div>
+          <div class="box box--four"></div>
+        {{/slick-slider}}
+      </div><!--
+      --><div class="content__item__description">
+        {{#if (eq target 'muc')}}
+          <h1>München</h1>
+          <p>
+            Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?  {{#preview-test setTarget='setTarget' target='ber'}}Berlin!{{/preview-test}}Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet.
+          </p>
+        {{else}}
+          <h1>Berlin</h1>
+          <p>
+            der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. {{#preview-test setTarget='setTarget' target='muc'}}München!{{/preview-test}} Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen?  Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet.
+          </p>
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    {{time-line}}
+  {{/if}}
+</div>
+
 
 {{outlet}}

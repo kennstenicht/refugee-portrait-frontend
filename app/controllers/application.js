@@ -7,6 +7,7 @@ const {
 export default Controller.extend({
   activeObjects: [],
   target: null,
+  isItem: false,
 
   actions: {
     setTarget: function(target) {
