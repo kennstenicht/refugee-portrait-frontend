@@ -33,6 +33,7 @@
     "jquery-hammerjs": "~2.0.0",
     "mapbox-gl-js": "0.11.0",
     "inuit-buttons": "~0.4.2",
-    "slick-carousel": "~1.5.8"
+    "slick-carousel": "~1.5.8",
+    "hammer-time": "0.3.0"
   }
 }
