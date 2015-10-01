@@ -2,16 +2,16 @@
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   z-index: 800;
-  background: rgba(31, 31, 31, 0.9);
+  background: rgba(61, 61, 61, 0.9);
   transform: translate(-50%, -50%);
 
   &__buttons {
     position: absolute;
-    top: 230px;
+    top: 170px;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 215px;
