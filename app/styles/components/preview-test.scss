@@ -2,12 +2,13 @@
   position: relative;
   display: inline-block;
   text-align: center;
+  z-index: 101;
 
   &__button {
     position: relative;
     @extend %btn;
     @extend %btn--small;
-    z-index: 2;
+    z-index: 101;
     transition: all 0.3s ease-in-out;
 
     &.active {
@@ -37,7 +38,7 @@
     transform: translate(-50%, calc(-100% - 15px));
     padding: 10px;
     width: 400px;
-    z-index: 2;
+    z-index: 101;
     display: none;
   }
 
@@ -48,7 +49,7 @@
     transform: translate(-50%, 45px);
     padding: 10px;
     width: 120px;
-    z-index: 2;
+    z-index: 101;
     display: none;
 
     @keyframes moveFade {
@@ -93,6 +94,6 @@
     bottom: 0px;
     background: rgba(74, 142, 194, 0.9);
     display: none;
-    z-index: 1;
+    z-index: 100;
   }
 }
