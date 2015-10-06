@@ -8,7 +8,7 @@ const {
 export default DS.Model.extend({
   title: attr('string'),
   description: attr('string'),
-  date: attr('utc'),
+  date: attr('date'),
   location: attr('string'),
   lat: attr('number'),
   lng: attr('number'),
@@ -17,5 +17,5 @@ export default DS.Model.extend({
   feeling: attr('string'),
   type: attr('string'),
 
-  timeline: belongsTo('timeline', { async: true })
+  story: belongsTo('story', { async: true })
 });
