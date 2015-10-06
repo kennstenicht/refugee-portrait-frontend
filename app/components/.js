@@ -13,11 +13,15 @@ export default Component.extend(Gestures, {
     press: {threshold: 30}
   },
 
-  click: function() {
-    console.log('click');
+  tap: function() {
+    if(this.get('tap')) {
+      this.sendAction('tap');
+    }
   },
 
-  tap: function() {
-    console.log('tap');
+  press: function() {
+    if(this.get('press')) {
+      this.sendAction('press');
+    }
   }
 });

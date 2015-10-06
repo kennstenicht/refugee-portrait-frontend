@@ -11,12 +11,7 @@
 {{/if}}
 
 <div class="object-test__buttons">
-  {{#gesture-element tap='easeIn' class="object-test__buttons__button"}}
-    easeIn
-  {{/gesture-element}}
-
-  {{#gesture-element tap='easeOut' class="object-test__buttons__button"}}
-    easeOut
-  {{/gesture-element}}
+  <div class="object-test__buttons__button" {{action 'easeIn' on='tap'}}>easeIn</div>
+  <div class="object-test__buttons__button" {{action 'easeOut' on='tap'}}>easeOut</div>
 </div>
 {{yield}}
