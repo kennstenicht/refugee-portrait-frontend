@@ -1,0 +1,16 @@
+.time-line-item {
+  position: absolute;
+  bottom: 0px;
+  height: 100%;
+  width: 150px;
+  background: #888;
+  float: left;
+
+  &:nth-child(odd) {
+    background: #333;
+  }
+
+  &:nth-child(50) {
+    background: #ff0000;
+  }
+}

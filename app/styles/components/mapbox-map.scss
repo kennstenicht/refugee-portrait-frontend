@@ -4,6 +4,7 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
+  z-index: 1;
 
   .mapboxgl-canvas-container {
     position: fixed;
@@ -15,13 +16,4 @@
   .mapboxgl-control-container {
     display: none;
   }
-}
-
-.map-navigation {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 999;
-  text-align: center;
 }

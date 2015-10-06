@@ -32,13 +32,15 @@
 @import "bower_components/inuit-buttons/objects.buttons";
 
 
-@import "demo";
+@import "story";
 
 // Components
 @import "components/mapbox-map";
-@import "components/object-test";
+@import "components/object-detection";
+@import "components/object-item";
 @import "components/pan-test";
 @import "components/preview-test";
+@import "components/time-line-item";
 @import "components/time-line";
 
 

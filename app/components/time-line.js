@@ -3,10 +3,7 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
   Component,
-  $,
-  run: {
-    later
-  }
+  observer
 } = Ember;
 
 export default Component.extend(Gestures, {
@@ -19,8 +16,6 @@ export default Component.extend(Gestures, {
     pinch: {enable: true}
   },
 
-  startPos: 0,
-  startWidth: 3000,
   zoomStep: 50,
 
   setStartValues: function() {
@@ -30,39 +25,46 @@ export default Component.extend(Gestures, {
     this.set('startWidth', $slider.width() );
   },
 
+  setPosition: observer('position', function () {
+    this.$().find('.time-line__slider').css({
+      left: this.get('position'),
+    });
+  }),
 
   // Gestures
-  pinchstart: function () {
-    this.setStartValues();
-  },
-
-  pinchout: function (e) {
-    let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth();
-
-    this.$().find('.time-line__slider').css({
-      left: "-=" + ( this.get('zoomStep') * pinchLeftRelative ),
-      width: "+=" + this.get('zoomStep')
-    });
-  },
-
-  pinchin: function (e) {
-    let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth();
-
-    this.$().find('.time-line__slider').css({
-      left: "+=" + ( this.get('zoomStep') * pinchLeftRelative ),
-      width: "-=" + this.get('zoomStep')
-    });
-  },
-
   panstart: function() {
     this.setStartValues();
   },
 
   panmove: function(e) {
-    this.$().find('.time-line__slider').css({
-      left: this.get('startPos') + e.gesture.deltaX,
-    });
+    let newPosition = this.get('startPos') + e.gesture.deltaX;
+
+    this.set('position', newPosition);
   },
+
+  // pinchstart: function () {
+  //   this.setStartValues();
+  // },
+  //
+  // pinchout: function (e) {
+  //   let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth();
+  //
+  //   this.$().find('.time-line__slider').css({
+  //     left: "-=" + ( this.get('zoomStep') * pinchLeftRelative ),
+  //     width: "+=" + this.get('zoomStep')
+  //   });
+  // },
+  //
+  // pinchin: function (e) {
+  //   let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth();
+  //
+  //   this.$().find('.time-line__slider').css({
+  //     left: "+=" + ( this.get('zoomStep') * pinchLeftRelative ),
+  //     width: "-=" + this.get('zoomStep')
+  //   });
+  // },
+
+
 
   // pinchstart: function(e) {
   //   this.setStartValues();

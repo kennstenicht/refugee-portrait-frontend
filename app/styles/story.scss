@@ -1,0 +1,10 @@
+.story {
+  &__title {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: #fff;
+    z-index: 100;
+  }
+}
