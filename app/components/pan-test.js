@@ -9,7 +9,12 @@ const {
 export default Component.extend(Gestures, {
   classNames: ['pan-test'],
 
-  gestures: ['pan', 'panstart', 'panmove'],
+  gestures: ['tap', 'pan', 'panstart', 'panmove', 'pinch'],
+
+  recognizers: {
+    tap: {threshold: 50}
+  },
+
 
   panstart: function() {
     this.set('startX', this.$().position().left);
