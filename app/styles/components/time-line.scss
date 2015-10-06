@@ -12,18 +12,34 @@
     width: 3000px;
     height: 100%;
 
-    &__item {
-      height: 100%;
-      width: 1%;
-      background: #888;
-      float: left;
+    &__items {
+      width: 100%;
 
-      &:nth-child(odd) {
-        background: #333;
+      &__item {
+        height: 100%;
+        width: 1%;
+        background: #888;
+        float: left;
+
+        &:nth-child(odd) {
+          background: #333;
+        }
+
+        &:nth-child(50) {
+          background: #ff0000;
+        }
+      }
+    }
+
+    &__axis {
+      border-color: #fff;
+
+      &--x {
+        border-top-width: 1px;
       }
 
-      &:nth-child(50) {
-        background: #ff0000;
+      &--y {
+        border-right-width: 1px;
       }
     }
   }

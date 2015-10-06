@@ -12,7 +12,7 @@ const {
 export default Component.extend(Gestures, {
   classNames: ['time-line'],
 
-  gestures: ['pan', 'panstart', 'panmove', 'pinch', 'pinchstart', 'pinchmove'],
+  gestures: ['pan', 'panstart', 'panmove', 'pinch', 'pinchstart', 'pinchmove', 'pinchout', 'pinchin'],
 
   recognizers: {
     pan: {threshold: 40, direction: Hammer.DIRECTION_HORIZONTAL},
@@ -21,6 +21,7 @@ export default Component.extend(Gestures, {
 
   startPos: 0,
   startWidth: 3000,
+  zoomStep: 50,
 
   setStartValues: function() {
     let $slider = this.$().find('.time-line__slider');
@@ -31,6 +32,28 @@ export default Component.extend(Gestures, {
 
 
   // Gestures
+  pinchstart: function () {
+    this.setStartValues();
+  },
+
+  pinchout: function (e) {
+    let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth();
+
+    this.$().find('.time-line__slider').css({
+      left: "-=" + ( this.get('zoomStep') * pinchLeftRelative ),
+      width: "+=" + this.get('zoomStep')
+    });
+  },
+
+  pinchin: function (e) {
+    let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth();
+
+    this.$().find('.time-line__slider').css({
+      left: "+=" + ( this.get('zoomStep') * pinchLeftRelative ),
+      width: "-=" + this.get('zoomStep')
+    });
+  },
+
   panstart: function() {
     this.setStartValues();
   },
@@ -41,17 +64,17 @@ export default Component.extend(Gestures, {
     });
   },
 
-  pinchstart: function(e) {
-    this.setStartValues();
-  },
-
-  pinchmove: function(e) {
-    let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth(),
-      pinchDistance = e.gesture.distance;
-      console.log(e.gesture.deltaX);
-    this.$().find('.time-line__slider').css({
-      left: this.get('startPos') - ( this.get('startWidth') * pinchDistance * pinchLeftRelative ),
-      width: this.get('startWidth') * pinchDistance
-    });
-  }
+  // pinchstart: function(e) {
+  //   this.setStartValues();
+  // },
+  //
+  // pinchmove: function(e) {
+  //   let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth(),
+  //     pinchDistance = e.gesture.distance * 10;
+  //
+  //   this.$().find('.time-line__slider').css({
+  //     left: this.get('startPos') - ( pinchDistance * pinchLeftRelative ),
+  //     width: this.get('startWidth') + pinchDistance
+  //   });
+  // }
 });
