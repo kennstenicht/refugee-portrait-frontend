@@ -1,32 +1,19 @@
 import Ember from 'ember';
+import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
-  Component,
-  computed,
-  observer
+  Component
 } = Ember;
 
-export default Component.extend({
+export default Component.extend(Gestures, {
   classNames: ['object-test'],
 
   didInsertElement: function() {
-    let object = this.get('activeObjects').findBy('symbolId', this.get('activeId'));
-
     this.$().css({
-      'top': object.clientY,
-      'left': object.clientX
+      'top': this.get('object.clientY'),
+      'left': this.get('object.clientX')
     });
   },
-
-  moveObject: observer('activeObjects@each', function() {
-    console.log('test');
-    let object = this.get('activeObjects').findBy('symbolId', this.get('activeId'));
-
-    // this.$().css({
-    //   'top': object.clientY,
-    //   'left': object.clientX
-    // });
-  }),
 
   actions: {
     easeIn: function() {
