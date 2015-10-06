@@ -1,0 +1,21 @@
+<div class="story">
+  <div class="story__title" {{action 'addNewStory'}}>
+    {{model.name}}
+  </div>
+
+  {{!mapbox-map target=target}}
+
+  {{time-line chapters=model.chapters}}
+
+  {{outlet}}
+</div>
+
+{{object-detection
+  activeObjects=activeObjects
+}}
+
+{{#each activeObjects as |object|}}
+  {{object-test object=object setTarget='setTarget'}}
+{{/each}}
+
+{{!pan-test}}
