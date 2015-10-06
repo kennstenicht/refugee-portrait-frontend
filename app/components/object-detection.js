@@ -1,23 +1,23 @@
 import Ember from 'ember';
 
 const {
-  View,
+  Component,
   run: {
     later
   }
 } = Ember;
 
-export default View.extend({
-  classNames: ['application'],
+export default Component.extend({
+  classNames: ['object-detection'],
 
   objectAdded: function(e) {
-    let activeObjects = this.get('controller.activeObjects');
+    let activeObjects = this.get('activeObjects');
 
     activeObjects.pushObject(e);
   },
 
   objectMoved: function(e) {
-    let activeObjects = this.get('controller.activeObjects');
+    let activeObjects = this.get('activeObjects');
 
     activeObjects.replace(
       activeObjects.indexOf(
@@ -27,7 +27,7 @@ export default View.extend({
   },
 
   objectRemoved: function(e) {
-    let activeObjects = this.get('controller.activeObjects');
+    let activeObjects = this.get('activeObjects');
 
     later(this, e, function() {
       if( activeObjects.findBy('symbolId', e.symbolId) ) {
@@ -36,6 +36,5 @@ export default View.extend({
         );
       }
     },300);
-
   }
 });
