@@ -3,8 +3,6 @@ import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
 
 const {
   Component,
-  computed,
-  on,
   observer
 } = Ember;
 

@@ -2,8 +2,7 @@ import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
-  Component,
-  computed
+  Component
 } = Ember;
 
 export default Component.extend(Gestures, {
@@ -25,6 +24,6 @@ export default Component.extend(Gestures, {
     this.$().css({
       top: this.get('startY') + e.gesture.deltaY,
       left: this.get('startX') + e.gesture.deltaX
-    })
+    });
   }
 });
