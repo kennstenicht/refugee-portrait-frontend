@@ -5,7 +5,9 @@
 
   {{!mapbox-map target=target}}
 
-  {{time-line chapters=model.chapters}}
+  {{time-line
+    chapters=model.chapters
+  }}
 
   {{outlet}}
 </div>
@@ -15,7 +17,7 @@
 }}
 
 {{#each activeObjects as |object|}}
-  {{object-test object=object setTarget='setTarget'}}
+  {{object-item object=object setTarget='setTarget'}}
 {{/each}}
 
 {{!pan-test}}

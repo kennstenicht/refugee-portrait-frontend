@@ -1,27 +1,27 @@
 import Ember from 'ember';
+import MathHelper from '../mixins/math-helper';
 
 const {
   Component,
   observer
 } = Ember;
 
-export default Component.extend({
+export default Component.extend(MathHelper, {
   classNames: ['time-line-item'],
 
   setPosition: observer('chapter.date', function () {
-    let story = this.get('chapter.story'),
-      start = story.get('start'),
-      end = story.get('end'),
-      date = this.get('chapter.date');
+    let story = this.get('chapter.story');
 
-    let position = this.scale(date, start, end, 0, 1);
-    console.log(position);
+    let position = this.scale(
+      this.get('chapter.date'),
+      story.get('start'),
+      story.get('end'),
+      0,
+      100
+    );
+
     this.$().css({
-      left: window.innerWidth * position
+      left: position + "%"
     });
-  }),
-
-  scale: function(val, min, max, rangeMin, rangeMax) {
-    return ((val - min) / (max - min)) * (rangeMax - rangeMin) + rangeMin;
-  }
+  })
 });

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Component,
+  Object,
   run: {
     later
   }
@@ -13,28 +14,30 @@ export default Component.extend({
   objectAdded: function(e) {
     let activeObjects = this.get('activeObjects');
 
-    activeObjects.pushObject(e);
+    activeObjects.pushObject(Object.create({
+        symbolId: e.symbolId,
+        pageX: e.pageX,
+        pageY: e.pageY
+      })
+    );
   },
 
   objectMoved: function(e) {
-    let activeObjects = this.get('activeObjects');
+    let activeObjects = this.get('activeObjects'),
+      object = activeObjects.findBy('symbolId', e.symbolId);
 
-    activeObjects.replace(
-      activeObjects.indexOf(
-        activeObjects.findBy('symbolId', e.symbolId)
-      ), 1, e
-    );
+    if(object) {
+      object.set('pageX', e.pageX);
+      object.set('pageY', e.pageY);
+    }
+
   },
 
   objectRemoved: function(e) {
     let activeObjects = this.get('activeObjects');
 
-    later(this, e, function() {
-      if( activeObjects.findBy('symbolId', e.symbolId) ) {
-        activeObjects.removeObject(
-          activeObjects.findBy('symbolId', e.symbolId)
-        );
-      }
-    },300);
+    activeObjects.removeObject(
+      activeObjects.findBy('symbolId', e.symbolId)
+    );
   }
 });

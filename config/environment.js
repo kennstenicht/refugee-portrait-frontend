@@ -26,14 +26,14 @@ module.exports = function(environment) {
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
         "apis.google.com",
-      'connect-src': "'self' *.mapbox.com http://localhost:5000 ws://localhost:5000 *.firebaseio.com",
+      'connect-src': "'self' *.mapbox.com http://localhost:5000 ws://localhost:5000 wss://s-dal5-nss-22.firebaseio.com",
     },
 
     mapbox: {
       accessToken: 'pk.eyJ1Ijoia2VubnN0ZW5pY2h0IiwiYSI6ImNpZXBpMGZ5ejAwNHlzcGt1b3NwcWI1aWQifQ.SRy8JsaaUHRDdLGjKiE_kQ',
     },
 
-    tuioTouchDebug: true,
+    tuioTouchDebug: false,
 
     firebase: 'https://refugee-portrait.firebaseio.com/'
   };

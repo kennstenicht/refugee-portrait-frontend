@@ -3,80 +3,103 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
   Component,
-  observer
+  observer,
+  computed
 } = Ember;
 
 export default Component.extend(Gestures, {
   classNames: ['time-line'],
 
-  gestures: ['pan', 'panstart', 'panmove', 'pinch', 'pinchstart', 'pinchmove', 'pinchout', 'pinchin'],
+  gestures: ['pan', 'panstart', 'panmove', 'panend', 'pinch', 'pinchstart', 'pinchmove', 'pinchout', 'pinchin', 'pinchend'],
 
   recognizers: {
     pan: {threshold: 40, direction: Hammer.DIRECTION_HORIZONTAL},
     pinch: {enable: true}
   },
 
-  zoomStep: 50,
-
-  setStartValues: function() {
-    let $slider = this.$().find('.time-line__slider');
-
-    this.set('startPos', $slider.position().left );
-    this.set('startWidth', $slider.width() );
-  },
-
-  setPosition: observer('position', function () {
-    this.$().find('.time-line__slider').css({
-      left: this.get('position'),
-    });
+  zoomStep: 300,
+  position: 0,
+  size: 3000,
+  minSize: window.innerWidth,
+  maxSize: 30000,
+  minPosition: 0,
+  maxPosition: computed('size', function () {
+    return -(this.get('size') - this.get('minSize'));
+  }),
+  slider: computed(function () {
+    return this.$().find('.time-line__slider');
   }),
 
-  // Gestures
+
+  setPosition: function (position, speed) {
+    this.set('position', position);
+    this.get('slider').animate({
+      left: position,
+    }, speed);
+  },
+
+  setSize: function (size, speed) {
+    this.set('size', size);
+    this.get('slider').animate({
+      width: size,
+    }, speed);
+  },
+
+
+  // Start & End Gesture - set start values and bounce after
+  startGesture: function() {
+    this.set('startPosition', this.get('slider').position().left );
+    this.set('startSize', this.get('slider').width() );
+  },
+  endGesture: function() {
+    if(this.get('size') < this.get('minSize')) {
+      this.setSize(this.get('minSize'), 600);
+    }
+
+    if(this.get('size') > this.get('maxSize')) {
+      this.setSize(this.get('maxSize'), 600);
+    }
+
+    if(this.get('position') > this.get('minPosition')) {
+      this.setPosition(this.get('minPosition'), 600);
+    }
+
+    if(this.get('position') < this.get('maxPosition')) {
+      this.setPosition(this.get('maxPosition'), 600);
+    }
+  },
+
+
+  // Pan Gesture - drag timeline
   panstart: function() {
-    this.setStartValues();
+    this.startGesture();
   },
-
   panmove: function(e) {
-    let newPosition = this.get('startPos') + e.gesture.deltaX;
-
-    this.set('position', newPosition);
+    let newPosition = this.get('startPosition') + e.gesture.deltaX;
+    this.setPosition(newPosition, 0);
+  },
+  panend: function () {
+    this.endGesture();
   },
 
-  // pinchstart: function () {
-  //   this.setStartValues();
-  // },
-  //
-  // pinchout: function (e) {
-  //   let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth();
-  //
-  //   this.$().find('.time-line__slider').css({
-  //     left: "-=" + ( this.get('zoomStep') * pinchLeftRelative ),
-  //     width: "+=" + this.get('zoomStep')
-  //   });
-  // },
-  //
-  // pinchin: function (e) {
-  //   let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth();
-  //
-  //   this.$().find('.time-line__slider').css({
-  //     left: "+=" + ( this.get('zoomStep') * pinchLeftRelative ),
-  //     width: "-=" + this.get('zoomStep')
-  //   });
-  // },
 
+  // Pinch Gesture - zoom timeline
+  pinchstart: function () {
+    this.startGesture();
+  },
+  pinchmove: function (e) {
+    let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth(),
+      newSize = this.get('startSize') * e.gesture.scale,
+      differenceSize = newSize - this.get('startSize');
 
-
-  // pinchstart: function(e) {
-  //   this.setStartValues();
-  // },
-  //
-  // pinchmove: function(e) {
-  //   let pinchLeftRelative = e.gesture.center.x / $(window).innerWidth(),
-  //     pinchDistance = e.gesture.distance * 10;
-  //
-  //   this.$().find('.time-line__slider').css({
-  //     left: this.get('startPos') - ( pinchDistance * pinchLeftRelative ),
-  //     width: this.get('startWidth') + pinchDistance
-  //   });
-  // }
+    if(this.get('position') >= this.get('maxPosition') || this.get('position') <= this.get('minPosition')) {
+      this.setPosition(
+        this.get('startPosition') - ( differenceSize * pinchLeftRelative ), 0
+      );
+      this.setSize(newSize, 0);
+    }
+  },
+  pinchend: function () {
+    this.endGesture();
+  }
 });

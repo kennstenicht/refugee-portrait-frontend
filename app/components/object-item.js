@@ -2,21 +2,23 @@ import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
-  Component
+  Component,
+  observer
 } = Ember;
 
 export default Component.extend(Gestures, {
-  classNames: ['object-test'],
+  classNames: ['object-item'],
 
-  didInsertElement: function() {
+  setPosition: observer('object.{pageX,pageY}', function () {
     this.$().css({
-      'top': this.get('object.clientY'),
-      'left': this.get('object.clientX')
+      'top': this.get('object.pageY'),
+      'left': this.get('object.pageX')
     });
-  },
+  }),
 
   actions: {
     easeIn: function() {
+      console.log('easeIn');
       this.sendAction('setTarget', 'easeIn');
     },
 
