@@ -11,7 +11,6 @@ const {
 
 export default Controller.extend({
   activeObjects: [],
-  target: null,
 
   jsonChapters: [{"date":"2015, 06, 20","title":"Neue Heimat","location":"Sønderborg","lat":54.913811,"lng":9.792178,"accuracy":2,"action":"","feelings":"","type":"Video","description":"Rami ist seit vier Wochen in Dänemark. Bei der Asylbewerberunterkunft in Sønderborg handelt es sich um eine ehemalige Kaserne. Rami teilt sich mit fünf anderen Syrern ein Zimmer. Vom Fenster aus kann er das Meer sehen. Er hat einen Dänischkurs angefangen und notiert in seinem Notizheft akribisch die Aussprache der Vokabeln in arabischer Lautschrift. Alles wirkt noch fremd und neu, aber langsam beginnt er sich an seine neue Heimat zu gewöhnen. Im Keller der Kaserne ist ein Fitnessraum eingerichtet. Regelmäßig trainieren Rami und die anderen Syrer dort. Sie wollen sich ein Stück Normalität erkämpfen, Menschlichkeit zurückholen, die sie auf der Flucht verloren haben. Es ist Ramadan, der Fastenmonat der Muslime. Einige Syrer haben sich Angeln gekauft und fischen Kabeljau, den sie nach Einbruch der Dunkelheit in der gemeinsamen Küche zubereiten. Rami genießt es, in der Stadt zu spazieren. Er schlendert auf einen Steg zu. Hierhin kommt er beinahe täglich, seit seine Flucht beendet ist. Eine Flucht, die über fünf Monate dauerte, in denen er 4000 Kilometer zurücklegte und acht Grenzen überwand."},
 {"date":"2015, 05, 23","title":"Kein Zurück","location":"Kopenhagen","lat":55.676097,"lng":12.568337,"accuracy":2,"action":"","feelings":"","type":"Text","description":"Rami war schon bei seiner Schwester, als er von einer Polizeistreife im Zug nach seinen Papieren gefragt wird. Für einen kurzen Moment überlegt er, ob er fliehen soll. Aber er hat keine Chance. Die Beamten bringen ihn zu einer Polizeistation. Dort warten bereits Mitarbeiter des Roten Kreuzes, um Rami bei den anstehenden Schritten zu unterstützen:  Denn ihm bleibt nur noch die Möglichkeit, jetzt in Dänemark Asyl zu beantragen. Nach Deutschland kann er nicht mehr zurück. Rami wird nach Sønderborg nahe der dänisch-deutschen Grenze gebracht, in eine Einrichtung für syrische Asylsuchende. Aktuell leben hier 300 Flüchtlinge aus Syrien, die in der Regel nach einigen Tagen einen Ausweis bekommen, mit dem sie sich frei im Land bewegen dürfen. Auch Sprachkurse und weitere Angebote stehen den Syrern dort zur Verfügung. Seine Festnahme in Dänemark erscheint Rami nicht mehr als Niederlage - im Gegenteil: Er wirkt erleichtert, dass seine Flucht nun endlich beendet ist und er in der Nähe seiner Schwester bleiben kann."},
@@ -61,32 +60,27 @@ export default Controller.extend({
 {"date":"2014, 12, 25","title":"Die Flucht beginnt","location":"Damaskus","lat":33.493496,"lng":36.284775,"accuracy":2,"action":"","feelings":"Angst","type":"Text","description":"Es ist Winter in Damaskus. Rami sitzt mit seiner Familie zusammen, als er den Brief mit dem Befehl zur Einberufung in die Armee erhält. Er soll im Kampf gegen den Islamischen Staat (IS) an die Front. Viele Freunde und Bekannte sind in diesem Krieg bereits ums Leben gekommen, andere sind geflohen. Syrien, sein Heimatland, ist nicht länger sicher für ihn."}],
 
   actions: {
-    setTarget: function(target) {
-      this.set('target', target);
-    },
-
     addNewStory: function () {
-      let story = this.get('model');
-      this.get('jsonChapters').forEach(bind(this, function (chapter) {
-        let newChapter = this.store.createRecord('chapter', {
-          title: chapter.title,
-          description: chapter.description,
-          location: chapter.location,
-          lat: chapter.lat,
-          lng: chapter.lng,
-          date: new Date(chapter.date),
-          accuracy: chapter.accuracy,
-          action: chapter.action,
-          feeling: chapter.feeling,
-          type: chapter.type,
-        });
-        story.get('chapters').pushObject(newChapter);
-
-        newChapter.save().then(function () {
-          return story.save();
-        });
-      }));
-
+      // let story = this.get('model');
+//       this.get('jsonChapters').forEach(bind(this, function (chapter) {
+//         let newChapter = this.store.createRecord('chapter', {
+//           title: chapter.title,
+//           description: chapter.description,
+//           location: chapter.location,
+//           lat: chapter.lat,
+//           lng: chapter.lng,
+//           date: new Date(chapter.date),
+//           accuracy: chapter.accuracy,
+//           action: chapter.action,
+//           feeling: chapter.feeling,
+//           type: chapter.type,
+//         });
+//         story.get('chapters').pushObject(newChapter);
+//
+//         newChapter.save().then(function () {
+//           return story.save();
+//         });
+//       }));
     }
   }
 });
