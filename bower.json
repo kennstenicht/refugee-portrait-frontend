@@ -36,6 +36,7 @@
     "slick-carousel": "~1.5.8",
     "firebase": "^2.1.0",
     "moment": ">= 2.8.0",
-    "moment-timezone": ">= 0.1.0"
+    "moment-timezone": ">= 0.1.0",
+    "sly": "~1.6.1"
   }
 }

@@ -1,9 +1,20 @@
-<div class="time-line__slider">
-  {{#each chapters as |chapter|}}
-    {{time-line-item
-      chapter=chapter
-      size=size
-    }}
-  {{/each}}
-  <div class="time-line__slider__axis time-line__slider__axis--x"></div>
+<div class="time-line__frame">
+  <div class="time-line__frame__slider">
+    {{#each chapters as |chapter|}}
+      {{time-line-item
+        chapter=chapter
+      }}
+    {{/each}}
+  </div>
 </div>
+<div class="time-line__scrollbar">
+    <div class="time-line__scrollbar__handle"></div>
+    <div class="time-line__scrollbar__navigator">
+      {{#each chapters as |chapter|}}
+        {{time-line-navigator
+          chapter=chapter
+        }}
+      {{/each}}
+    </div>
+</div>
+<div id="time-line-preview"></div>

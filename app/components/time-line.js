@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
+import Sly from '../mixins/sly';
 
 const {
   Component,
@@ -7,99 +8,132 @@ const {
   computed
 } = Ember;
 
-export default Component.extend(Gestures, {
+export default Component.extend(Gestures, Sly,{
   classNames: ['time-line'],
 
-  gestures: ['pan', 'panstart', 'panmove', 'panend', 'pinch', 'pinchstart', 'pinchmove', 'pinchout', 'pinchin', 'pinchend'],
+  gestures: ['pinch', 'pinchstart', 'pinchmove'],
 
   recognizers: {
-    pan: {threshold: 40, direction: Hammer.DIRECTION_HORIZONTAL},
     pinch: {enable: true}
   },
 
-  zoomStep: 300,
-  position: 0,
-  size: 3000,
-  minSize: window.innerWidth,
-  maxSize: 30000,
-  minPosition: 0,
-  maxPosition: computed('size', function () {
-    return -(this.get('size') - this.get('minSize'));
-  }),
-  slider: computed(function () {
-    return this.$().find('.time-line__slider');
+  setSize: observer('width', function () {
+    this.get('slider').css({
+      width: this.get('width'),
+    });
+    this.get('sly').reload();
+
+    this.get('sly').slideTo(parseInt(this.get('startPosRel') * this.get('width')), true);
   }),
 
+  pinchstart: function (e) {
+    this.set('startWidth', this.get('slider').width() );
+    console.log(this.get('sly').pos.cur);
+    this.set('startPosRel', (this.get('sly').pos.cur + e.gesture.center.x) / this.get('startWidth') );
 
-  setPosition: function (position, speed) {
-    this.set('position', position);
-    this.get('slider').animate({
-      left: position,
-    }, speed);
   },
 
-  setSize: function (size, speed) {
-    this.set('size', size);
-    this.get('slider').animate({
-      width: size,
-    }, speed);
-  },
-
-
-  // Start & End Gesture - set start values and bounce after
-  startGesture: function() {
-    this.set('startPosition', this.get('slider').position().left );
-    this.set('startSize', this.get('slider').width() );
-  },
-  endGesture: function() {
-    if(this.get('size') < this.get('minSize')) {
-      this.setSize(this.get('minSize'), 600);
-    }
-
-    if(this.get('size') > this.get('maxSize')) {
-      this.setSize(this.get('maxSize'), 600);
-    }
-
-    if(this.get('position') > this.get('minPosition')) {
-      this.setPosition(this.get('minPosition'), 600);
-    }
-
-    if(this.get('position') < this.get('maxPosition')) {
-      this.setPosition(this.get('maxPosition'), 600);
-    }
-  },
-
-
-  // Pan Gesture - drag timeline
-  panstart: function() {
-    this.startGesture();
-  },
-  panmove: function(e) {
-    let newPosition = this.get('startPosition') + e.gesture.deltaX;
-    this.setPosition(newPosition, 0);
-  },
-  panend: function () {
-    this.endGesture();
-  },
-
-
-  // Pinch Gesture - zoom timeline
-  pinchstart: function () {
-    this.startGesture();
-  },
   pinchmove: function (e) {
-    let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth(),
-      newSize = this.get('startSize') * e.gesture.scale,
-      differenceSize = newSize - this.get('startSize');
+    let newWidth = this.get('startWidth') * e.gesture.scale;
 
-    if(this.get('position') >= this.get('maxPosition') || this.get('position') <= this.get('minPosition')) {
-      this.setPosition(
-        this.get('startPosition') - ( differenceSize * pinchLeftRelative ), 0
-      );
-      this.setSize(newSize, 0);
-    }
+    this.set('width', newWidth );
   },
-  pinchend: function () {
-    this.endGesture();
+
+  didInsertElement: function () {
+    this.initSly();
+  },
+
+  willDestroyElement: function () {
+    this.destroySly();
+  },
+
+  click: function () {
+    console.log(this.get('sly').getPos(this.$('.time-line-item')[0]).end);
+
   }
+  // zoomStep: 300,
+  // position: 0,
+  // size: 3000,
+  // minSize: window.innerWidth,
+  // maxSize: 30000,
+  // minPosition: 0,
+  // maxPosition: computed('size', function () {
+  //   return -(this.get('size') - this.get('minSize'));
+  // }),
+  // slider: computed(function () {
+  //   return this.$().find('.time-line__slider');
+  // }),
+  //
+  //
+  // setPosition: function (position, speed) {
+  //   this.set('position', position);
+  //   this.get('slider').animate({
+  //     left: position,
+  //   }, speed);
+  // },
+  //
+  // setSize: function (size, speed) {
+  //   this.set('size', size);
+  //   this.get('slider').animate({
+  //     width: size,
+  //   }, speed);
+  // },
+  //
+  //
+  // // Start & End Gesture - set start values and bounce after
+  // startGesture: function() {
+  //   this.set('startPosition', this.get('slider').position().left );
+  //   this.set('startSize', this.get('slider').width() );
+  // },
+  // endGesture: function() {
+  //   if(this.get('size') < this.get('minSize')) {
+  //     this.setSize(this.get('minSize'), 600);
+  //   }
+  //
+  //   if(this.get('size') > this.get('maxSize')) {
+  //     this.setSize(this.get('maxSize'), 600);
+  //   }
+  //
+  //   if(this.get('position') > this.get('minPosition')) {
+  //     this.setPosition(this.get('minPosition'), 600);
+  //   }
+  //
+  //   if(this.get('position') < this.get('maxPosition')) {
+  //     this.setPosition(this.get('maxPosition'), 600);
+  //   }
+  // },
+  //
+  //
+  // // Pan Gesture - drag timeline
+  // panstart: function() {
+  //   this.startGesture();
+  // },
+  // panmove: function(e) {
+  //   let newPosition = this.get('startPosition') + e.gesture.deltaX;
+  //   this.setPosition(newPosition, 0);
+  // },
+  // panend: function () {
+  //   this.endGesture();
+  // },
+  //
+  //
+  // // Pinch Gesture - zoom timeline
+  // pinchstart: function () {
+  //   this.startGesture();
+  // },
+  // pinchmove: function (e) {
+  //   let pinchLeftRelative = e.gesture.center.x / this.$().innerWidth(),
+  //     newSize = this.get('startSize') * e.gesture.scale,
+  //     differenceSize = newSize - this.get('startSize');
+  //
+  //   if(this.get('position') >= this.get('maxPosition') || this.get('position') <= this.get('minPosition')) {
+  //     this.setPosition(
+  //       this.get('startPosition') - ( differenceSize * pinchLeftRelative ), 0
+  //     );
+  //     this.setSize(newSize, 0);
+  //   }
+  // },
+  // pinchend: function () {
+  //   this.endGesture();
+  // }
 });
