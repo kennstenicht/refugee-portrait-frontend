@@ -33,7 +33,7 @@ module.exports = function(environment) {
       accessToken: 'pk.eyJ1Ijoia2VubnN0ZW5pY2h0IiwiYSI6ImNpZXBpMGZ5ejAwNHlzcGt1b3NwcWI1aWQifQ.SRy8JsaaUHRDdLGjKiE_kQ',
     },
 
-    tuioTouchDebug: false,
+    tuioTouchDebug: true,
 
     firebase: 'https://refugee-portrait.firebaseio.com/'
   };
