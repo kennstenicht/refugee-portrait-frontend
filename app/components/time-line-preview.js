@@ -6,6 +6,7 @@ const {
   Component,
   $,
   observer,
+  on,
   computed,
   run: {
     later
@@ -18,19 +19,20 @@ export default Component.extend(Gestures, animationIf, {
   gestures: ['tap', 'press', 'pressup', 'pan', 'pandown'],
 
   recognizers: {
-    tap: {threshold: 30},
-    press: {threshold: 30},
-    pan: {threshold: 10}
+    tap: {threshold: 10},
+    press: {threshold: 10},
+    pan: {direction: Hammer.DIRECTION_VERTICAL}
   },
 
   targeting: Ember.inject.service('targeting'),
 
-  setContainerPosition: function () {
+  setContainerPosition: on('tap', 'press', 'pan', function () {
+
     $('#time-line-preview').css({
       left: this.$().offset().left + ( this.$().width() / 2 ),
       top: this.$().offset().top
     });
-  },
+  }),
 
   // Animated If's
   previewIn: function(speed) {
@@ -61,23 +63,19 @@ export default Component.extend(Gestures, animationIf, {
   // Gestures
   tap: function() {
     this.animationIn('hint', 200);
-    // this.animationIn('preview', 300);
-    this.setContainerPosition();
   },
 
   press: function() {
     this.animationIn('preview', 300);
-    this.setContainerPosition();
   },
 
   pressup: function() {
     this.animationOut('preview', 300);
-    this.get('targeting').setTarget(this.get('chapter'));
   },
 
   pandown: function() {
-    console.log('pandown');
+    console.log('down');
     this.animationOut('preview', 300);
-
+    this.get('targeting').setTarget(this.get('chapter'));
   }
 });
