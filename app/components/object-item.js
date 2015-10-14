@@ -20,6 +20,7 @@ export default Component.extend(Gestures, {
     easeIn: function() {
       console.log('easeIn');
       this.sendAction('setTarget', 'easeIn');
+      // TODO include service
     },
 
     easeOut: function() {
