@@ -1,5 +1,8 @@
 <div class="time-line-item__line"></div>
+<div class="time-line-item__content">
+  Test
+  {{#if hasPosition}}
+    {{time-line-preview chapter=chapter}}
+  {{/if}}
+</div>
 
-{{#if hasPosition}}
-  {{time-line-preview chapter=chapter}}
-{{/if}}

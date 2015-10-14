@@ -1,0 +1,6 @@
+{{#each model as |story|}}
+  {{#link-to 'story' story}}
+    {{story.name}}
+  {{/link-to}}
+{{/each}}
+{{outlet}}
