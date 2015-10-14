@@ -61,26 +61,26 @@ export default Controller.extend({
 
   actions: {
     addNewStory: function () {
-      // let story = this.get('model');
-//       this.get('jsonChapters').forEach(bind(this, function (chapter) {
-//         let newChapter = this.store.createRecord('chapter', {
-//           title: chapter.title,
-//           description: chapter.description,
-//           location: chapter.location,
-//           lat: chapter.lat,
-//           lng: chapter.lng,
-//           date: new Date(chapter.date),
-//           accuracy: chapter.accuracy,
-//           action: chapter.action,
-//           feeling: chapter.feeling,
-//           type: chapter.type,
-//         });
-//         story.get('chapters').pushObject(newChapter);
-//
-//         newChapter.save().then(function () {
-//           return story.save();
-//         });
-//       }));
+      let story = this.get('model');
+      this.get('jsonChapters').forEach(bind(this, function (chapter) {
+        let newChapter = this.store.createRecord('chapter', {
+          title: chapter.title,
+          description: chapter.description,
+          location: chapter.location,
+          lat: chapter.lat,
+          lng: chapter.lng,
+          date: new Date(chapter.date),
+          accuracy: chapter.accuracy,
+          action: chapter.action,
+          feeling: chapter.feelings,
+          type: chapter.type,
+        });
+        story.get('chapters').pushObject(newChapter);
+
+        newChapter.save().then(function () {
+          return story.save();
+        });
+      }));
     }
   }
 });
