@@ -1,0 +1,83 @@
+import Ember from 'ember';
+import Gestures from 'ember-cli-tuio/mixins/gestures';
+import animationIf from '../mixins/animation-if';
+
+const {
+  Component,
+  $,
+  observer,
+  computed,
+  run: {
+    later
+  }
+} = Ember;
+
+export default Component.extend(Gestures, animationIf, {
+  classNames: ['time-line-preview'],
+
+  gestures: ['tap', 'press', 'pressup', 'pan', 'pandown'],
+
+  recognizers: {
+    tap: {threshold: 30},
+    press: {threshold: 30},
+    pan: {threshold: 10}
+  },
+
+  targeting: Ember.inject.service('targeting'),
+
+  setContainerPosition: function () {
+    $('#time-line-preview').css({
+      left: this.$().offset().left + ( this.$().width() / 2 ),
+      top: this.$().offset().top
+    });
+  },
+
+  // Animated If's
+  previewIn: function(speed) {
+    $('.time-line-preview__background').fadeIn(speed);
+    $('.time-line-preview__content').slideDown(speed);
+    $('.time-line-preview__trigger').slideDown(speed);
+    this.$('.time-line-preview__button').addClass('active');
+  },
+
+  previewOut: function(speed) {
+    $('.time-line-preview__background').fadeOut(speed);
+    $('.time-line-preview__content').slideUp(speed);
+    $('.time-line-preview__trigger').slideUp(speed);
+    this.$('.time-line-preview__button').removeClass('active');
+  },
+
+  hintIn: function(speed) {
+    $('.time-line-preview__hint').fadeIn(speed);
+    later(this, function() {
+      this.animationOut('hint', 200, 800);
+    }, speed);
+  },
+
+  hintOut: function(speed) {
+    $('.time-line-preview__hint').fadeOut(speed);
+  },
+
+  // Gestures
+  tap: function() {
+    this.animationIn('hint', 200);
+    // this.animationIn('preview', 300);
+    this.setContainerPosition();
+  },
+
+  press: function() {
+    this.animationIn('preview', 300);
+    this.setContainerPosition();
+  },
+
+  pressup: function() {
+    this.animationOut('preview', 300);
+    this.get('targeting').setTarget(this.get('chapter'));
+  },
+
+  pandown: function() {
+    console.log('pandown');
+    this.animationOut('preview', 300);
+
+  }
+});
