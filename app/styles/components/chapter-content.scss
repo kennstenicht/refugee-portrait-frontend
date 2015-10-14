@@ -1,0 +1,51 @@
+.chapter-content {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(61, 61, 61, 0.9);
+  color: #fff;
+  padding: 50px 0;
+  z-index: 3;
+
+  &__item {
+    @extend %layout--middle;
+    @extend %layout--center;
+
+    &__gallery {
+      @extend %layout__item;
+      @extend .u-4-of-16;
+
+      .box {
+        height: 300px;
+        background: #fff;
+
+        &--one {
+          background: #834b4b;
+        }
+
+        &--two {
+          background: #4b8359;
+        }
+
+        &--three {
+          background: #4b7483;
+        }
+
+        &--four {
+          background: #764b83;
+        }
+      }
+    }
+
+    &__description {
+      @extend %layout__item;
+      @extend .u-7-of-16;
+      text-align: left;
+    }
+  }
+}
+
+.slick-slider {
+  margin-bottom: 0px;
+}
