@@ -23,5 +23,7 @@ export default Component.extend(MathHelper, {
     this.$().css({
       left: position + "%"
     });
+
+    this.set('hasPosition', true);
   })
 });
