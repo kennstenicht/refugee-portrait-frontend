@@ -34,6 +34,8 @@ export default Component.extend(MapboxGl, {
   },
 
   setMood: function (mood) {
-    this.get('map').setClasses(mood);
+    let classes = (mood === 'default') ? '' : mood;
+    console.log(classes);
+    this.get('map').setClasses([classes]);
   }
 });
