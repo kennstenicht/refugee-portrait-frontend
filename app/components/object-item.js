@@ -3,28 +3,30 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
   Component,
+  computed,
   observer
 } = Ember;
 
 export default Component.extend(Gestures, {
   classNames: ['object-item'],
 
+  targeting: Ember.inject.service('targeting'),
+
   setPosition: observer('object.{pageX,pageY}', function () {
     this.$().css({
-      'top': this.get('object.pageY'),
-      'left': this.get('object.pageX')
-    });
+      transform: "translate(" + this.get('object.pageX') + "px ," + this.get('object.pageY') + "px)"
+    })
+  }),
+
+  chapter: computed(function() {
+    // TODO: Store neads to be inside of the component
+    return this.store.find('chapter', '-K0_a1PUD-3uHoNXyQQu');
   }),
 
   actions: {
-    easeIn: function() {
-      console.log('easeIn');
-      this.sendAction('setTarget', 'easeIn');
-      // TODO include service
-    },
-
-    easeOut: function() {
-      this.sendAction('setTarget', 'easeOut');
+    setTarget: function() {
+      console.log(this.get('chapter'));
+      this.get('targeting').setTarget(this.get('chapter'));
     }
   }
 });

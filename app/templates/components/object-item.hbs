@@ -1,16 +1,3 @@
-{{#if (eq object.symbolId 1)}}
-  München
-{{/if}}
-
-{{#if (eq object.symbolId 2)}}
-  Köln
-{{/if}}
-
-{{#if (eq object.symbolId 3)}}
-  Berlin
-{{/if}}
-
 <div class="object-item__buttons">
-  <div class="object-item__buttons__button" {{action 'easeIn' on='tap'}}>easeIn</div>
-  <div class="object-item__buttons__button" {{action 'easeOut' on='tap'}}>easeOut</div>
+  <div class="object-item__buttons__button" {{action 'setTarget' on='tap'}}>Zum Münchner Hbf</div>
 </div>

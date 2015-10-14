@@ -11,8 +11,6 @@ const {
 } = Ember;
 
 export default Controller.extend({
-  activeObjects: [],
-
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {

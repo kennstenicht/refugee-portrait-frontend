@@ -2,14 +2,13 @@ import Ember from 'ember';
 
 const {
   Component,
-  Object,
-  run: {
-    later
-  }
+  Object
 } = Ember;
 
 export default Component.extend({
   classNames: ['object-detection'],
+
+  activeObjects: [],
 
   objectAdded: function(e) {
     let activeObjects = this.get('activeObjects');
