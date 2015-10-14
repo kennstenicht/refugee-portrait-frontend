@@ -1,17 +1,11 @@
-{{story-info model=model}}
+{{#object-detection}}
+  {{story-info model=model}}
 
-{{outlet}}
+  {{time-line
+    chapters=model.chapters
+  }}
 
-{{time-line
-  chapters=model.chapters
-}}
+  {{mapbox-map}}
 
-{{object-detection
-  activeObjects=activeObjects
-}}
-
-{{#each activeObjects as |object|}}
-  {{object-item object=object}}
-{{/each}}
-
-{{mapbox-map}}
+  {{outlet}}
+{{/object-detection}}
