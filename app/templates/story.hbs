@@ -2,22 +2,22 @@
   <div class="story__title" {{action 'addNewStory'}}>
     {{model.name}}
   </div>
-
-  {{!mapbox-map target=target}}
-
-  {{time-line
-    chapters=model.chapters
-  }}
-
-  {{outlet}}
 </div>
+
+{{mapbox-map}}
+
+{{outlet}}
+
+{{time-line
+  chapters=model.chapters
+}}
 
 {{object-detection
   activeObjects=activeObjects
 }}
 
 {{#each activeObjects as |object|}}
-  {{object-item object=object setTarget='setTarget'}}
+  {{object-item object=object}}
 {{/each}}
 
 {{!pan-test}}
