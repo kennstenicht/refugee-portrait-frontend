@@ -17,7 +17,6 @@ export default Controller.extend({
 
   listen: on('init', function() {
       this.get('targeting').on('newChapter', this, 'setChapter');
-      this.get('targeting').on('newMood', this, 'setMood');
   }),
 
   setChapter: function (chapter) {
