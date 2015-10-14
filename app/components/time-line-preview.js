@@ -27,7 +27,6 @@ export default Component.extend(Gestures, animationIf, {
   targeting: Ember.inject.service('targeting'),
 
   setContainerPosition: on('tap', 'press', 'pan', function () {
-
     $('#time-line-preview').css({
       left: this.$().offset().left + ( this.$().width() / 2 ),
       top: this.$().offset().top
@@ -74,7 +73,6 @@ export default Component.extend(Gestures, animationIf, {
   },
 
   pandown: function() {
-    console.log('down');
     this.animationOut('preview', 300);
     this.get('targeting').setTarget(this.get('chapter'));
   }
