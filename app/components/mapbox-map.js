@@ -23,6 +23,7 @@ export default Component.extend(MapboxGl, {
 
   listen: on('init', function() {
       this.get('targeting').on('newTarget', this, 'setTarget');
+      this.get('targeting').on('newMood', this, 'setMood');
   }),
 
   setTarget: function (chapter) {
@@ -30,5 +31,9 @@ export default Component.extend(MapboxGl, {
       center: [chapter.get('lng'), chapter.get('lat')],
       zoom: 10 + chapter.get('accuracy')
     });
+  },
+
+  setMood: function (mood) {
+    this.get('map').setClasses(mood);
   }
 });
