@@ -9,13 +9,21 @@ const {
 export default Component.extend(Gestures, animationIf, {
   classNames: ['chapter-content'],
 
-  gestures: ['swipe', 'sipeleft'],
+  gestures: ['pan', 'panleft', 'press', 'pressup'],
 
   recognizers: {
-    swipe: {direction: Hammer.DIRECTION_HORIZONTAL, threshold: 40}
+    pan: {direction: Hammer.DIRECTION_HORIZONTAL}
   },
 
-  sipeleft: function () {
+  panleft: function () {
     this.sendAction('closeChapter');
+  },
+
+  press: function () {
+    console.log('press');
+  },
+
+  pressup: function () {
+    console.log('up');
   }
 });
