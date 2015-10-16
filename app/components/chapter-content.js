@@ -17,13 +17,5 @@ export default Component.extend(Gestures, animationIf, {
 
   panleft: function () {
     this.sendAction('closeChapter');
-  },
-
-  press: function () {
-    console.log('press');
-  },
-
-  pressup: function () {
-    console.log('up');
   }
 });

@@ -15,7 +15,16 @@ App = Ember.Application.extend({
   customEvents: {
     objectadded: 'objectAdded',
     objectmoved: 'objectMoved',
-    objectremoved: 'objectRemoved'
+    objectremoved: 'objectRemoved',
+    tap: 'tap',
+    press: 'press',
+    pressup: 'pressUp',
+    pan: 'pan',
+    panstart: 'panStart',
+    panmove: 'panMove',
+    pandown: 'panDown',
+    panup: 'panUp',
+    panleft: 'panLeft'
   }
 });
 

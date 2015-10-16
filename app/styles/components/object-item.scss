@@ -2,12 +2,13 @@
   position: fixed;
   top: 0px;
   left: 0px;
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   z-index: 800;
   background: rgba(61, 61, 61, 0.9);
-  transform: translate(-50%, -50%);
+  margin-left: -125px;
+  margin-top: -125px;
 
   &__buttons {
     position: absolute;

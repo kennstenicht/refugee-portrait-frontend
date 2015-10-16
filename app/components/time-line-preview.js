@@ -28,7 +28,7 @@ export default Component.extend(Gestures, animationIf, {
   recognizers: {
     tap: {threshold: 10},
     press: {threshold: 10},
-    pan: {direction: Hammer.DIRECTION_VERTICAL, threshold: 30}
+    pan: {direction: Hammer.DIRECTION_VERTICAL}
   },
 
   targeting: Ember.inject.service('targeting'),
@@ -72,17 +72,20 @@ export default Component.extend(Gestures, animationIf, {
   },
 
   press: function(e) {
-    console.log(e);
     this.animationIn('preview', 300);
   },
 
-  pressup: function() {
-    console.log('up');
+  pressUp: function() {
     this.animationOut('preview', 300);
   },
 
-  pandown: function() {
+  pan: function () {
     this.animationOut('preview', 300);
-    this.get('targeting').setTarget(this.get('chapter'));
+  },
+
+  panDown: function() {
+    if(this.get('preview')) {
+      this.get('targeting').setTarget(this.get('chapter'));
+    }
   }
 });
