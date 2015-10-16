@@ -47,3 +47,12 @@
 // Trumps
 @import "bower_components/inuit-clearfix/trumps.clearfix";
 // @import "trumps.widths";
+
+.load-button {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  background: red;
+}
