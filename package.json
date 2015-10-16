@@ -37,7 +37,7 @@
     "ember-cli-release": "0.2.3",
     "ember-cli-slick": "1.0.10",
     "ember-cli-sri": "^1.0.3",
-    "ember-cli-tuio": "0.2.2",
+    "ember-cli-tuio": "0.2.3",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "1.13.8",
     "ember-disable-proxy-controllers": "^1.0.0",
