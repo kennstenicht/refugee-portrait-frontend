@@ -3,7 +3,11 @@
   top: 0px;
   left: 0px;
   right: 0px;
-  height: 300%;
+  height: 100%;
+
+  &--active {
+    height: 300%;
+  }
 
   &__hint {
     position: absolute;

@@ -21,12 +21,16 @@ export default Component.extend(Gestures, Sly,{
     this.get('slider').css({
       width: this.get('width'),
     });
+
     this.get('sly').reload();
 
-    Ember.run.later(function() {
-      console.log("rel: " + this.get('startPosRel'));
-      this.get('sly').slideTo(parseInt(this.get('startPosRel') * this.get('width')), true);
-    },1000)
+    Ember.run.next(this, function() {
+      this.get('sly').slideTo(this.get('startPosRel') * this.get('width'), true);
+
+
+    });
+
+
   }),
 
   pinchstart: function (e) {
