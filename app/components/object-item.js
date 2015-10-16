@@ -20,13 +20,12 @@ export default Component.extend(Gestures, {
 
   chapter: computed(function() {
     // TODO: Store neads to be inside of the component
-    return this.store.find('chapter', '-K0_a1PUD-3uHoNXyQQu');
+    // return this.store.find('chapter', '-K0_a1PUD-3uHoNXyQQu');
   }),
 
   actions: {
     setTarget: function() {
-      console.log(this.get('chapter'));
-      this.get('targeting').setTarget(this.get('chapter'));
+      // this.get('targeting').setTarget(this.get('chapter'));
     }
   }
 });
