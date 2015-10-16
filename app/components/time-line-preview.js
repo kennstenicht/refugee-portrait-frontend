@@ -21,7 +21,7 @@ export default Component.extend(Gestures, animationIf, {
   recognizers: {
     tap: {threshold: 10},
     press: {threshold: 10},
-    pan: {direction: Hammer.DIRECTION_VERTICAL}
+    pan: {direction: Hammer.DIRECTION_VERTICAL, threshold: 30}
   },
 
   targeting: Ember.inject.service('targeting'),
