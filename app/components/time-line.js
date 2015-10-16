@@ -23,12 +23,15 @@ export default Component.extend(Gestures, Sly,{
     });
     this.get('sly').reload();
 
-    this.get('sly').slideTo(parseInt(this.get('startPosRel') * this.get('width')), true);
+    Ember.run.later(function() {
+      console.log("rel: " + this.get('startPosRel'));
+      this.get('sly').slideTo(parseInt(this.get('startPosRel') * this.get('width')), true);
+    },1000)
   }),
 
   pinchstart: function (e) {
     this.set('startWidth', this.get('slider').width() );
-    console.log(this.get('sly').pos.cur);
+    console.log("cur: " + this.get('sly').pos.cur);
     this.set('startPosRel', (this.get('sly').pos.cur + e.gesture.center.x) / this.get('startWidth') );
 
   },
@@ -47,10 +50,7 @@ export default Component.extend(Gestures, Sly,{
     this.destroySly();
   },
 
-  click: function () {
-    console.log(this.get('sly').getPos(this.$('.time-line-item')[0]).end);
 
-  }
   // zoomStep: 300,
   // position: 0,
   // size: 3000,
