@@ -69,6 +69,7 @@ export default Component.extend(Gestures, animationIf, {
   // Gestures
   tap: function() {
     this.animationIn('hint', 200);
+    this.animationIn('preview', 300);
   },
 
   press: function(e) {

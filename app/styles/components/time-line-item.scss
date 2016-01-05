@@ -6,21 +6,23 @@
   &__line {
     position: absolute;
     bottom: 0px;
-    left: 0px;
     width: 1px;
-    height: 90%;
-    background: #222;
+    height: 100%;
+    background: $timeline-item-default;
   }
-  
-  &__content {
+
+  &__dot {
     position: absolute;
-    top: 10%;
+    top: 0px;
     left: 0px;
-    width: 40px;
-    height: 40px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: {
+      color: $timeline-item-default;
+      image: url('textures/grain-30.png');
+      size: 40px 40px;
+    }
     transform: translate(-50%, 0);
-    background: #ddd;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 0px 10px 0px #333;
   }
 }

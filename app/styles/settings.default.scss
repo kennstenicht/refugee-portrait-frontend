@@ -1,8 +1,15 @@
-// Inuit settings.default
+// Font Settings
 $inuit-base-font-size:   16px;
 $inuit-base-line-height: 24px;
-$inuit-base-text-color: #333;
-$inuit-base-background-color: #fff;
+
+$inuit-heading-size-1:  31px;
+$inuit-heading-size-2:  21px;
+$inuit-heading-size-3:  24px;
+$inuit-heading-size-4:  20px;
+$inuit-heading-size-5:  16px;
+$inuit-heading-size-6:  14px;
+
+$huge-font: 80px;
 
 // Inuit tools.widths
 $inuit-use-fractions: false;
@@ -14,8 +21,3 @@ $inuit-enable-layout--center: true;
 // Inuit objects.buttons
 $inuit-btn-padding--small: 2px;
 $inuit-enable-btn--small: true;
-
-
-// Include Fonts
-@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic);
-@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,700);

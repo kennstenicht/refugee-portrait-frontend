@@ -1,6 +1,6 @@
 {
     "version": 8,
-    "name": "Basic",
+    "name": "neutral",
     "metadata": {
         "mapbox:groups": {
             "1444247253728.9062": {
@@ -13,7 +13,7 @@
             },
             "1444722256884.166": {
                 "name": "laduse_park",
-                "collapsed": false
+                "collapsed": true
             },
             "1444722271819.0242": {
                 "name": "landuse_forest",
@@ -21,46 +21,51 @@
             },
             "1444722292208.1165": {
                 "name": "background",
-                "collapsed": false
+                "collapsed": true
             },
             "1444722304926.7478": {
                 "name": "building",
-                "collapsed": true
+                "collapsed": false
             },
             "1444722326554.609": {
                 "name": "road",
+                "collapsed": false
+            },
+            "1444808037694.8455": {
+                "name": "hillshade",
                 "collapsed": false
             }
         }
     },
     "center": [
-        13.372879946946739,
-        52.52402227979897
+        23.53508710445331,
+        38.00825880308622
     ],
-    "zoom": 15.851598305529444,
-    "bearing": 0,
+    "zoom": 9.064770974667699,
+    "bearing": -32.93544038582416,
     "pitch": 0,
     "sources": {
         "mapbox": {
             "url": "mapbox://mapbox.mapbox-streets-v6",
             "type": "vector"
+        },
+        "mapbox://mapbox.mapbox-terrain-v2": {
+            "url": "mapbox://mapbox.mapbox-terrain-v2",
+            "type": "vector"
+        },
+        "mapbox://kennstenicht.28jt2niq": {
+            "url": "mapbox://kennstenicht.28jt2niq",
+            "type": "vector"
         }
     },
-    "sprite": "mapbox://sprites/kennstenicht/cifh5tmw500sqttkn0eebzp6y",
+    "sprite": "mapbox://sprites/kennstenicht/ciihh5j0x00clbhm0oxxahbad",
     "glyphs": "mapbox://fonts/kennstenicht/{fontstack}/{range}.pbf",
-    "transition": {
-      "duration": 2000,
-      "delay": 0
-    },
     "layers": [
         {
             "id": "background",
             "type": "background",
             "paint": {
-                "background-color": "#dedede"
-            },
-            "paint.dark": {
-                "background-color": "#333333"
+                "background-color": "rgba(235,232,232,1)"
             },
             "interactive": true,
             "metadata": {
@@ -84,35 +89,48 @@
             }
         },
         {
+            "id": "landuse_forest_texture",
+            "paint": {
+                "fill-color": "rgba(170,189,170,1)",
+                "fill-pattern": "texture-style-7",
+                "fill-antialias": false,
+                "fill-opacity": 0.65,
+                "fill-translate": [
+                    10,
+                    10
+                ],
+                "fill-translate-anchor": "viewport"
+            },
+            "interactive": true,
             "layout": {
                 "visibility": "visible"
             },
             "type": "fill",
             "source": "mapbox",
+            "source-layer": "landuse"
+        },
+        {
+            "interactive": true,
+            "metadata": {
+                "mapbox:group": "1444722271819.0242"
+            },
             "id": "landuse_industry",
             "paint": {
                 "fill-color": "rgba(214,210,210,1)"
             },
-            "source-layer": "landuse",
-            "interactive": true,
-            "metadata": {
-                "mapbox:group": "1444722271819.0242"
-            }
+            "ref": "landuse_forest_texture"
         },
         {
             "id": "landuse_forest",
             "paint": {
-                "fill-color": "rgba(170,189,170,1)",
+                "fill-color": "rgba(218,224,218,1)",
                 "fill-antialias": false
-            },
-            "paint.dark": {
-                "fill-color": "rgba(42,42,42,1)"
             },
             "interactive": true,
             "metadata": {
                 "mapbox:group": "1444722271819.0242"
             },
-            "ref": "landuse_industry"
+            "ref": "landuse_forest_texture"
         },
         {
             "id": "landuse_forest_border",
@@ -123,11 +141,11 @@
                     "stops": [
                         [
                             12,
-                            0.4
+                            0.2
                         ],
                         [
                             22,
-                            0.8
+                            0.4
                         ]
                     ]
                 },
@@ -146,25 +164,6 @@
             "source-layer": "landuse"
         },
         {
-            "id": "landuse_forest_texture",
-            "paint": {
-                "fill-color": "rgba(170,189,170,1)",
-                "fill-pattern": "texture-style-7",
-                "fill-antialias": false,
-                "fill-opacity": 0.65,
-                "fill-translate": [
-                    10,
-                    10
-                ],
-                "fill-translate-anchor": "viewport"
-            },
-            "interactive": true,
-            "metadata": {
-                "mapbox:group": "1444722271819.0242"
-            },
-            "ref": "landuse_industry"
-        },
-        {
             "id": "landuse_park",
             "type": "fill",
             "source": "mapbox",
@@ -175,16 +174,13 @@
                 "park"
             ],
             "paint": {
-                "fill-color": "rgba(207,222,189,1)",
+                "fill-color": "rgba(229,235,221,1)",
                 "fill-translate-anchor": "map",
                 "fill-translate": [
                     0,
                     0
                 ],
                 "fill-opacity": 1
-            },
-            "paint.dark": {
-                "fill-color": "rgba(60,60,60,1)"
             },
             "interactive": true,
             "metadata": {
@@ -212,7 +208,7 @@
                     "stops": [
                         [
                             14,
-                            0.4
+                            0.2
                         ],
                         [
                             22,
@@ -248,17 +244,58 @@
             "ref": "landuse_park"
         },
         {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "filter": [
+                "==",
+                "class",
+                "industrial"
+            ],
+            "type": "fill",
+            "source": "mapbox",
+            "id": "landuse_industrial",
+            "paint": {
+                "fill-color": "rgba(242,240,240,1)"
+            },
+            "source-layer": "landuse"
+        },
+        {
+            "layout": {
+                "visibility": "visible"
+            },
+            "type": "line",
+            "source": "mapbox",
+            "id": "aeroway (1)",
+            "paint": {
+                "line-color": "rgba(222,222,222,1)",
+                "line-width": {
+                    "base": 1.15,
+                    "stops": [
+                        [
+                            11,
+                            0
+                        ],
+                        [
+                            22,
+                            12
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "aeroway",
+            "interactive": true
+        },
+        {
             "id": "water",
             "type": "fill",
             "source": "mapbox",
             "source-layer": "water",
             "paint": {
-                "fill-color": "rgba(186,209,217,1)",
+                "fill-color": "rgba(221,232,235,1)",
                 "fill-opacity": 1,
                 "fill-antialias": true
-            },
-            "paint.dark": {
-                "fill-color": "rgba(80,80,80,1)"
             },
             "interactive": true,
             "metadata": {
@@ -269,13 +306,13 @@
             "id": "water_texture",
             "paint": {
                 "fill-color": "#a0cfdf",
-                "fill-opacity": 0.1,
+                "fill-opacity": 0.05,
                 "fill-antialias": true,
                 "fill-translate": [
                     0,
                     0
                 ],
-                "fill-pattern": "texture-3"
+                "fill-pattern": "texture-style-6"
             },
             "interactive": true,
             "metadata": {
@@ -303,7 +340,7 @@
                         ]
                     ]
                 },
-                "line-opacity": 0.45,
+                "line-opacity": 0.2,
                 "line-blur": 0,
                 "line-gap-width": 0,
                 "line-translate": [
@@ -357,7 +394,7 @@
                     ]
                 },
                 "line-pattern": "texture-08",
-                "line-opacity": 0.3,
+                "line-opacity": 0.2,
                 "line-gap-width": 0,
                 "line-translate": [
                     10,
@@ -369,6 +406,252 @@
             "metadata": {
                 "mapbox:group": "1444247253728.9062"
             }
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                94
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_94",
+            "paint": {
+                "fill-opacity": 0.1
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                90
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_90",
+            "paint": {
+                "fill-opacity": 0.05
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {},
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                90
+            ],
+            "type": "line",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_90 copy",
+            "paint": {
+                "line-pattern": "texture-5",
+                "line-opacity": 0.15,
+                "line-translate": [
+                    3,
+                    3
+                ]
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                89
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_89",
+            "paint": {
+                "fill-opacity": 0.05
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {},
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                89
+            ],
+            "type": "line",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_89_border",
+            "paint": {
+                "line-translate": [
+                    3,
+                    3
+                ],
+                "line-pattern": "texture-5",
+                "line-opacity": 0.15
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                78
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_78",
+            "paint": {
+                "fill-opacity": 0.05
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {},
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                78
+            ],
+            "type": "line",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_78_border",
+            "paint": {
+                "line-translate": [
+                    3,
+                    3
+                ],
+                "line-pattern": "texture-5",
+                "line-opacity": 0.15
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                67
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_67",
+            "paint": {
+                "fill-opacity": 0.05
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {},
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                67
+            ],
+            "type": "line",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_67_border",
+            "paint": {
+                "line-translate": [
+                    3,
+                    3
+                ],
+                "line-pattern": "texture-5",
+                "line-opacity": 0.15
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                56
+            ],
+            "type": "fill",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_56",
+            "paint": {
+                "fill-opacity": 0.05
+            },
+            "source-layer": "hillshade"
+        },
+        {
+            "interactive": true,
+            "layout": {},
+            "metadata": {
+                "mapbox:group": "1444808037694.8455"
+            },
+            "filter": [
+                "==",
+                "level",
+                56
+            ],
+            "type": "line",
+            "source": "mapbox://mapbox.mapbox-terrain-v2",
+            "id": "hillshade_56_border",
+            "paint": {
+                "line-pattern": "texture-5",
+                "line-opacity": 0.15,
+                "line-translate": [
+                    3,
+                    3
+                ]
+            },
+            "source-layer": "hillshade"
         },
         {
             "interactive": true,
@@ -449,7 +732,7 @@
             "source": "mapbox",
             "id": "road_minor",
             "paint": {
-                "line-color": "#efefef",
+                "line-color": "rgba(212,210,210,1)",
                 "line-width": {
                     "base": 1.55,
                     "stops": [
@@ -459,7 +742,20 @@
                         ],
                         [
                             20,
-                            30
+                            20
+                        ]
+                    ]
+                },
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            12,
+                            0.1
+                        ],
+                        [
+                            22,
+                            1
                         ]
                     ]
                 }
@@ -515,7 +811,19 @@
                     0,
                     0
                 ],
-                "line-opacity": 1,
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            12,
+                            0.3
+                        ],
+                        [
+                            22,
+                            0.5
+                        ]
+                    ]
+                },
                 "line-translate-anchor": "map",
                 "line-gap-width": 0,
                 "line-pattern": "texture-style-7"
@@ -526,7 +834,8 @@
             "interactive": true,
             "layout": {
                 "line-cap": "round",
-                "line-join": "round"
+                "line-join": "round",
+                "visibility": "visible"
             },
             "metadata": {
                 "mapbox:group": "1444722326554.609"
@@ -549,7 +858,7 @@
             "source": "mapbox",
             "id": "road_major",
             "paint": {
-                "line-color": "rgba(199,197,197,1)",
+                "line-color": "rgba(207,204,204,1)",
                 "line-width": {
                     "base": 1.4,
                     "stops": [
@@ -559,11 +868,23 @@
                         ],
                         [
                             20,
-                            30
+                            20
                         ]
                     ]
                 },
-                "line-opacity": 0.75
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            13,
+                            0.1
+                        ],
+                        [
+                            16,
+                            0.75
+                        ]
+                    ]
+                }
             },
             "source-layer": "road"
         },
@@ -589,12 +910,24 @@
                     ]
                 },
                 "line-pattern": "texture-3",
-                "line-opacity": 0.3,
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            12,
+                            0.1
+                        ],
+                        [
+                            16,
+                            0.2
+                        ]
+                    ]
+                },
                 "line-translate": {
                     "base": 1,
                     "stops": [
                         [
-                            0,
+                            10,
                             [
                                 0,
                                 0
@@ -612,6 +945,36 @@
                 "line-translate-anchor": "map"
             },
             "ref": "road_major"
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible",
+                "line-miter-limit": 2.05
+            },
+            "filter": [
+                "all",
+                [
+                    "in",
+                    "$type",
+                    "Point",
+                    "LineString"
+                ],
+                [
+                    "==",
+                    "class",
+                    "park"
+                ]
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "aeroway",
+            "paint": {
+                "line-color": "rgba(240,237,237,1)",
+                "line-gap-width": 0,
+                "line-blur": 10
+            },
+            "source-layer": "aeroway"
         },
         {
             "id": "tunnel_major",
@@ -651,7 +1014,8 @@
                     0.28,
                     0.14
                 ],
-                "line-opacity": 0.75
+                "line-opacity": 0.75,
+                "line-blur": 2
             },
             "interactive": true
         },
@@ -697,7 +1061,8 @@
                     0.36,
                     0.18
                 ],
-                "line-opacity": 0.75
+                "line-opacity": 0.75,
+                "line-blur": 2
             },
             "interactive": true
         },
@@ -875,7 +1240,7 @@
             "source": "mapbox",
             "id": "bridge_major",
             "paint": {
-                "line-color": "rgba(191,189,189,1)",
+                "line-color": "rgba(217,217,217,1)",
                 "line-width": {
                     "base": 1.4,
                     "stops": [
@@ -886,6 +1251,19 @@
                         [
                             20,
                             30
+                        ]
+                    ]
+                },
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            11,
+                            0.4
+                        ],
+                        [
+                            22,
+                            1
                         ]
                     ]
                 }
@@ -941,7 +1319,7 @@
             "source": "mapbox",
             "source-layer": "building",
             "paint": {
-                "fill-color": "rgba(209,205,205,1)"
+                "fill-color": "rgba(227,225,225,1)"
             },
             "interactive": true,
             "layout": {
@@ -958,12 +1336,12 @@
             "source-layer": "building",
             "paint": {
                 "line-pattern": "texture-5",
-                "line-opacity": 0.4,
+                "line-opacity": 0.25,
                 "line-translate": [
                     2,
                     2
                 ],
-                "line-translate-anchor": "viewport",
+                "line-translate-anchor": "map",
                 "line-width": {
                     "base": 1,
                     "stops": [
@@ -1051,7 +1429,7 @@
             "paint": {
                 "text-color": "#666",
                 "text-halo-blur": 10,
-                "text-halo-color": "rgba(255,255,255,0.52)",
+                "text-halo-color": "rgba(255,255,255,0)",
                 "text-halo-width": 4
             },
             "source-layer": "poi_label"
@@ -1150,7 +1528,7 @@
             "id": "place_label_other",
             "paint": {
                 "text-color": "#666",
-                "text-halo-color": "rgba(255,255,255,0.75)",
+                "text-halo-color": "rgba(255,255,255,0)",
                 "text-opacity": 1,
                 "text-halo-blur": 10,
                 "text-halo-width": 2
@@ -1198,7 +1576,7 @@
             "id": "place_label_city",
             "paint": {
                 "text-color": "#666",
-                "text-halo-color": "rgba(255,255,255,0.75)",
+                "text-halo-color": "rgba(255,255,255,0)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1
             },
@@ -1237,7 +1615,7 @@
             "id": "country_label",
             "paint": {
                 "text-color": "#666",
-                "text-halo-color": "rgba(255,255,255,0.75)",
+                "text-halo-color": "rgba(255,255,255,0)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1
             },
@@ -1245,38 +1623,97 @@
         },
         {
             "layout": {
-                "visibility": "visible",
-                "line-miter-limit": 2.05
+                "visibility": "none"
             },
+            "type": "fill",
+            "source": "mapbox://kennstenicht.28jt2niq",
+            "id": "map",
+            "paint": {
+                "fill-opacity": 0.8,
+                "fill-color": "rgba(43,42,42,1)"
+            },
+            "source-layer": "map",
+            "interactive": true
+        },
+        {
+            "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
+            "filter": [
+                "==",
+                "type",
+                "rail"
+            ],
             "type": "line",
             "source": "mapbox",
-            "id": "aeroway",
+            "id": "rail_minor",
             "paint": {
-                "line-color": "rgba(240,237,237,1)",
-                "line-gap-width": 0,
-                "line-blur": 10
+                "line-color": "rgba(148,148,148,1)",
+                "line-pattern": "texture-5",
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            14,
+                            0.2
+                        ],
+                        [
+                            22,
+                            0.6
+                        ]
+                    ]
+                }
             },
-            "source-layer": "aeroway",
+            "source-layer": "road"
+        },
+        {
             "interactive": true,
+            "layout": {
+                "visibility": "visible"
+            },
             "filter": [
-                "all",
-                [
-                    "in",
-                    "$type",
-                    "Point",
-                    "LineString"
-                ],
-                [
-                    "==",
-                    "class",
-                    "park"
-                ]
-            ]
+                "==",
+                "type",
+                "rail"
+            ],
+            "type": "line",
+            "source": "mapbox",
+            "id": "rail_bridge",
+            "paint": {
+                "line-width": 1,
+                "line-pattern": "texture-5",
+                "line-opacity": {
+                    "base": 1,
+                    "stops": [
+                        [
+                            14,
+                            0.4
+                        ],
+                        [
+                            22,
+                            1
+                        ]
+                    ]
+                }
+            },
+            "source-layer": "bridge"
+        },
+        {
+            "layout": {
+                "visibility": "visible"
+            },
+            "type": "symbol",
+            "source": "mapbox",
+            "id": "road",
+            "paint": {},
+            "source-layer": "road",
+            "interactive": true
         }
     ],
-    "created": "2015-10-07T18:59:54.544Z",
-    "id": "cifh5tmw500sqttkn0eebzp6y",
-    "modified": "2015-10-13T10:24:32.011Z",
+    "created": "2015-12-22T14:16:12.191Z",
+    "id": "ciihh5j0x00clbhm0oxxahbad",
+    "modified": "2015-12-22T16:02:42.283Z",
     "owner": "kennstenicht",
     "draft": false
 }

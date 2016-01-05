@@ -1,7 +1,7 @@
 // Settings
 @import "settings.default";
 @import "bower_components/inuit-defaults/settings.defaults";
-// @import "settings.colors";
+@import "settings.color";
 
 
 // Tools
@@ -19,6 +19,7 @@
 
 
 // Base
+@import "base.fonts";
 @import "base.page";
 @import "bower_components/inuit-page/base.page";
 @import "bower_components/inuit-headings/base.headings";
@@ -49,7 +50,7 @@
 // @import "trumps.widths";
 
 .load-button {
-  display: none;
+  display: block;
   position: fixed;
   top: 0px;
   left: 0px;

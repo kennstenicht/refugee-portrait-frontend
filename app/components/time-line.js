@@ -17,35 +17,6 @@ export default Component.extend(Gestures, Sly,{
     pinch: {enable: true}
   },
 
-  setSize: observer('width', function () {
-    this.get('slider').css({
-      width: this.get('width'),
-    });
-
-    this.get('sly').reload();
-
-    Ember.run.next(this, function() {
-      this.get('sly').slideTo(this.get('startPosRel') * this.get('width'), true);
-
-
-    });
-
-
-  }),
-
-  pinchstart: function (e) {
-    this.set('startWidth', this.get('slider').width() );
-    console.log("cur: " + this.get('sly').pos.cur);
-    this.set('startPosRel', (this.get('sly').pos.cur + e.gesture.center.x) / this.get('startWidth') );
-
-  },
-
-  pinchmove: function (e) {
-    let newWidth = this.get('startWidth') * e.gesture.scale;
-
-    this.set('width', newWidth );
-  },
-
   didInsertElement: function () {
     this.initSly();
   },
@@ -54,6 +25,37 @@ export default Component.extend(Gestures, Sly,{
     this.destroySly();
   },
 
+
+
+
+
+
+
+
+
+  // setSize: observer('width', function () {
+  //   this.get('slider').css({
+  //     width: this.get('width'),
+  //   });
+  //
+  //   this.get('sly').reload();
+  //
+  //   Ember.run.next(this, function() {
+  //     this.get('sly').slideTo(this.get('startPosRel') * this.get('width'), true);
+  //   });
+  // }),
+  // pinchstart: function (e) {
+  //   this.set('startWidth', this.get('slider').width() );
+  //   console.log("cur: " + this.get('sly').pos.cur);
+  //   this.set('startPosRel', (this.get('sly').pos.cur + e.gesture.center.x) / this.get('startWidth') );
+  //
+  // },
+  //
+  // pinchmove: function (e) {
+  //   let newWidth = this.get('startWidth') * e.gesture.scale;
+  //
+  //   this.set('width', newWidth );
+  // },
 
   // zoomStep: 300,
   // position: 0,

@@ -9,7 +9,7 @@ export default Mixin.create({
   sly: null,
 
   slider: computed(function () {
-    return this.$().find('.time-line__frame__slider');
+    return this.$().find('.time-line__container__frame__slider');
   }),
 
   initSly: function () {
@@ -17,7 +17,7 @@ export default Mixin.create({
       return
     }
 
-    let sly = new Sly('.time-line__frame', {
+    let sly = new Sly('.time-line__container__frame', {
       horizontal: 1,
       itemNav: 0,
       activateMiddle: 1,
@@ -28,7 +28,7 @@ export default Mixin.create({
       startAt: 0,
       speed: 300,
       elasticBounds: 1,
-      scrollBar: '.time-line__scrollbar',
+      scrollBar: '.time-line__container__scrollbar',
       dynamicHandle: 1,
       dragHandle: 1
     });

@@ -14,10 +14,10 @@ export default Component.extend(MapboxGl, {
 
   mapSettings: {
     style: "mapbox-style.json",
-    lat: 44.016521,
-    lng: 21.005859,
-    zoom: 4.5,
-    bearing: -130,
+    lat: 46.68,
+    lng: 8.43,
+    zoom: 4,
+    bearing: 0,
     interactive: true
   },
 
@@ -30,6 +30,10 @@ export default Component.extend(MapboxGl, {
 
   didInsertElement: function () {
     let map = this.get('map');
+
+    this.get('chapters').forEach(function (chapter) {
+      console.log(chapter.store.get('title'));
+    });
 
     map.on('style.load', function () {
         map.addSource("route", {
@@ -75,12 +79,12 @@ export default Component.extend(MapboxGl, {
             "type": "line",
             "source": "route",
             "layout": {
-                "line-join": "round",
-                "line-cap": "round"
+              "line-join": "round",
+              "line-cap": "round"
             },
             "paint": {
-                "line-color": "#888",
-                "line-width": 8
+              "line-color": "#888",
+              "line-width": 2
             }
         });
     });

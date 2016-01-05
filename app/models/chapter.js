@@ -1,11 +1,14 @@
 import DS from 'ember-data';
 
 const {
+  Model,
   attr,
-  belongsTo
+  belongsTo,
+  hasMany
 } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
+  number: attr('number'),
   title: attr('string'),
   description: attr('string'),
   date: attr('date'),
@@ -17,5 +20,6 @@ export default DS.Model.extend({
   feeling: attr('string'),
   type: attr('string'),
 
+  hotspots: hasMany('hotspot', { async: true }),
   story: belongsTo('story', { async: true })
 });

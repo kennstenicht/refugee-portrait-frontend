@@ -16,8 +16,7 @@ export default Service.extend(Evented, {
     if(this.get('currentTarget') !== chapter) {
       this.trigger('newTarget', chapter);
       this.set('currentTarget', chapter);
-      this.trigger('newChapter', chapter);
-      this.setMood(chapter.get('feeling'));
+      // this.setMood(chapter.get('feeling'));
     }
   },
 

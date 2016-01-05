@@ -9,6 +9,8 @@ const {
 export default Component.extend(MathHelper, {
   classNames: ['time-line-item'],
 
+  targeting: Ember.inject.service('targeting'),
+
   setPosition: observer('chapter.date', function () {
     let story = this.get('chapter.story');
 
@@ -23,7 +25,9 @@ export default Component.extend(MathHelper, {
     this.$().css({
       left: position + "%"
     });
+  }),
 
-    this.set('hasPosition', true);
-  })
+  click: function () {
+    this.get('targeting').setTarget(this.get('chapter'));
+  }
 });

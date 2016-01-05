@@ -1,0 +1,17 @@
+// Include Fonts
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,700);
+
+
+%mono-font {
+  font-family: 'Fira Mono';
+  font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @extend %mono-font;
+}
+
+h1 {
+  text-transform: uppercase;
+}
