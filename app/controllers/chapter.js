@@ -1,10 +1,9 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
+const {
+  Controller
+} = Ember;
 
-  actions: {
-    closeChapter: function () {
-      this.transitionToRoute('story', this.get('model.story'));
-    }
-  }
+export default Controller.extend({
+
 });
