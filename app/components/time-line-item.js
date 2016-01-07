@@ -1,15 +1,23 @@
 import Ember from 'ember';
+import Gestures from 'ember-cli-tuio/mixins/gestures';
 import MathHelper from '../mixins/math-helper';
 
 const {
   Component,
+  inject,
   observer
 } = Ember;
 
-export default Component.extend(MathHelper, {
+export default Component.extend(MathHelper, Gestures, {
   classNames: ['time-line-item'],
 
-  targeting: Ember.inject.service('targeting'),
+  gestures: ['tap'],
+
+  recognizers: {
+    tap: {threshold: 10},
+  },
+
+  targeting: inject.service('targeting'),
 
   setPosition: observer('chapter.date', function () {
     let story = this.get('chapter.story');
@@ -27,7 +35,7 @@ export default Component.extend(MathHelper, {
     });
   }),
 
-  click: function () {
-    this.get('targeting').setTarget(this.get('chapter'));
+  tap: function () {
+    this.get('targeting').setChapter(this.get('chapter'));
   }
 });
