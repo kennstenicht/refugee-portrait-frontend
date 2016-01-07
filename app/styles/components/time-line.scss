@@ -90,7 +90,10 @@
         left: 0px;
         height: 80%;
         width: 100%;
-        background: $timeline-navigation-default;
+        background: {
+          color: $gray-light;
+          image: url('textures/grain-10.png');
+        }
       }
     }
   }

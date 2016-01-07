@@ -16,6 +16,8 @@ export default Component.extend(MapboxGl, {
     style: "mapbox-style.json",
     lat: 46.68,
     lng: 8.43,
+    minZoom: 4,
+    maxZoom: 15,
     zoom: 4,
     bearing: 0,
     interactive: true
@@ -24,7 +26,8 @@ export default Component.extend(MapboxGl, {
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {
-      this.get('targeting').on('newTarget', this, 'setTarget');
+      this.get('targeting').on('setChapter', this, 'setTarget');
+      this.get('targeting').on('closeChapter', this, 'zoomOut');
       this.get('targeting').on('newMood', this, 'setMood');
   }),
 
@@ -91,9 +94,17 @@ export default Component.extend(MapboxGl, {
   },
 
   setTarget: function (chapter) {
+    console.log('mapbox');
     this.get('map').easeTo({
       center: [chapter.get('lng'), chapter.get('lat')],
       zoom: 10 + chapter.get('accuracy'),
+      duration: 2000
+    });
+  },
+
+  zoomOut: function () {
+    this.get('map').easeTo({
+      zoom: this.get('map').getZoom()-4,
       duration: 2000
     });
   },
