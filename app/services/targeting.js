@@ -12,11 +12,17 @@ export default Service.extend(Evented, {
     frustriert: 'dark'
   },
 
-  setTarget: function (chapter) {
-    if(this.get('currentTarget') !== chapter) {
-      this.trigger('newTarget', chapter);
-      this.set('currentTarget', chapter);
-      // this.setMood(chapter.get('feeling'));
+  setChapter: function (chapter) {
+    if(this.get('currentChapter') !== chapter) {
+      if(chapter) {
+        console.log('service');
+        this.trigger('setChapter', chapter);
+        // this.setMood(chapter.get('feeling'));
+      } else {
+        this.trigger('closeChapter');
+        // this.setMood('default');
+      }
+      this.set('currentChapter', chapter);
     }
   },
 
