@@ -26,11 +26,11 @@ export default Component.extend(Gestures, animationIf, {
 
   didInsertElement: function () {
     Ember.run.next(this, function () {
-      this.get('targeting').setTarget(this.get('model'));
+      this.get('targeting').setChapter(this.get('model'));
     });
   },
 
-  panleft: function () {
-    this.sendAction('closeChapter');
+  pan: function () {
+    this.get('targeting').setChapter('');
   }
 });
