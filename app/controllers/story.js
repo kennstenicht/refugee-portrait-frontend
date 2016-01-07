@@ -14,25 +14,20 @@ export default Controller.extend({
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {
-      this.get('targeting').on('newTarget', this, 'setChapter');
+    this.get('targeting').on('closeChapter', this, 'closeChapter');
+    this.get('targeting').on('setChapter', this, 'setChapter');
+
   }),
+
+  closeChapter: function () {
+    this.transitionToRoute('story', this.get('model'));
+  },
 
   setChapter: function (chapter) {
     this.transitionToRoute('chapter', chapter);
   },
 
-
-
-
-
-
-
-
-
-
-
-  jsonChapters: [
-{"number":43, "date":"2015, 05, 23","title":"Kein Zurück","location":"Kopenhagen","lat":55.676097,"lng":12.568337,"accuracy":2,"action":"","feelings":"","type":"Text","description":"Rami war schon bei seiner Schwester, als er von einer Polizeistreife im Zug nach seinen Papieren gefragt wird. Für einen kurzen Moment überlegt er, ob er fliehen soll. Aber er hat keine Chance. Die Beamten bringen ihn zu einer Polizeistation. Dort warten bereits Mitarbeiter des Roten Kreuzes, um Rami bei den anstehenden Schritten zu unterstützen: Denn ihm bleibt nur noch die Möglichkeit, jetzt in Dänemark Asyl zu beantragen. Nach Deutschland kann er nicht mehr zurück. Rami wird nach Sønderborg nahe der dänisch-deutschen Grenze gebracht, in eine Einrichtung für syrische Asylsuchende. Aktuell leben hier 300 Flüchtlinge aus Syrien, die in der Regel nach einigen Tagen einen Ausweis bekommen, mit dem sie sich frei im Land bewegen dürfen. Auch Sprachkurse und weitere Angebote stehen den Syrern dort zur Verfügung. Seine Festnahme in Dänemark erscheint Rami nicht mehr als Niederlage - im Gegenteil: Er wirkt erleichtert, dass seine Flucht nun endlich beendet ist und er in der Nähe seiner Schwester bleiben kann."},
+  jsonChapters: [{"number":43, "date":"2015, 05, 23","title":"Kein Zurück","location":"Kopenhagen","lat":55.676097,"lng":12.568337,"accuracy":2,"action":"","feelings":"","type":"Text","description":"Rami war schon bei seiner Schwester, als er von einer Polizeistreife im Zug nach seinen Papieren gefragt wird. Für einen kurzen Moment überlegt er, ob er fliehen soll. Aber er hat keine Chance. Die Beamten bringen ihn zu einer Polizeistation. Dort warten bereits Mitarbeiter des Roten Kreuzes, um Rami bei den anstehenden Schritten zu unterstützen: Denn ihm bleibt nur noch die Möglichkeit, jetzt in Dänemark Asyl zu beantragen. Nach Deutschland kann er nicht mehr zurück. Rami wird nach Sønderborg nahe der dänisch-deutschen Grenze gebracht, in eine Einrichtung für syrische Asylsuchende. Aktuell leben hier 300 Flüchtlinge aus Syrien, die in der Regel nach einigen Tagen einen Ausweis bekommen, mit dem sie sich frei im Land bewegen dürfen. Auch Sprachkurse und weitere Angebote stehen den Syrern dort zur Verfügung. Seine Festnahme in Dänemark erscheint Rami nicht mehr als Niederlage - im Gegenteil: Er wirkt erleichtert, dass seine Flucht nun endlich beendet ist und er in der Nähe seiner Schwester bleiben kann."},
 {"number":42, "date":"2015, 05, 22","title":"Zur Schwester nach Dänemark","location":"Hamburg","lat":53.551085,"lng":9.993682,"accuracy":2,"action":"Auto","feelings":"zweifel","type":"Text","description":"Rami übernachtet in Hamburg bei seinem Bekannten. Eigentlich wollte er heute Asyl beantragen, doch dann bietet ihm ein anderer syrischer Bekannter an, ihn mit nach Dänemark zu nehmen. In Kopenhagen lebt Ramis Schwester. Er hat sie seit über drei Jahren nicht gesehen. Rami beginnt an seinem ursprünglichen Plan zu zweifeln: Wenn er jetzt in Deutschland Asyl beantragt, dann könnte er seine Schwester lange nicht sehen. Er müsste die ersten Monate im Auffanglager in Hamburg-Harburg bleiben und dürfte Deutschland nicht verlassen, bis das Verfahren abgeschlossen ist. Das dauert manchmal über ein Jahr. Rami entscheidet sich für den Besuch seiner Schwester. Mit dem Auto bringt ihn der Bekannte nach Dänemark."},
 {"number":41, "date":"2015, 05, 21","title":"Mit dem Zug nach Hamburg","location":"München Hauptbahnhof","lat":48.140350,"lng":11.557768,"accuracy":3,"action":"zug","feelings":"","type":"Text","description":"Rami steigt in München am Hauptbahnhof in den Zug. Er will nach Hamburg, denn dort kann er vorübergehend bei einem Bekannten aus Syrien unterkommen. Dann will er Asyl beantragen."},
 {"number":40, "date":"2015, 05, 21","title":"Es ist geschafft ","location":"München","lat":48.135125,"lng":11.581981,"accuracy":2,"action":"warten","feelings":"glücklich","type":"Text","description":"München! Rami wirkt überglücklich. Doch noch ist seine Reise nicht vorbei. Eigentlich wollte er mit dem Nachtzug gleich weiter nach Hamburg. Doch am Hauptbahnhof muss er feststellen, dass keine Züge fahren - Lokführerstreik. Völlig erschöpft lässt er sich in einer ruhigen Ecke eines 24-Stunden-Restaurants nieder, um die Nacht durchzumachen. In seiner Hand hält er das Ticket für den Frühzug. Ziel: Hamburg."},
