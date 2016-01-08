@@ -1,0 +1,14 @@
+.time-line-column {
+  position: absolute;
+  bottom: 0px;
+  padding-bottom: 10px;
+
+  &__line {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    width: 1px;
+    height: 100%;
+    background: $timeline-item-default;
+  }
+}

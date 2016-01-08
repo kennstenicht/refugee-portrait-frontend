@@ -4,12 +4,17 @@
 <div class="time-line__container">
   <div class="time-line__container__frame">
     <div class="time-line__container__frame__slider">
-      <div class="time-line__container__frame__slider__items">
-        {{#each chapters as |chapter|}}
-          {{time-line-item
-            chapter=chapter
-          }}
+      <div class="time-line__container__frame__slider__columns">
+        {{#each columns as |column|}}
+          {{#time-line-column story=story date=column.value}}
+            {{#each column.items as |chapter|}}
+              {{time-line-item
+                chapter=chapter
+              }}
+            {{/each}}
+          {{/time-line-column}}
         {{/each}}
+
       </div>
       <div class="time-line__container__frame__slider__progressbar"></div>
       <div class="time-line__container__frame__slider__axis">
@@ -19,11 +24,15 @@
   </div>
   <div class="time-line__container__scrollbar">
     <div class="time-line__container__scrollbar__handle"></div>
-    <div class="time-line__container__scrollbar__navigator">
-      {{#each chapters as |chapter|}}
-        {{time-line-navigator
-          chapter=chapter
-        }}
+    <div class="time-line__container__scrollbar__content">
+      {{#each columns as |column|}}
+        {{#time-line-column story=story date=column.value}}
+          {{#each column.items as |chapter|}}
+            {{time-line-navigator
+              chapter=chapter
+            }}
+          {{/each}}
+        {{/time-line-column}}
       {{/each}}
     </div>
   </div>

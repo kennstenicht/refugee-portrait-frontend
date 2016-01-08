@@ -1,9 +1,14 @@
 import DS from 'ember-data';
+import moment from 'moment';
 
 const {
   attr,
   hasMany
 } = DS;
+
+const {
+  computed
+} = Ember;
 
 export default DS.Model.extend({
   name: attr('string'),

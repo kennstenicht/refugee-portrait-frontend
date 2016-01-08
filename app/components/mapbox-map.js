@@ -3,10 +3,8 @@ import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
 
 const {
   Component,
-  computed,
   on,
-  init,
-  observer
+  run
 } = Ember;
 
 export default Component.extend(MapboxGl, {
@@ -18,15 +16,19 @@ export default Component.extend(MapboxGl, {
     lng: 8.43,
     minZoom: 4,
     maxZoom: 15,
-    zoom: 4,
+    zoom: 3.5,
     bearing: 0,
-    interactive: true
+    interactive: true,
+    maxBounds: [
+      [-25.654297, 29.410890,],
+      [40.341797, 57.154120,]
+    ]
   },
 
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {
-      this.get('targeting').on('setChapter', this, 'setTarget');
+      this.get('targeting').on('newChapter', this, 'setTarget');
       this.get('targeting').on('closeChapter', this, 'zoomOut');
       this.get('targeting').on('newMood', this, 'setMood');
   }),
@@ -34,9 +36,10 @@ export default Component.extend(MapboxGl, {
   didInsertElement: function () {
     let map = this.get('map');
 
-    this.get('chapters').forEach(function (chapter) {
-      console.log(chapter.store.get('title'));
+    let chapters = this.get('chapters').map(function (chapter) {
+      return [chapter.lat, chapter.lng];
     });
+
 
     map.on('style.load', function () {
         map.addSource("route", {
@@ -93,12 +96,11 @@ export default Component.extend(MapboxGl, {
     });
   },
 
-  setTarget: function (chapter) {
-    console.log('mapbox');
+  setTarget: function (chapter, duration) {
     this.get('map').easeTo({
       center: [chapter.get('lng'), chapter.get('lat')],
       zoom: 10 + chapter.get('accuracy'),
-      duration: 2000
+      duration: duration
     });
   },
 

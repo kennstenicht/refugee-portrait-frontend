@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
+import groupBy from 'ember-group-by';
 import Sly from '../mixins/sly';
 
 const {
@@ -8,7 +9,7 @@ const {
   computed
 } = Ember;
 
-export default Component.extend(Gestures, Sly,{
+export default Component.extend(Gestures, Sly, {
   classNames: ['time-line'],
 
   gestures: ['pinch', 'pinchstart', 'pinchmove'],
@@ -16,6 +17,9 @@ export default Component.extend(Gestures, Sly,{
   recognizers: {
     pinch: {enable: true}
   },
+
+  columns: groupBy('chapters', 'unixDate'),
+
 
   didInsertElement: function () {
     this.initSly();

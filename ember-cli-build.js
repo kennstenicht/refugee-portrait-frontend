@@ -19,6 +19,7 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   app.import(app.bowerDirectory + '/sly/dist/sly.min.js');
+  app.import(app.bowerDirectory + '/turf/turf.min.js');
 
   return app.toTree();
 };

@@ -3,7 +3,7 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 120px;
+  height: 140px;
   z-index: 2;
   background: linear-gradient(to top, rgba($gray-lighter,0.8) 0%,rgba($gray-lighter,0.8) 60%,rgba($gray-lighter,0) 100%);
 
@@ -14,7 +14,7 @@
     width: 85px;
 
     &__progressbar {
-      margin-top: 60px;
+      margin-top: 80px;
       border: {
         style: dotted;
         width: 5px;
@@ -45,9 +45,9 @@
         height: 100%;
         width: 2440px;
 
-        &__items {
+        &__columns {
           position: relative;
-          height: 60px;
+          height: 80px;
         }
 
         &__progressbar {
@@ -83,7 +83,7 @@
         background: rgba($green, 0.2);
       }
 
-      &__navigator {
+      &__content {
         position: absolute;
         z-index: 1;
         bottom: 0px;
@@ -91,8 +91,21 @@
         height: 80%;
         width: 100%;
         background: {
-          color: $gray-light;
+          color: $timeline-scrollbar-default;
           image: url('textures/grain-10.png');
+        }
+
+        .time-line-column {
+          padding-bottom: 0px;
+
+          &__line {
+            background: {
+              color: $timeline-navigator-default;
+              image: url('textures/grain-10.png');
+            }
+            width: 2px;
+            left: 0px;
+          }
         }
       }
     }

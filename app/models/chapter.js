@@ -1,4 +1,6 @@
 import DS from 'ember-data';
+import Ember from 'ember';
+import moment from 'moment';
 
 const {
   Model,
@@ -6,6 +8,10 @@ const {
   belongsTo,
   hasMany
 } = DS;
+
+const {
+  computed
+} = Ember;
 
 export default Model.extend({
   number: attr('number'),
@@ -19,7 +25,12 @@ export default Model.extend({
   action: attr('string'),
   feeling: attr('string'),
   type: attr('string'),
+  highlight: attr('boolean'),
 
   hotspots: hasMany('hotspot', { async: true }),
-  story: belongsTo('story', { async: true })
+  story: belongsTo('story', { async: true }),
+
+  unixDate: computed('date', function() {
+    return moment(this.get('date')).format('X');
+  })
 });

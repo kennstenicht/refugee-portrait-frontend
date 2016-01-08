@@ -4,7 +4,9 @@ import animationIf from '../mixins/animation-if';
 
 const {
   Component,
-  computed
+  computed,
+  on,
+  $
 } = Ember;
 
 export default Component.extend(Gestures, animationIf, {
@@ -24,10 +26,25 @@ export default Component.extend(Gestures, animationIf, {
 
   targeting: Ember.inject.service('targeting'),
 
+  listen: on('init', function() {
+      this.get('targeting').on('showChapter', this, 'showChapter');
+      this.get('targeting').on('hideChapter', this, 'hideChapter');
+  }),
+
   didInsertElement: function () {
-    Ember.run.next(this, function () {
-      this.get('targeting').setChapter(this.get('model'));
-    });
+    if(!this.get('targeting').currentChapter) {
+      Ember.run.next(this, function () {
+        this.get('targeting').setChapter(this.get('model'));
+      });
+    }
+  },
+
+  showChapter: function (speed) {
+    $('.chapter-content').fadeIn(speed);
+  },
+
+  hideChapter: function (speed) {
+    $('.chapter-content').fadeOut(speed);
   },
 
   pan: function () {

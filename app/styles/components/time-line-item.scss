@@ -1,28 +1,21 @@
 .time-line-item {
-  position: absolute;
-  bottom: 0px;
-  height: 100%;
+  position: relative;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: {
+    color: $timeline-item-default;
+    image: url('textures/grain-30.png');
+    size: 40px 40px;
+  }
+  margin-bottom: 5px;
+  z-index: 1;
 
-  &__line {
-    position: absolute;
-    bottom: 0px;
-    width: 1px;
-    height: 100%;
-    background: $timeline-item-default;
+  &--highlight {
+    background-color: $red;
   }
 
-  &__dot {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: {
-      color: $timeline-item-default;
-      image: url('textures/grain-30.png');
-      size: 40px 40px;
-    }
-    transform: translate(-50%, 0);
+  &:hover {
+    background-color: $green;
   }
 }

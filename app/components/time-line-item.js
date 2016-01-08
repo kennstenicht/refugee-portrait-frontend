@@ -1,15 +1,22 @@
 import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
-import MathHelper from '../mixins/math-helper';
 
 const {
   Component,
   inject,
-  observer
+  computed
 } = Ember;
 
-export default Component.extend(MathHelper, Gestures, {
+export default Component.extend(Gestures, {
   classNames: ['time-line-item'],
+  classNameBindings: ['modifierHighlight'],
+
+  // BEM modifier
+  modifierHighlight: computed('chapter.highlight', function() {
+    if( this.get('chapter.highlight') ) {
+      return 'time-line-item--highlight';
+    }
+  }),
 
   gestures: ['tap'],
 
@@ -18,22 +25,6 @@ export default Component.extend(MathHelper, Gestures, {
   },
 
   targeting: inject.service('targeting'),
-
-  setPosition: observer('chapter.date', function () {
-    let story = this.get('chapter.story');
-
-    let position = this.scale(
-      this.get('chapter.date'),
-      story.get('start'),
-      story.get('end'),
-      0,
-      100
-    );
-
-    this.$().css({
-      left: position + "%"
-    });
-  }),
 
   tap: function () {
     this.get('targeting').setChapter(this.get('chapter'));
