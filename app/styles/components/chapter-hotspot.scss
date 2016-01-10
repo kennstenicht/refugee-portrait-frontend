@@ -1,0 +1,15 @@
+.chapter-hotspot {
+  &__icon {
+    width: 40px;
+    height: 40px;
+    background: $red;
+    border-radius: 50%;
+  }
+
+  &__overlay {
+    width: 400px;
+    padding: 20px;
+    background: rgba(0,0,0,0.8);
+    display: none;
+  }
+}

@@ -1,1 +1,7 @@
 {{yield}}
+<div class="chapter-hotspot__icon" {{action 'toggleHotspot' on='tap'}}></div>
+<div class="chapter-hotspot__overlay">
+  {{hotspot.title}}
+  {{hotspot.description}}
+  {{ivy-videojs src=hotspot.video setup=setup}}
+</div>
