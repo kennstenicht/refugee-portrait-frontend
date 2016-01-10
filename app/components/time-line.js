@@ -1,26 +1,52 @@
 import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
+import MathHelper from '../mixins/math-helper';
 import groupBy from 'ember-group-by';
 import Sly from '../mixins/sly';
+import moment from 'moment';
 
 const {
   Component,
   observer,
-  computed
+  computed,
+  inject,
+  on
 } = Ember;
 
-export default Component.extend(Gestures, Sly, {
+export default Component.extend(Gestures, Sly, MathHelper, {
   classNames: ['time-line'],
 
+  // Gesture Settings
   gestures: ['pinch', 'pinchstart', 'pinchmove'],
 
   recognizers: {
     pinch: {enable: true}
   },
 
+  // Variables
   columns: groupBy('chapters', 'unixDate'),
 
+  // Targeting Service
+  targeting: inject.service('targeting'),
 
+  listen: on('init', function() {
+    this.get('targeting').on('newChapter', this, 'setProgressbar');
+  }),
+
+  // Targeting Functions
+  setProgressbar: function (chapter) {
+    let position = this.scale(
+      chapter.get('unixDate'),
+      moment(this.get('story.start')).format('X'),
+      moment(this.get('story.end')).format('X'),
+      0,
+      100
+    );
+
+    $('.time-line__container__frame__slider__progressbar__indicator').css({width: position + '%'});
+  },
+
+  // Functions
   didInsertElement: function () {
     this.initSly();
   },
@@ -28,6 +54,7 @@ export default Component.extend(Gestures, Sly, {
   willDestroyElement: function () {
     this.destroySly();
   },
+
 
 
 
