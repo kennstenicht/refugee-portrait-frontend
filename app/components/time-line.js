@@ -71,6 +71,14 @@ export default Component.extend(Gestures, Sly, MathHelper, {
     this.destroySly();
   },
 
+  overview: observer('targeting.currentChapter', function () {
+    let frameWidth = $('.time-line__container__frame').width();
+
+    if( this.get('targeting.currentChapter') ) {
+      $('.time-line__container__frame__slider').animate({'width': frameWidth}, 600);
+    }
+  }),
+
 
 
 
