@@ -34,7 +34,7 @@ export default Component.extend(Gestures, Sly, MathHelper, {
   }),
 
   // Targeting Functions
-  setProgressbar: function (chapter) {
+  setProgressbar: function (chapter, speed) {
     let position = this.scale(
       chapter.get('unixDate'),
       moment(this.get('story.start')).format('X'),
@@ -43,7 +43,7 @@ export default Component.extend(Gestures, Sly, MathHelper, {
       100
     );
 
-    $('.time-line__container__frame__slider__progressbar__indicator').css({width: position + '%'});
+    $('.time-line__container__frame__slider__progressbar__indicator').animate({width: position + '%'}, speed, 'easeOutCirc');
   },
 
   // Functions
