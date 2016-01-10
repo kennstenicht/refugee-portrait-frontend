@@ -51,8 +51,17 @@
         }
 
         &__progressbar {
+          position: relative;
           height: 10px;
           background: $timeline-progressbar-default url('textures/grain-10.png');
+
+          &__indicator {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            background-color: $green;
+          }
         }
 
         &__axis {
