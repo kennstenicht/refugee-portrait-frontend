@@ -49,5 +49,22 @@ export default Component.extend(Gestures, animationIf, {
 
   pan: function () {
     this.get('targeting').setChapter('');
+  },
+
+  actions: {
+    save: function () {
+      let center = this.get('targeting.currentMap').getCenter(),
+        zoom = this.get('targeting.currentMap').getZoom(),
+        bearing = this.get('targeting.currentMap').getBearing(),
+        pitch = this.get('targeting.currentMap').getPitch();
+
+      this.get('model').set('lat', center.lat);
+      this.get('model').set('lng', center.lng);
+      this.get('model').set('bearing', bearing);
+      this.get('model').set('pitch', pitch);
+      this.get('model').set('zoom', zoom);
+      this.get('model').save();
+
+    }
   }
 });
