@@ -1,6 +1,6 @@
 <div class="chapter-content__journal">
   <div class="chapter-content__journal__date">
-    {{model.date}}
+    {{moment-format model.date "DD. MMMM YYYY" locale='de'}}
   </div>
   <div class="chapter-content__journal__header">
     <div class="chapter-content__journal__header__number">{{model.number}}</div>

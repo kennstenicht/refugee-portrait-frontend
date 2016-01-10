@@ -1,19 +1,16 @@
 .chapter-content {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+
   z-index: 2;
   display: none;
 
   &__journal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 550px;
     text-align: left;
     transform: translate(-650px, -200px);
+    z-index: 2;
 
     &__date {
 
@@ -47,9 +44,10 @@
   }
 
   &__weather {
-    position: absolute;
+    position: fixed;
     top: 100px;
     right: 100px;
+    z-index: 2;
   }
 
   &--6 &__journal {
