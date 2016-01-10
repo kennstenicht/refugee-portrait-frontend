@@ -9,6 +9,7 @@ const {
 } = Ember;
 
 export default Service.extend(Evented, MathHelper, {
+  currentChapter: null,
   feelings: {
     angst: 'dark',
     stress: 'dark',
