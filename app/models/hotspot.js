@@ -11,6 +11,7 @@ export default Model.extend({
   description: attr('string'),
   image: attr('string'),
   video: attr('string'),
+  audio: attr('string'),
   type: attr('string'),
 
   chapter: belongsTo('chapter', { async: true })

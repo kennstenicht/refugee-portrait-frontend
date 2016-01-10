@@ -21,10 +21,11 @@ export default Model.extend({
   location: attr('string'),
   lat: attr('number'),
   lng: attr('number'),
-  accuracy: attr('number'),
+  zoom: attr('number'),
+  bearing: attr('number'),
+  pitch: attr('number'),
   action: attr('string'),
   feeling: attr('string'),
-  type: attr('string'),
   highlight: attr('boolean'),
 
   hotspots: hasMany('hotspot', { async: true }),
