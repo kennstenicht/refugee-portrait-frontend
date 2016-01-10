@@ -47,7 +47,7 @@ export default Service.extend(Evented, MathHelper, {
           this.trigger('newChapter', chapter, transitionSpeed);
           // this.setMood(chapter.get('feeling'));
         } else {
-          this.trigger('closeChapter');
+          this.trigger('closeChapter', 2000);
           // this.setMood('default');
         }
 
@@ -71,7 +71,7 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   calcDistance: function (newChapter) {
-    if( this.get('currentChapter') ) {
+    if( this.get('currentChapter') && newChapter) {
       let start = {
         "type": "Feature",
         "properties": {},

@@ -103,14 +103,14 @@ export default Component.extend(MapboxGl, {
       zoom: chapter.get('zoom'),
       bearing: chapter.get('bearing') || 0,
       pitch: chapter.get('pitch') || 0,
-      speed: duration
+      duration: duration
     });
   },
 
-  zoomOut: function () {
+  zoomOut: function (duration) {
     this.get('map').easeTo({
       zoom: this.get('map').getZoom()-4,
-      duration: 2000
+      duration: duration
     });
   },
 
