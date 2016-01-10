@@ -10,10 +10,17 @@ const {
 
 export default Service.extend(Evented, MathHelper, {
   currentChapter: null,
+  currentPreview: null,
+
   feelings: {
     angst: 'dark',
     stress: 'dark',
     frustriert: 'dark'
+  },
+
+  setPreview: function (chapter) {
+    console.log(chapter);
+    this.set('currentPreview', chapter);
   },
 
   setChapter: function (chapter) {

@@ -9,5 +9,10 @@
   {{mapbox-map
     chapters=model.chapters
   }}
+
+
+  {{#if targeting.currentPreview}}
+    {{preview-item preview=targeting.currentPreview}}
+  {{/if}}
 {{/object-detection}}
 <div class="load-button" {{action 'addNewStory'}}>Load Data</div>

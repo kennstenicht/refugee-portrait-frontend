@@ -1,0 +1,10 @@
+.preview-item {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  background: $green;
+  padding: 20px;
+  color: $white;
+  z-index: 3;
+  width: 400px;
+}
