@@ -15,6 +15,16 @@ const {
 
 export default Component.extend(Gestures, Sly, MathHelper, {
   classNames: ['time-line'],
+  classNameBindings: ['modifierMode'],
+
+  // BEM Modifier
+  modifierMode: computed('zoom', 'targeting.currentChapter', function () {
+    if (this.get('targeting.currentChapter')) {
+      return 'time-line--detail';
+    } else if (this.get('zoom') === 0) {
+      return 'time-line--overview';
+    }
+  }),
 
   // Gesture Settings
   gestures: ['pinch', 'pinchstart', 'pinchmove'],
@@ -24,6 +34,7 @@ export default Component.extend(Gestures, Sly, MathHelper, {
   },
 
   // Variables
+  zoom: 0,
   columns: groupBy('chapters', 'unixDate'),
 
   // Targeting Service

@@ -6,6 +6,11 @@
   height: 140px;
   z-index: 2;
   background: linear-gradient(to top, rgba($gray-lighter,0.8) 0%,rgba($gray-lighter,0.8) 60%,rgba($gray-lighter,0) 100%);
+  transition: $transition-default;
+
+  &--detail {
+    bottom: -30px;
+  }
 
   &__squished {
     position: absolute;
@@ -28,6 +33,10 @@
     &--end {
       right: 0px;
     }
+  }
+
+  &--detail &__squished--start &__squished__progressbar {
+    border-color: $green;
   }
 
   &__container {
