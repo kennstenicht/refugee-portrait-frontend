@@ -15,7 +15,7 @@ export default Component.extend(MapboxGl, {
     lat: 46.68,
     lng: 8.43,
     minZoom: 4,
-    maxZoom: 15,
+    maxZoom: 20,
     zoom: 3.5,
     bearing: 0,
     interactive: true,
@@ -28,17 +28,18 @@ export default Component.extend(MapboxGl, {
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {
-      this.get('targeting').on('newChapter', this, 'setTarget');
-      this.get('targeting').on('closeChapter', this, 'zoomOut');
-      this.get('targeting').on('newMood', this, 'setMood');
+    this.get('targeting').on('newChapter', this, 'setTarget');
+    this.get('targeting').on('closeChapter', this, 'zoomOut');
+    this.get('targeting').on('newMood', this, 'setMood');
   }),
 
   didInsertElement: function () {
+    this.get('targeting').set('currentMap', this.get('map'));
     let map = this.get('map');
 
-    let chapters = this.get('chapters').map(function (chapter) {
-      return [chapter.lat, chapter.lng];
-    });
+    // let chapters = this.get('chapters').map(function (chapter) {
+    //   return [chapter.lat, chapter.lng];
+    // });
 
 
     map.on('style.load', function () {
@@ -99,8 +100,10 @@ export default Component.extend(MapboxGl, {
   setTarget: function (chapter, duration) {
     this.get('map').easeTo({
       center: [chapter.get('lng'), chapter.get('lat')],
-      zoom: 10 + chapter.get('accuracy'),
-      duration: duration
+      zoom: chapter.get('zoom'),
+      bearing: chapter.get('bearing') || 0,
+      pitch: chapter.get('pitch') || 0,
+      speed: duration
     });
   },
 
