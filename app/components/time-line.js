@@ -42,6 +42,7 @@ export default Component.extend(Gestures, Sly, MathHelper, {
 
   listen: on('init', function() {
     this.get('targeting').on('newChapter', this, 'setProgressbar');
+    this.get('targeting').on('closeChapter', this, 'removeProgressbar');
   }),
 
   // Targeting Functions
@@ -55,6 +56,10 @@ export default Component.extend(Gestures, Sly, MathHelper, {
     );
 
     $('.time-line__container__frame__slider__progressbar__indicator').animate({width: position + '%'}, speed, 'easeOutCirc');
+  },
+
+  removeProgressbar: function (speed) {
+    $('.time-line__container__frame__slider__progressbar__indicator').animate({width: '0px'}, speed, 'easeOutCirc');
   },
 
   // Functions
