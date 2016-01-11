@@ -19,7 +19,6 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   setPreview: function (chapter) {
-    console.log(chapter);
     this.set('currentPreview', chapter);
   },
 

@@ -4,7 +4,8 @@ import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
 const {
   Component,
   on,
-  run
+  run,
+  inject
 } = Ember;
 
 export default Component.extend(MapboxGl, {
@@ -25,7 +26,7 @@ export default Component.extend(MapboxGl, {
     ]
   },
 
-  targeting: Ember.inject.service('targeting'),
+  targeting: inject.service('targeting'),
 
   listen: on('init', function() {
     this.get('targeting').on('newChapter', this, 'setTarget');
@@ -36,11 +37,6 @@ export default Component.extend(MapboxGl, {
   didInsertElement: function () {
     this.get('targeting').set('currentMap', this.get('map'));
     let map = this.get('map');
-
-    // let chapters = this.get('chapters').map(function (chapter) {
-    //   return [chapter.lat, chapter.lng];
-    // });
-
 
     map.on('style.load', function () {
         map.addSource("route", {

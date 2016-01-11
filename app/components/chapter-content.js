@@ -32,6 +32,7 @@ export default Component.extend(Gestures, animationIf, {
   }),
 
   didInsertElement: function () {
+    // if no currentChapter is set (load on detail), set route chapter
     if(!this.get('targeting').currentChapter) {
       Ember.run.next(this, function () {
         this.get('targeting').setChapter(this.get('model'));

@@ -10,7 +10,10 @@ const {
   observer,
   computed,
   inject,
-  on
+  on,
+  run: {
+    bind
+  }
 } = Ember;
 
 export default Component.extend(Gestures, Sly, MathHelper, {
@@ -75,7 +78,9 @@ export default Component.extend(Gestures, Sly, MathHelper, {
     let frameWidth = $('.time-line__container__frame').width();
 
     if( this.get('targeting.currentChapter') ) {
-      $('.time-line__container__frame__slider').animate({'width': frameWidth}, 600);
+      $('.time-line__container__frame__slider').animate({'width': frameWidth}, 600, bind(this, function () {
+        this.get('sly').reload();
+      }));
     }
   }),
 
