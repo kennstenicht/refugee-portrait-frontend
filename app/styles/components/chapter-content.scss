@@ -50,6 +50,14 @@
     z-index: 2;
   }
 
+  &--4 &__journal {
+    transform: translate(100px, -50px);
+  }
+
+  &--5 &__journal {
+    transform: translate(100px, 50px);
+  }
+
   &--6 &__journal {
     transform: translate(-600px, -50px);
   }
