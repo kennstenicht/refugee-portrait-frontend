@@ -33,5 +33,15 @@ export default Model.extend({
 
   unixDate: computed('date', function() {
     return moment(this.get('date')).format('X');
-  })
+  }),
+
+  excerpt: computed('description', function() {
+    var text = this.get('description'),
+      max_length = 200,
+      suffix = (text && text.length > max_length) ? '...' : '';
+
+    if (text) {
+      return text.substring(0, max_length) + suffix;
+    }
+  }),
 });
