@@ -57,5 +57,9 @@ export default Component.extend(Gestures, {
 
   pressUp: function () {
     this.get('targeting').setPreview(null);
+  },
+
+  willDestroyElement: function () {
+    console.log('destroy');
   }
 });
