@@ -26,7 +26,7 @@ module.exports = function(environment) {
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
         "apis.google.com *.firebaseio.com",
-      'connect-src': "'self' *.mapbox.com http://localhost:5000" +
+      'connect-src': "'self' *.mapbox.com http://localhost:5000 " +
       "ws://localhost:5000 wss://s-dal5-nss-15.firebaseio.com",
     },
 
