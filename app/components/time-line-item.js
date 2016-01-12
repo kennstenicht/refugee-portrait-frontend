@@ -35,16 +35,11 @@ export default Component.extend(Gestures, {
   // Targeting Service
   targeting: inject.service('targeting'),
 
-  listen: on('init', function() {
-    this.get('targeting').on('newChapter', this, 'setActive');
-  }),
-
-  // Targeting Functions
-  setActive: function (chapter) {
-    if(this.get('chapter') === chapter) {
-      this.set('active', true);
+  active: computed('targeting.currentChapter', function () {
+    if(this.get('chapter') === this.get('targeting.currentChapter')) {
+      return true;
     }
-  },
+  }),
 
   // Gesture Events
   tap: function () {
