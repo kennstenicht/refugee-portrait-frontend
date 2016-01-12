@@ -14,7 +14,7 @@ export default Mixin.create({
 
   initSly: function () {
     if(this.get('sly')) {
-      return
+      return;
     }
 
     let sly = new Sly('.time-line__container__frame', {
