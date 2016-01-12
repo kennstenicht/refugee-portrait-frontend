@@ -7,8 +7,9 @@ const {
 } = Ember;
 
 export default Component.extend({
-  didInsertElement: computed('chapter.lng', function () {
-    // this.get('chapter').then((chapter) => {
+  didInsertElement: function () {
+
+
     //   let id = 'chapter-' + chapter.get('number');
     //   let source = {
     //       "type": "geojson",
@@ -35,9 +36,8 @@ export default Component.extend({
     //       }
     //   };
     //
-    //   console.log(chapter.get('number'));
     //   this.sendAction('addSource', id, source);
     //   this.sendAction('addLayer', layer);
     // });
-  })
+  }
 });
