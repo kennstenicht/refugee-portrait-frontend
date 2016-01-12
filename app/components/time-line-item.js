@@ -4,12 +4,13 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 const {
   Component,
   inject,
-  computed
+  computed,
+  on
 } = Ember;
 
 export default Component.extend(Gestures, {
   classNames: ['time-line-item'],
-  classNameBindings: ['modifierHighlight'],
+  classNameBindings: ['modifierHighlight', 'modifierActive'],
 
   // BEM modifier
   modifierHighlight: computed('chapter.highlight', function() {
@@ -18,15 +19,43 @@ export default Component.extend(Gestures, {
     }
   }),
 
-  gestures: ['tap'],
+  modifierActive: computed('active', function() {
+    if( this.get('active') ) {
+      return 'time-line-item--active';
+    }
+  }),
+
+  // Gesture Settings
+  gestures: ['tap', 'press', 'pressup'],
 
   recognizers: {
     tap: {threshold: 10},
   },
 
+  // Targeting Service
   targeting: inject.service('targeting'),
 
+  listen: on('init', function() {
+    this.get('targeting').on('newChapter', this, 'setActive');
+  }),
+
+  // Targeting Functions
+  setActive: function (chapter) {
+    if(this.get('chapter') === chapter) {
+      this.set('active', true);
+    }
+  },
+
+  // Gesture Events
   tap: function () {
     this.get('targeting').setChapter(this.get('chapter'));
+  },
+
+  press: function () {
+    this.get('targeting').setPreview(this.get('chapter'));
+  },
+
+  pressUp: function () {
+    this.get('targeting').setPreview(null);
   }
 });
