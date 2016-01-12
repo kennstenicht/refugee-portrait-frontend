@@ -10,8 +10,6 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 App = Ember.Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver: Resolver,
-
   customEvents: {
     objectadded: 'objectAdded',
     objectmoved: 'objectMoved',
@@ -25,7 +23,8 @@ App = Ember.Application.extend({
     pandown: 'panDown',
     panup: 'panUp',
     panleft: 'panLeft'
-  }
+  },
+  Resolver
 });
 
 loadInitializers(App, config.modulePrefix);
