@@ -33,7 +33,7 @@ export default Mixin.create({
       dragHandle: 1
     });
 
-    this.set('sly', sly.init())
+    this.set('sly', sly.init());
   },
 
   destroySly: function () {

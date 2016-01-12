@@ -2,9 +2,7 @@ import Ember from 'ember';
 
 const {
   Controller,
-  observer,
   on,
-  computed,
   run: {
     bind
   }

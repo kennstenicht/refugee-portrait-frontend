@@ -13,7 +13,8 @@ const {
   on,
   run: {
     bind
-  }
+  },
+  $
 } = Ember;
 
 export default Component.extend(Gestures, Sly, MathHelper, {

@@ -15,7 +15,7 @@ export default Component.extend(Gestures, {
   setPosition: observer('object.{pageX,pageY}', function () {
     this.$().css({
       transform: "translate(" + this.get('object.pageX') + "px ," + this.get('object.pageY') + "px)"
-    })
+    });
   }),
 
   chapter: computed(function() {

@@ -54,7 +54,7 @@ export default Service.extend(Evented, MathHelper, {
 
         // wait until target is reached (options.duration)
         run.later(this, function () {
-          this.trigger('showChapter', chapterAnimationSpeed)
+          this.trigger('showChapter', chapterAnimationSpeed);
         }, transitionSpeed);
       }, chapterAnimationSpeed);
     }

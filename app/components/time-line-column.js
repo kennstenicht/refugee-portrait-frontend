@@ -3,8 +3,7 @@ import MathHelper from '../mixins/math-helper';
 import moment from 'moment';
 
 const {
-  Component,
-  observer
+  Component
 } = Ember;
 
 export default Component.extend(MathHelper, {
