@@ -8,7 +8,7 @@ const {
 
 export default Component.extend({
   didInsertElement: function () {
-
+    console.log(this.get('chapter.number'));
 
     //   let id = 'chapter-' + chapter.get('number');
     //   let source = {
