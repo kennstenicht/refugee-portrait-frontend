@@ -12,5 +12,5 @@ export default DS.Model.extend({
   end: attr('date'),
   active: attr('boolean'),
 
-  chapters: hasMany('chapter', { async: true }),
+  chapters: hasMany('chapter', { async: true })
 });

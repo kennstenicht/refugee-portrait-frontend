@@ -27,6 +27,7 @@ export default Model.extend({
   action: attr('string'),
   feeling: attr('string'),
   highlight: attr('boolean'),
+  route: attr('array'),
 
   hotspots: hasMany('hotspot', { async: true }),
   story: belongsTo('story', { async: true }),
