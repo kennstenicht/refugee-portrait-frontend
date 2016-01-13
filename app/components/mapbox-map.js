@@ -31,7 +31,7 @@ export default Component.extend(MapboxGl, {
   targeting: inject.service('targeting'),
 
   // Sort Chapters
-  sortProperties: ['number:desc'],
+  sortProperties: ['number:asc'],
   sortedChapters: computed.sort('chapters', 'sortProperties'),
 
   didInsertElement: function () {
@@ -47,5 +47,14 @@ export default Component.extend(MapboxGl, {
         // get all features in viewport
       })
     });
+  },
+
+  actions: {
+    addSourceAndLayer: function (id, source, layer) {
+      this.get('map').on('style.load', bind(this, function () {
+        this.get('map').addSource(id, source);
+        this.get('map').addLayer(layer);
+      }));
+    }
   }
 });

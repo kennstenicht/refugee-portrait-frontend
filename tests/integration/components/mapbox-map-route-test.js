@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('preview-test', 'Integration | Component | preview test', {
+moduleForComponent('mapbox-map-route', 'Integration | Component | mapbox map route', {
   integration: true
 });
 
@@ -11,15 +11,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{preview-test}}`);
+  this.render(hbs`{{mapbox-map-route}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#preview-test}}
+    {{#mapbox-map-route}}
       template block text
-    {{/preview-test}}
+    {{/mapbox-map-route}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

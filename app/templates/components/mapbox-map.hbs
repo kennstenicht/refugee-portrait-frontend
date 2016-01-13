@@ -1,7 +1,6 @@
 {{yield}}
-{{#each sortedChapters as |chapter|}}
-  {{mapbox-map-chapter
-    chapter=chapter
-  }}
-{{/each}}
+{{mapbox-map-route
+  chapters=sortedChapters
+  addSourceAndLayer='addSourceAndLayer'
+}}
 
