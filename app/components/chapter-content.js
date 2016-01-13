@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
-import animationIf from '../mixins/animation-if';
 
 const {
   Component,
@@ -9,7 +8,7 @@ const {
   $
 } = Ember;
 
-export default Component.extend(Gestures, animationIf, {
+export default Component.extend(Gestures, {
   classNames: ['chapter-content'],
   classNameBindings: ['modifierNumber'],
 

@@ -30,6 +30,7 @@ export default Component.extend(Gestures, {
 
   recognizers: {
     tap: {threshold: 10},
+    press: {threshold: 20},
   },
 
   // Targeting Service
@@ -48,7 +49,7 @@ export default Component.extend(Gestures, {
     this.get('targeting').setPreview(this.get('chapter'));
   },
 
-  pressUp: function () {
-    this.get('targeting').setPreview(null);
+  pressup: function () {
+    this.get('targeting').closePreview();
   }
 });

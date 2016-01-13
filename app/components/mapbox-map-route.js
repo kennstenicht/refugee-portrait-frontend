@@ -47,6 +47,7 @@ export default Component.extend({
       "id": routeChapterId,
       "type": "circle",
       "source": routeChapterId,
+      "interactive": true,
       "layout": {},
       "paint": {
         "circle-color": "#888",

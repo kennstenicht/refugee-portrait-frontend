@@ -49,6 +49,21 @@ export default Service.extend(Evented, MathHelper, {
     }, this.get('chapterAnimationSpeed'))
   },
 
+  setPreview: function (chapter) {
+    let longlat = new mapboxgl.LngLat(chapter.get('lng'), chapter.get('lat'));
+
+    let preview = new mapboxgl.Popup()
+      .setLngLat(longlat)
+      .setHTML(chapter.get('title'))
+      .addTo(this.get('map'));
+
+    this.set('currentPreview', preview);
+  },
+
+  closePreview: function () {
+    this.get('currentPreview').remove();
+  },
+
   calcTransitionSpeed: function (newChapter) {
     if( this.get('currentChapter') && newChapter) {
       let start = {

@@ -1,6 +1,8 @@
 {{yield}}
-{{mapbox-map-route
-  chapters=sortedChapters
-  addSourceAndLayer='addSourceAndLayer'
-}}
+{{#if map}}
+  {{mapbox-map-route
+    chapters=sortedChapters
+    addSourceAndLayer='addSourceAndLayer'
+  }}
+{{/if}}
 
