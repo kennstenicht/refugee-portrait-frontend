@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Controller,
+  observer,
   on,
   run: {
     bind
@@ -12,18 +13,18 @@ export default Controller.extend({
   targeting: Ember.inject.service('targeting'),
 
   listen: on('init', function() {
-    this.get('targeting').on('closeChapter', this, 'closeChapter');
     this.get('targeting').on('newChapter', this, 'setChapter');
-
+    this.get('targeting').on('closeChapter', this, 'transitionToStory');
   }),
-
-  closeChapter: function () {
-    this.transitionToRoute('story', this.get('model'));
-  },
 
   setChapter: function (chapter) {
     this.transitionToRoute('chapter', chapter);
   },
+
+  transitionToStory: function () {
+    this.transitionToRoute('story', this.get('model'));
+  },
+
 
   jsonChapters: [
     {"number":45,"date":"2015-06-20","hotspots":[{"title":"Man könnte viele Leben retten","description":"Rami zieht eine Bilanz seiner Flucht, wieviel er gezahlt hat und was auch die Regierungen in Europa besser machen können.","image":null,"video":"45.mp4","audio":null,"type":"video"}],"title":"Neue Heimat","location":"Sønderborg","lat":54.913811,"lng":9.792178,"bearing":null,"pitch":null,"zoom":12,"action":null,"feelings":null,"highlight":false,"description":"Rami ist seit vier Wochen in Dänemark. Bei der Asylbewerberunterkunft in Sønderborg handelt es sich um eine ehemalige Kaserne. Rami teilt sich mit fünf anderen Syrern ein Zimmer. Vom Fenster aus kann er das Meer sehen. Er hat einen Dänischkurs angefangen und notiert in seinem Notizheft akribisch die Aussprache der Vokabeln in arabischer Lautschrift. Alles wirkt noch fremd und neu, aber langsam beginnt er sich an seine neue Heimat zu gewöhnen. Im Keller der Kaserne ist ein Fitnessraum eingerichtet. Regelmäßig trainieren Rami und die anderen Syrer dort. Sie wollen sich ein Stück Normalität erkämpfen, Menschlichkeit zurückholen, die sie auf der Flucht verloren haben. Es ist Ramadan, der Fastenmonat der Muslime. Einige Syrer haben sich Angeln gekauft und fischen Kabeljau, den sie nach Einbruch der Dunkelheit in der gemeinsamen Küche zubereiten. Rami genießt es, in der Stadt zu spazieren. Er schlendert auf einen Steg zu. Hierhin kommt er beinahe täglich, seit seine Flucht beendet ist. Eine Flucht, die über fünf Monate dauerte, in denen er 4000 Kilometer zurücklegte und acht Grenzen überwand."},

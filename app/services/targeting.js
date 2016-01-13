@@ -10,7 +10,7 @@ const {
 
 export default Service.extend(Evented, MathHelper, {
   currentChapter: null,
-  currentPreview: null,
+  chapterAnimationSpeed: 300,
 
   feelings: {
     angst: 'dark',
@@ -18,58 +18,38 @@ export default Service.extend(Evented, MathHelper, {
     frustriert: 'dark'
   },
 
-  setPreview: function (chapter) {
-    this.set('currentPreview', chapter);
-  },
 
-  setChapter: function (chapter) {
-    let chapterAnimationSpeed = 300,
-      distance = this.calcDistance(chapter),
-      transitionSpeed = 300;
+  setChapter: function (newChapter) {
+    if(this.get('currentChapter') !== newChapter) {
+      this.trigger('hideChapter', this.get('chapterAnimationSpeed'));
 
-    if(distance && distance > 0) {
-      transitionSpeed = this.scale(
-        distance,
-        0,
-        2000,
-        2000,
-        10000
-      );
-    }
-
-    if(this.get('currentChapter') !== chapter) {
-      this.trigger('hideChapter', chapterAnimationSpeed);
-
-      // wait until Chapter is hidden (chapterAnimationSpeed)
       run.later(this, function () {
-        if(chapter) {
-          this.trigger('newChapter', chapter, transitionSpeed);
-          // this.setMood(chapter.get('feeling'));
-        } else {
-          this.trigger('closeChapter', 2000);
-          // this.setMood('default');
-        }
+        let transitionSpeed = this.calcTransitionSpeed(newChapter) || 300;
 
-        this.set('currentChapter', chapter);
+        this.trigger('newChapter', newChapter, transitionSpeed);
+        this.setTarget(newChapter, transitionSpeed);
 
-        // wait until target is reached (options.duration)
         run.later(this, function () {
-          this.trigger('showChapter', chapterAnimationSpeed);
+          this.set('currentChapter', newChapter);
+          this.trigger('showChapter', this.get('chapterAnimationSpeed'));
         }, transitionSpeed);
-      }, chapterAnimationSpeed);
+      }, this.get('chapterAnimationSpeed'))
     }
   },
 
-  setMood: function (feeling) {
-    let mood = this.get('feelings.'+feeling) || 'default';
+  backToStory: function () {
+    this.trigger('hideChapter', this.get('chapterAnimationSpeed'));
+    run.later(this, function () {
+      this.set('currentChapter', '');
+      this.zoomOut();
 
-    if(this.get('currentMood') !== mood) {
-      this.trigger('newMood', mood);
-      this.set('currentMood', mood);
-    }
+      run.later(this, function () {
+        this.trigger('closeChapter', 2000);
+      }, 2000);
+    }, this.get('chapterAnimationSpeed'))
   },
 
-  calcDistance: function (newChapter) {
+  calcTransitionSpeed: function (newChapter) {
     if( this.get('currentChapter') && newChapter) {
       let start = {
         "type": "Feature",
@@ -89,7 +69,45 @@ export default Service.extend(Evented, MathHelper, {
         }
       };
 
-      return turf.distance(start, end, "miles");
+      let distance = turf.distance(start, end, "miles");
+
+      if(distance > 0) {
+        let transitionSpeed = this.scale(
+          distance,
+          0,
+          2000,
+          2000,
+          10000
+        );
+
+        return transitionSpeed;
+      }
     }
-  }
+  },
+
+  setTarget: function(newChapter, duration) {
+    this.get('map').easeTo({
+      center: [newChapter.get('lng'), newChapter.get('lat')],
+      zoom: newChapter.get('zoom'),
+      bearing: newChapter.get('bearing') || 0,
+      pitch: newChapter.get('pitch') || 0,
+      duration: duration
+    });
+  },
+
+  zoomOut: function () {
+    this.get('map').easeTo({
+      zoom: this.get('map').getZoom()-4,
+      duration: 2000
+    });
+  },
+
+  setMood: function (feeling) {
+    let mood = this.get('feelings.'+feeling) || 'default';
+
+    if(this.get('currentMood') !== mood) {
+      this.get('map').setClasses([classes]);
+      this.set('currentMood', mood);
+    }
+  },
 });

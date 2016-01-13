@@ -36,9 +36,7 @@ export default Component.extend(Gestures, {
   targeting: inject.service('targeting'),
 
   active: computed('targeting.currentChapter', function () {
-    if(this.get('chapter') === this.get('targeting.currentChapter')) {
-      return true;
-    }
+    return this.get('chapter') === this.get('targeting.currentChapter');
   }),
 
   // Gesture Events
