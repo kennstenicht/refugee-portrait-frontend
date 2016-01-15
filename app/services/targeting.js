@@ -13,9 +13,9 @@ export default Service.extend(Evented, MathHelper, {
   chapterAnimationSpeed: 300,
 
   feelings: {
-    angst: 'dark',
-    stress: 'dark',
-    frustriert: 'dark'
+    angst: 'danger',
+    stress: 'danger',
+    frustriert: 'danger'
   },
 
 
@@ -27,6 +27,7 @@ export default Service.extend(Evented, MathHelper, {
         let transitionSpeed = this.calcTransitionSpeed(newChapter) || 300;
 
         this.trigger('newChapter', newChapter, transitionSpeed);
+        this.setMood(newChapter.get('feeling'));
         this.setTarget(newChapter, transitionSpeed);
 
         run.later(this, function () {
@@ -118,11 +119,12 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   setMood: function (feeling) {
+    this.get('map').removeClass(this.get('currentMood'));
     let mood = this.get('feelings.'+feeling) || 'default';
-
     if(this.get('currentMood') !== mood) {
-      this.get('map').setClasses([classes]);
+      this.get('map').setClasses([mood]);
       this.set('currentMood', mood);
+      this.trigger('newMood', mood);
     }
   },
 });
