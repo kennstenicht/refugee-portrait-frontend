@@ -1,3 +1,6 @@
+{{#if model.background}}
+  <div class="chapter-content__background" style="background-image: url({{model.background}});"></div>
+{{/if}}
 <div class="chapter-content__journal">
   <div class="chapter-content__journal__date">
     {{moment-format model.date "DD. MMMM YYYY" locale='de'}}
