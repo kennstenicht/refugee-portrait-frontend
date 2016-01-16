@@ -92,7 +92,9 @@ export default Controller.extend({
           action: chapter.action,
           feeling: chapter.feelings,
           number: chapter.number,
-          highlight: chapter.highlight
+          highlight: chapter.highlight,
+          route: chapter.route,
+          background: chapter.background
         });
 
         if(chapter.hotspots) {
