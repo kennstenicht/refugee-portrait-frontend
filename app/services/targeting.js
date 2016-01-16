@@ -15,7 +15,8 @@ export default Service.extend(Evented, MathHelper, {
   feelings: {
     angst: 'danger',
     stress: 'danger',
-    frustriert: 'danger'
+    frustriert: 'danger',
+    hope: 'hope'
   },
 
 
