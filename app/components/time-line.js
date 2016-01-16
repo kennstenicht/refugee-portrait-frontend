@@ -19,7 +19,7 @@ const {
 
 export default Component.extend(Gestures, Sly, MathHelper, {
   classNames: ['time-line'],
-  classNameBindings: ['modifierMode'],
+  classNameBindings: ['modifierMode', 'modifierMood'],
 
   // BEM Modifier
   modifierMode: computed('zoom', 'targeting.currentChapter', function () {
@@ -27,6 +27,12 @@ export default Component.extend(Gestures, Sly, MathHelper, {
       return 'time-line--detail';
     } else if (this.get('zoom') === 0) {
       return 'time-line--overview';
+    }
+  }),
+
+  modifierMood: computed('targeting.currentMood', function () {
+    if (this.get('targeting.currentMood')) {
+      return 'time-line--'+this.get('targeting.currentMood');
     }
   }),
 

@@ -4,7 +4,7 @@
   height: 17px;
   border-radius: 50%;
   background: {
-    color: $timeline-item-default;
+    color: map-get(map-get($moods, default), timeline-item);
     image: url('textures/grain-30.png');
     size: 40px 40px;
   }
@@ -18,5 +18,19 @@
 
   &:hover, &--active {
     background-color: $green;
+  }
+}
+
+@each $mood, $map in $moods {
+  .time-line--#{$mood} .time-line-item {
+    background-color: map-get($map, timeline-item);
+
+    &--highlight {
+      background-color: $red;
+    }
+
+    &:hover, &--active {
+      background-color: $green;
+    }
   }
 }

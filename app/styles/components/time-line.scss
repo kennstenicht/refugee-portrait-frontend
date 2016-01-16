@@ -5,7 +5,12 @@
   right: 0px;
   height: 140px;
   z-index: 2;
-  background: linear-gradient(to top, rgba($gray-lighter,0.8) 0%,rgba($gray-lighter,0.8) 60%,rgba($gray-lighter,0) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(map-get(map-get($moods, default), timeline-background),0.8) 0%,
+    rgba(map-get(map-get($moods, default), timeline-background),0.8) 60%,
+    rgba(map-get(map-get($moods, default), timeline-background),0) 100%
+  );
   transition: $transition-default;
 
   &--detail {
@@ -23,7 +28,7 @@
       border: {
         style: dotted;
         width: 5px;
-        color: $timeline-progressbar-default;
+        color: map-get(map-get($moods, default), timeline-progressbar);
       };
     }
     &--start {
@@ -62,7 +67,10 @@
         &__progressbar {
           position: relative;
           height: 10px;
-          background: $timeline-progressbar-default url('textures/grain-10.png');
+          background: {
+            color: map-get(map-get($moods, default), timeline-progressbar);
+            image: url('textures/grain-10.png');
+          }
 
           &__indicator {
             position: absolute;
@@ -109,7 +117,7 @@
         height: 80%;
         width: 100%;
         background: {
-          color: $timeline-scrollbar-default;
+          color: map-get(map-get($moods, default), timeline-scrollbar);
           image: url('textures/grain-10.png');
         }
 
@@ -118,12 +126,40 @@
 
           &__line {
             background: {
-              color: $timeline-navigator-default;
+              color: map-get(map-get($moods, default), timeline-navigator);
               image: url('textures/grain-10.png');
             }
             width: 2px;
             left: 0px;
           }
+        }
+      }
+    }
+  }
+  @each $mood, $map in $moods {
+    &--#{$mood} {
+      background: linear-gradient(
+        to top,
+        rgba(map-get($map, timeline-background),0.8) 0%,
+        rgba(map-get($map, timeline-background),0.8) 60%,
+        rgba(map-get($map, timeline-background),0) 100%
+      );
+    }
+
+    &--#{$mood} &__squished__progressbar {
+      border-color: map-get($map, timeline-progressbar);
+    }
+
+    &--#{$mood} &__container {
+      &__frame__slider__progressbar {
+        background-color: map-get($map, timeline-progressbar);
+      }
+
+      &__scrollbar__handle__content {
+        background-color: map-get($map, timeline-scrollbar);
+
+        .time-line-column__line {
+          background-color: map-get($map, timeline-navigator);
         }
       }
     }

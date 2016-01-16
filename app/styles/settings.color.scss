@@ -20,17 +20,27 @@ $current-item: $green;
 $inuit-base-text-color: $gray-darker;
 $inuit-base-background-color: $gray-lighter;
 
-// neutral style
-$timeline-item-default: $gray;
-$timeline-progressbar-default: $gray-light;
-$timeline-scrollbar-default: $gray-light;
-$timeline-navigator-default: $gray-lighter;
-
-
-// hope style
-
-
-// fear style
-
-
-// lost style
+// moods styles
+$moods: (
+  default: (
+    timeline-background: $gray-lighter,
+    timeline-item: $gray,
+    timeline-progressbar: $gray-light,
+    timeline-scrollbar: $gray-light,
+    timeline-navigator: $gray-lighter
+  ),
+  danger: (
+    timeline-background: $gray-darker,
+    timeline-item: $gray,
+    timeline-progressbar: $gray-dark,
+    timeline-scrollbar: $gray-darker,
+    timeline-navigator: $gray-darker
+  ),
+  happy: (
+    timeline-background: $gray-darker,
+    timeline-item: $gray,
+    timeline-progressbar: $gray-dark,
+    timeline-scrollbar: $gray-darker,
+    timeline-navigator: $gray-darker
+  )
+);

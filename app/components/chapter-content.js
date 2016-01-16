@@ -10,11 +10,17 @@ const {
 
 export default Component.extend(Gestures, {
   classNames: ['chapter-content'],
-  classNameBindings: ['modifierNumber'],
+  classNameBindings: ['modifierNumber', 'modifierMood'],
 
   // BEM modifier
   modifierNumber: computed('model.number', function() {
     return 'chapter-content--' + this.get('model.number');
+  }),
+
+  modifierMood: computed('targeting.currentMood', function () {
+    if (this.get('targeting.currentMood')) {
+      return 'chapter-content--'+this.get('targeting.currentMood');
+    }
   }),
 
   gestures: ['pan', 'panleft', 'press', 'pressup'],

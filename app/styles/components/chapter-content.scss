@@ -1,5 +1,5 @@
 .chapter-content {
-  position: fixed;
+  position: none;
   top: 0px;
   left: 0px;
   bottom: 0px;
@@ -7,6 +7,20 @@
   z-index: 2;
   display: none;
 
+  &--danger {
+    color: #fff;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 2;
+    background-size: cover;
+    opacity: 0.05;
+  }
   &__journal {
     position: fixed;
     top: 50%;
@@ -14,7 +28,7 @@
     width: 550px;
     text-align: left;
     transform: translate(-650px, -200px);
-    z-index: 2;
+    z-index: 3;
 
     &__date {
 
@@ -51,7 +65,11 @@
     position: fixed;
     top: 100px;
     right: 100px;
-    z-index: 2;
+    z-index: 3;
+  }
+
+  &--2 &__journal {
+    transform: translate(100px, 50px);
   }
 
   &--4 &__journal {
