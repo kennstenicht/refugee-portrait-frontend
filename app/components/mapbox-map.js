@@ -37,27 +37,6 @@ export default Component.extend(MapboxGl, {
   didInsertElement: function () {
     this.get('targeting').set('map', this.get('map'));
 
-    $.getJSON( "assets/map-styles/danger.json", bind(this, function( data ) {
-      this.set('danger', data);
-    }));
-
-    $.getJSON( "assets/map-styles/neutral.json", bind(this, function( data ) {
-      this.set('default', data);
-    }));
-
-    Ember.run.next(this, function () {
-      this.get('danger.layers').forEach(bind(this, function( item ) {
-        let defaultLayer = this.get('default.layers').findBy('id', item.id);
-        if(!defaultLayer) {
-          console.log("error: "+item);
-        } else {
-          defaultLayer['paint.danger'] = item.paint;
-        }
-      }));
-      console.log(this.get('default'));
-      this.get('map').setStyle(this.get('default'));
-    });
-
     this.get('map').on('zoom', bind(this, this.checkFeatures));
     this.get('map').on('move', bind(this, this.checkFeatures));
   },
