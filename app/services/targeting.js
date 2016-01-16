@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import MathHelper from '../mixins/math-helper';
 
-
 const {
   Service,
   Evented,
@@ -56,7 +55,7 @@ export default Service.extend(Evented, MathHelper, {
 
     let preview = new mapboxgl.Popup()
       .setLngLat(longlat)
-      .setHTML(chapter.get('title'))
+      .setHTML('<div class="mapboxgl-popup-content__location">' + chapter.get('location') + '</div><div class="mapboxgl-popup-content__header"><div class="mapboxgl-popup-content__header__number">' + chapter.get('number') + '</div><div class="mapboxgl-popup-content__header__title">' + chapter.get('title') + '</div></div><div class="mapboxgl-popup-content__description">' + chapter.get('excerpt') + '</div>')
       .addTo(this.get('map'));
 
     this.set('currentPreview', preview);

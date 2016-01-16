@@ -1,0 +1,39 @@
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: $green;
+}
+
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: $green;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip {
+  border-top-color: $green;
+}
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip {
+  border-bottom-color: $green;
+}
+
+
+.mapboxgl-popup-content {
+  background: $green;
+  color: $white;
+  width: 400px;
+  padding: 30px;
+
+  &__header {
+    display: table;
+    vertical-align: top;
+    @extend h3;
+    @extend %mono-font;
+
+    &__number {
+      line-height: 1;
+      padding-right: 15px;
+    }
+
+    &__title {
+      line-height: 1.2;
+    }
+  }
+}
