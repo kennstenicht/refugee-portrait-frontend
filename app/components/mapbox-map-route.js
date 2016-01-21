@@ -27,7 +27,7 @@ export default Component.extend({
         "type": "Feature",
         "geometry": {
           "type": "Point",
-          "coordinates": [chapter.get('lng'), chapter.get('lat')]
+          "coordinates": [chapter.get('marker.lng'), chapter.get('marker.lat')]
           },
         "properties": {
           "id": chapter.get('id')
