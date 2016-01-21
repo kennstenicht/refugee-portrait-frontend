@@ -8,12 +8,14 @@ const {
 export default Component.extend(Gestures, {
   classNames: ['chapter-hotspot'],
 
+  // Gesture Settings
   gestures: ['tap'],
 
   recognizers: {
     pan: {direction: Hammer.DIRECTION_HORIZONTAL}
   },
 
+  // Video.js settings
   setup: {
     controls: true,
     fluid: true
