@@ -1,0 +1,24 @@
+.admin-options {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+
+  .button {
+    background: rgba($gray-lighter,1);
+    color: $gray-darker;
+    padding: 20px;
+    z-index: 999;
+    margin-bottom: 5px;
+    text-align: center;
+
+    &:hover {
+      background: rgba($gray-lighter,0.8);
+    }
+
+    &.true {
+      background: #00ff00;
+    }
+  }
+}

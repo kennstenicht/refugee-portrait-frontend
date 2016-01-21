@@ -4,13 +4,15 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 const {
   Component,
   computed,
-  on,
-  $
+  $,
+  run: {
+    bind
+  }
 } = Ember;
 
 export default Component.extend(Gestures, {
   classNames: ['chapter-content'],
-  classNameBindings: ['modifierNumber', 'modifierMood'],
+  classNameBindings: ['modifierNumber', 'modifierMood', 'modifierVisible'],
 
   // BEM modifier
   modifierNumber: computed('model.number', function() {
@@ -23,18 +25,20 @@ export default Component.extend(Gestures, {
     }
   }),
 
-  gestures: ['pan', 'panleft', 'press', 'pressup'],
+  modifierVisible: computed('targeting.isVisible', function () {
+    return this.get('targeting.isVisible') ? '' : 'chapter-content--hidden';
+  }),
+
+  // Gesture Settings
+  gestures: ['pan'],
 
   recognizers: {
     pan: {direction: Hammer.DIRECTION_HORIZONTAL}
   },
 
+  // Targeting Service
   targeting: Ember.inject.service('targeting'),
 
-  listen: on('init', function() {
-      this.get('targeting').on('showChapter', this, 'showChapter');
-      this.get('targeting').on('hideChapter', this, 'hideChapter');
-  }),
 
   didInsertElement: function () {
     // if no currentChapter is set (load on detail), set route chapter
@@ -45,19 +49,37 @@ export default Component.extend(Gestures, {
     }
   },
 
-  showChapter: function (speed) {
-    this.$().fadeIn(speed);
-  },
-
-  hideChapter: function (speed) {
-    this.$().fadeOut(speed);
-  },
-
   pan: function () {
     this.get('targeting').backToStory();
   },
 
+
+  // $(document).on('keydown', bind(this, this.keyDown));
+  // $(document).on('keyup', bind(this, this.keyUp));
+
+  // click: function (e) {
+  //   if(e.altKey) {
+  //     let newRouetPoint = this.get('targeting.map').unproject([e.clientX, e.clientY]);
+  //     if(!this.get('model.route')) {
+  //       this.get('model').set('route', []);
+  //     }
+  //     this.get('model.route').pushObject(newRouetPoint);
+  //     this.get('model').save();
+  //   }
+  // },
+  //
+  // keyDown: function (e) {
+  //   if(e.altKey) {
+  //     this.$().show();
+  //   }
+  // },
+  //
+  // keyUp: function () {
+  //   this.$().hide();
+  // },
+
   actions: {
+    // Admin functions
     save: function () {
       let center = this.get('targeting.map').getCenter(),
         zoom = this.get('targeting.map').getZoom(),
@@ -69,6 +91,11 @@ export default Component.extend(Gestures, {
       this.get('model').set('bearing', bearing);
       this.get('model').set('pitch', pitch);
       this.get('model').set('zoom', zoom);
+      this.get('model').save();
+    },
+
+    adminRemoveRoute: function () {
+      this.get('model').set('route', null);
       this.get('model').save();
     }
   }

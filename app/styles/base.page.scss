@@ -10,14 +10,3 @@ $inuit-heading-size-6:  14px !default;
 html, body {
   height: 100%;
 }
-
-
-.admin {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  padding: 20px;
-  z-index: 999;
-}

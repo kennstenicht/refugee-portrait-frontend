@@ -3,8 +3,6 @@ import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
 
 const {
   Component,
-  computed,
-  on,
   run: {
     bind
   },
@@ -16,20 +14,19 @@ export default Component.extend(MapboxGl, {
 
   mapSettings: {
     style: "assets/map-styles/default.json",
-    lat: 46.68,
+    lat: 44.68,
     lng: 8.43,
-    zoom: 3.5,
+    zoom: 4.2,
     bearing: 0,
     interactive: true,
     maxBounds: [
-      [-22.654296999999588, 32.68561989981147],
-      [40.01171862499879, 57.15411999999989]
+      [45.156351889056566, 57.5384830127297],
+      [-28.296351889056666,28.179171973745554]
     ]
   },
 
   // Targeting Service
   targeting: inject.service('targeting'),
-
 
   didInsertElement: function () {
     this.get('targeting').set('map', this.get('map'));
@@ -39,11 +36,18 @@ export default Component.extend(MapboxGl, {
   },
 
   checkFeatures: function () {
-    this.get('map').featuresIn({layer: 'chapters'}, function (err, features) {
-      features.forEach(function (feature) {
-        // get all features in viewport
-      })
-    });
+    if( this.get('map').getZoom() < 4.3) {
+      this.get('targeting').set('overview', true);
+    } else {
+      this.get('targeting').set('overview', false);
+    }
+
+    this.get('map').featuresIn({layer: 'route_chapters'}, bind(this, function (err, features) {
+      this.get('targeting').set('route_chapters', features);
+    }));
+  },
+  end: function () {
+    console.log('end');
   },
 
   actions: {

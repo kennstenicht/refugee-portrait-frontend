@@ -52,24 +52,23 @@ export default Component.extend(Gestures, Sly, MathHelper, {
 
   listen: on('init', function() {
     this.get('targeting').on('newChapter', this, 'setProgressbar');
-    this.get('targeting').on('closeChapter', this, 'removeProgressbar');
   }),
 
   // Targeting Functions
   setProgressbar: function (chapter, speed) {
-    let position = this.scale(
-      chapter.get('unixDate'),
-      moment(this.get('story.start')).format('X'),
-      moment(this.get('story.end')).format('X'),
-      0,
-      100
-    );
+    let position = 0;
+    if(chapter) {
+      position = this.scale(
+        chapter.get('unixDate'),
+        moment(this.get('story.start')).format('X'),
+        moment(this.get('story.end')).format('X'),
+        0,
+        100
+      );
+    }
+
 
     $('.time-line__container__frame__slider__progressbar__indicator').animate({width: position + '%'}, speed, 'easeOutCirc');
-  },
-
-  removeProgressbar: function (speed) {
-    $('.time-line__container__frame__slider__progressbar__indicator').animate({width: '0px'}, speed, 'easeOutCirc');
   },
 
   // Functions

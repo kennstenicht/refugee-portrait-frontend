@@ -1,19 +1,27 @@
 import Ember from 'ember';
 
 const {
-  Component,
-  computed,
-  inject
+  Component
 } = Ember;
 
 export default Component.extend({
   didInsertElement: function () {
-    let route = [];
-    let routeChapters = [];
+    let route = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": []
+      }
+    };
+    let routeChapters = {
+      "type": "FeatureCollection",
+      "features": []
+    };
 
     this.get('chapters').forEach(function (chapter) {
       // Push point features into the routeChapters array
-      routeChapters.pushObject({
+      routeChapters.features.pushObject({
         "type": "Feature",
         "geometry": {
           "type": "Point",
@@ -25,61 +33,55 @@ export default Component.extend({
       });
 
       // Push coordinates into the route array
-      route.pushObject([chapter.get('lng'), chapter.get('lat')]);
+      // route.geometry.coordinates.pushObject([chapter.get('lng'), chapter.get('lat')]);
       if(chapter.get('route')) {
         chapter.get('route').forEach(function (routeSegement) {
-          route.pushObject(routeSegement);
+          console.log(routeSegement);
+          route.geometry.coordinates.pushObject([routeSegement.lng, routeSegement.lat]);
         });
       }
     });
 
     // Send route chapters to the map component
-    let routeChapterId = 'route_chapters';
-    let routeChaptersSource = {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": routeChapters
-      }
-    };
-
-    let routeChaptersLayer = {
-      "id": routeChapterId,
-      "type": "circle",
-      "source": routeChapterId,
-      "interactive": true,
-      "layout": {},
-      "paint": {
-        "circle-color": "#888",
-        "circle-radius": 8
-      }
-    };
+    let routeChapterId = 'route_chapters',
+      routeChaptersSource = {
+        "type": "geojson",
+        "data": routeChapters
+      },
+      routeChaptersLayer = {
+        "id": routeChapterId,
+        "type": "circle",
+        "source": routeChapterId,
+        "interactive": true,
+        "layout": {},
+        "paint": {
+          "circle-color": "#888",
+          "circle-radius": 8
+        }
+      };
 
     this.sendAction('addSourceAndLayer', routeChapterId, routeChaptersSource, routeChaptersLayer);
 
     // Send route to the map component
-    let routeId = 'route';
-    let routeSource = {
-      "type": "geojson",
-      "data": {
-        "type": "Feature",
-        "properties": {},
-        "geometry": {
-            "type": "LineString",
-            "coordinates": route
+    let routeId = 'route',
+      curvedRoute = turf.bezier(route, 1000000, 0.9),
+      routeSource = {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": [curvedRoute]
         }
-      }
-    };
-    let routeLayer = {
-      "id": routeId,
-      "type": "line",
-      "source": routeId,
-      "layout": {},
-      "paint": {
-        "line-color": "#888",
-        "line-width": 1
-      }
-    };
+      },
+      routeLayer = {
+        "id": routeId,
+        "type": "line",
+        "source": routeId,
+        "layout": {},
+        "paint": {
+          "line-color": "#888",
+          "line-width": 1
+        }
+      };
 
     this.sendAction('addSourceAndLayer', routeId, routeSource, routeLayer);
   }

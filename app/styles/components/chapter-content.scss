@@ -1,28 +1,33 @@
 .chapter-content {
-  position: none;
+  position: fixed;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
   z-index: 2;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
   display: none;
 
-  &--danger {
-    color: #fff;
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
   }
 
   &__background {
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     z-index: 2;
     background-size: cover;
-    opacity: 0.05;
+    opacity: 0.1;
   }
+
   &__journal {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     width: 550px;
@@ -31,16 +36,15 @@
     z-index: 3;
 
     &__date {
-
+      @extend h2;
+      opacity: 0.4;
     }
 
     &__header {
-      display: table;
-      vertical-align: top;
-      width: 400px;
+      margin: 15px 0 10px;
 
       &__number {
-        display: table-cell;
+        display: inline-block;
         vertical-align: top;
         @include inuit-font-size($huge-font);
         @extend %mono-font;
@@ -48,11 +52,21 @@
         padding-right: 15px;
       }
 
+      &__separator {
+        display: inline-block;
+        height: 65px;
+        width: 4px;
+        background: map-get(map-get($moods, default), font);
+        margin-top: 2px;
+        margin-right: 20px;
+      }
+
       &__title {
-        display: table-cell;
+        display: inline-block;
         vertical-align: top;
         @extend h1;
         line-height: 1.2;
+        width: 400px;
       }
     }
 
@@ -68,23 +82,69 @@
     z-index: 3;
   }
 
-  &--2 &__journal {
-    transform: translate(100px, 50px);
+  @each $mood, $map in $moods {
+    &--#{$mood} {
+      color: map-get($map, font);
+    }
+
+    &--#{$mood} &__journal__header__separator {
+      background-color: map-get($map, font);
+    }
   }
 
+  // Custom Style of Chapter 2
+  &--1 &__background {
+    opacity: 0.2;
+  }
+
+  &--1 &__journal {
+    width: 800px;
+    transform: translate(-800px, -400px);
+  }
+
+  // Custom Style of Chapter 2
+  &--2 &__background {
+    opacity: 0.2;
+  }
+
+  &--2 &__journal {
+    width: 700px;
+    transform: translate(150px, 150px);
+  }
+
+  // Custom Style of Chapter 3
+  &--3 &__background {
+    opacity: 0.3;
+  }
+
+  &--3 &__journal {
+    transform: translate(-650px, -200px);
+  }
+
+  // Custom Style of Chapter 4
   &--4 &__journal {
     transform: translate(100px, -50px);
   }
 
+  // Custom Style of Chapter 5
   &--5 &__journal {
     transform: translate(100px, 50px);
   }
 
+  // Custom Style of Chapter 6
   &--6 &__journal {
-    transform: translate(-600px, -50px);
+    transform: translate(230px, 100px);
   }
 
+  // Custom Style of Chapter 7
   &--7 &__journal {
-    transform: translate(-600px, -50px);
+    width: 600px;
+    transform: translate(-700px, -270px) rotate(6deg);
+  }
+
+  // Custom Style of Chapter 10
+  &--7 &__journal {
+    width: 600px;
+    transform: translate(-700px, -350px);
   }
 }

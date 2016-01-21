@@ -34,12 +34,15 @@
 
 
 // Components
+@import "components/admin-options";
 @import "components/chapter-content";
 @import "components/chapter-hotspot";
+@import "components/chapter-navigation";
 @import "components/mapbox-map";
 @import "components/mapbox-popup";
 @import "components/object-detection";
 @import "components/object-item";
+@import "components/story-content";
 @import "components/time-line-column";
 @import "components/time-line-item";
 @import "components/time-line-navigator";
@@ -52,7 +55,7 @@
 // @import "trumps.widths";
 
 .load-button {
-  display: none;
+  display: block;
   position: fixed;
   top: 0px;
   left: 0px;

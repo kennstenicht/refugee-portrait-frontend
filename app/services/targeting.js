@@ -4,50 +4,54 @@ import MathHelper from '../mixins/math-helper';
 const {
   Service,
   Evented,
-  run
+  run,
+  run: {
+    bind
+  }
 } = Ember;
 
 export default Service.extend(Evented, MathHelper, {
   currentChapter: null,
   chapterAnimationSpeed: 300,
+  overview: true,
+  isVisible: false,
 
-  feelings: {
-    angst: 'danger',
-    stress: 'danger',
-    frustriert: 'danger',
-    hope: 'hope'
+  init: function () {
+    this.get('map').on('moveend', bind(this, this.end));
   },
-
 
   setChapter: function (newChapter) {
     if(this.get('currentChapter') !== newChapter) {
-      this.trigger('hideChapter', this.get('chapterAnimationSpeed'));
+      if(this.get('currentChapter')) {
+        this.set('isVisible', false);
+      }
 
       run.later(this, function () {
-        let transitionSpeed = this.calcTransitionSpeed(newChapter) || 300;
+        let transitionSpeed = this.calcTransitionSpeed(newChapter) || 2000;
 
-        this.trigger('newChapter', newChapter, transitionSpeed);
+        this.set('currentChapter', newChapter);
         this.setMood(newChapter.get('feeling'));
         this.setTarget(newChapter, transitionSpeed);
+        this.trigger('newChapter', newChapter, transitionSpeed);
 
         run.later(this, function () {
-          this.set('currentChapter', newChapter);
-          this.trigger('showChapter', this.get('chapterAnimationSpeed'));
+          this.set('isVisible', true);
         }, transitionSpeed);
-      }, this.get('chapterAnimationSpeed'))
+      }, this.get('chapterAnimationSpeed'));
     }
   },
 
   backToStory: function () {
-    this.trigger('hideChapter', this.get('chapterAnimationSpeed'));
+    this.set('isVisible', false);
     run.later(this, function () {
-      this.set('currentChapter', '');
+      this.set('currentChapter', null);
+      this.setMood('default');
       this.zoomOut();
-
-      run.later(this, function () {
-        this.trigger('closeChapter', 2000);
-      }, 2000);
-    }, this.get('chapterAnimationSpeed'))
+      this.trigger('newChapter', '', 2000);
+      // run.later(this, function () {
+      //
+      // });
+    }, this.get('chapterAnimationSpeed'));
   },
 
   setPreview: function (chapter) {
@@ -97,6 +101,8 @@ export default Service.extend(Evented, MathHelper, {
         );
 
         return transitionSpeed;
+      } else {
+        return 300;
       }
     }
   },
@@ -119,12 +125,20 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   setMood: function (feeling) {
-    this.get('map').removeClass(this.get('currentMood'));
-    let mood = this.get('feelings.'+feeling) || 'default';
+    let mood = feeling || 'default';
+
     if(this.get('currentMood') !== mood) {
+      this.get('map').removeClass(this.get('currentMood'));
       this.get('map').setClasses([mood]);
       this.set('currentMood', mood);
       this.trigger('newMood', mood);
+      console.log(this.get('map').getClasses());
     }
   },
+
+  actions: {
+    newChapter: function () {
+      console.log('action newChapter');
+    }
+  }
 });

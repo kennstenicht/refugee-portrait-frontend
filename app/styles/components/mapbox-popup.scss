@@ -24,7 +24,7 @@
   &__header {
     display: table;
     vertical-align: top;
-    @extend h3;
+    @extend h2;
     @extend %mono-font;
 
     &__number {

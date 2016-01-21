@@ -17,12 +17,13 @@ $current-item: $green;
 
 
 // inuit colors
-$inuit-base-text-color: $gray-darker;
+$inuit-base-text-color: $gray-dark;
 $inuit-base-background-color: $gray-lighter;
 
 // moods styles
 $moods: (
   default: (
+    font: $inuit-base-text-color,
     timeline-background: $gray-lighter,
     timeline-item: $gray,
     timeline-progressbar: $gray-light,
@@ -30,6 +31,7 @@ $moods: (
     timeline-navigator: $gray-lighter
   ),
   danger: (
+    font: $gray-lighter,
     timeline-background: $gray-darker,
     timeline-item: $gray,
     timeline-progressbar: $gray-dark,
@@ -37,6 +39,7 @@ $moods: (
     timeline-navigator: $gray-darker
   ),
   happy: (
+    font: $inuit-base-text-color,
     timeline-background: $gray-darker,
     timeline-item: $gray,
     timeline-progressbar: $gray-dark,

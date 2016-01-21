@@ -4,13 +4,12 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 const {
   Component,
   inject,
-  computed,
-  on
+  computed
 } = Ember;
 
 export default Component.extend(Gestures, {
   classNames: ['time-line-item'],
-  classNameBindings: ['modifierHighlight', 'modifierActive'],
+  classNameBindings: ['modifierHighlight', 'modifierActive', 'modifierSize'],
 
   // BEM modifier
   modifierHighlight: computed('chapter.highlight', function() {
@@ -22,6 +21,12 @@ export default Component.extend(Gestures, {
   modifierActive: computed('active', function() {
     if( this.get('active') ) {
       return 'time-line-item--active';
+    }
+  }),
+
+  modifierSize: computed('size', function () {
+    if( this.get('size') === 'big' ) {
+      return 'time-line-item--big';
     }
   }),
 

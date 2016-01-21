@@ -1,16 +1,21 @@
+{{chapter-navigation direction='prev' model=model}}
+{{chapter-navigation direction='next' model=model}}
+
 {{#if model.background}}
   <div class="chapter-content__background" style="background-image: url({{model.background}});"></div>
 {{/if}}
+
 <div class="chapter-content__journal">
   <div class="chapter-content__journal__date">
     {{moment-format model.date "DD. MMMM YYYY" locale='de'}}
   </div>
   <div class="chapter-content__journal__header">
     <div class="chapter-content__journal__header__number">{{model.number}}</div>
-    <div class="chapter-content__journal__header__title">{{model.title}}</div>
+    <div class="chapter-content__journal__header__separator"></div>
+    <div class="chapter-content__journal__header__title">{{{model.title}}}</div>
   </div>
   <div class="chapter-content__journal__description">
-    {{model.description}}
+    {{{model.description}}}
   </div>
 </div>
 <div class="chapter-content__weather">
@@ -19,7 +24,3 @@
 {{#each model.hotspots as |hotspot|}}
   {{chapter-hotspot hotspot=hotspot}}
 {{/each}}
-
-<div class="admin">
-  <div class="button" {{action 'save'}}>Save</div>
-</div>
