@@ -23,7 +23,15 @@ export default Component.extend({
 
   addRouteSegment: function (e) {
     if(e.altKey) {
-      let newRouetPoint = this.get('targeting.map').unproject([e.clientX, e.clientY]);
+      let center = this.get('targeting.map').getCenter();
+      let newRouetPoint = {
+        lat: center.lat,
+        lng: center.lng,
+        bearing: this.get('targeting.map').getBearing(),
+        pitch: this.get('targeting.map').getPitch(),
+        zoom: this.get('targeting.map').getZoom(),
+      }
+      // let newRouetPoint = this.get('targeting.map').unproject([e.clientX, e.clientY]);
       if(!this.get('targeting.currentChapter.route')) {
         this.get('targeting.currentChapter').set('route', []);
       }
@@ -39,11 +47,21 @@ export default Component.extend({
         bearing = this.get('targeting.map').getBearing(),
         pitch = this.get('targeting.map').getPitch();
 
-      this.get('targeting.currentChapter').set('lat', center.lat);
-      this.get('targeting.currentChapter').set('lng', center.lng);
-      this.get('targeting.currentChapter').set('bearing', bearing);
-      this.get('targeting.currentChapter').set('pitch', pitch);
-      this.get('targeting.currentChapter').set('zoom', zoom);
+      if(!this.get('targeting.currentChapter.marker')) {
+        this.get('targeting.currentChapter').set('marker', {});
+      }
+      if(!this.get('targeting.currentChapter.camera')) {
+        this.get('targeting.currentChapter').set('camera', {});
+      }
+      this.get('targeting.currentChapter').set('marker.lat', center.lat);
+      this.get('targeting.currentChapter').set('marker.lng', center.lng);
+
+      this.get('targeting.currentChapter').set('camera.lat', center.lat);
+      this.get('targeting.currentChapter').set('camera.lng', center.lng);
+      this.get('targeting.currentChapter').set('camera.bearing', bearing);
+      this.get('targeting.currentChapter').set('camera.pitch', pitch);
+      this.get('targeting.currentChapter').set('camera.zoom', zoom);
+
       this.get('targeting.currentChapter').save();
       this.set('adminText', 'Chapter saved: ' + this.get('targeting.currentChapter.number'));
     },
