@@ -17,6 +17,10 @@ export default Component.extend(MapboxGl, {
 
   didInsertElement: function () {
     this.get('targeting').set(this.get('identifier'), this.get('map'));
+
+    this.get('map').on('moveend', bind(this.get('targeting'), this.get('targeting').moveEnd));
+    this.get('map').on('zoom', bind(this.get('targeting'), this.get('targeting').checkFeatures));
+    this.get('map').on('move', bind(this.get('targeting'), this.get('targeting').checkFeatures));
   },
 
   actions: {
