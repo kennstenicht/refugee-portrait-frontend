@@ -10,6 +10,8 @@
 
 h1, h2, h3, h4, h5, h6 {
   @extend %mono-font;
+  letter-spacing: 0.15em;
+  margin-bottom: 0px;
 }
 
 h1 {

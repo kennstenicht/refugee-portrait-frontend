@@ -1,16 +1,24 @@
+{{#time-line-item chapter=firstChapter class='time-line-item--big time-line-item--first'}}
+  {{firstChapter.title}}
+{{/time-line-item}}
 <div class="time-line__squished time-line__squished--start">
   <div class="time-line__squished__progressbar"></div>
 </div>
 <div class="time-line__container">
   <div class="time-line__container__frame">
     <div class="time-line__container__frame__slider">
+      <div class="time-line__container__frame__slider__labels">
+        <div class="time-line__container__frame__slider__labels__label time-line__container__frame__slider__labels__label--first">März</div>
+        <div class="time-line__container__frame__slider__labels__label time-line__container__frame__slider__labels__label--second">April</div>
+        <div class="time-line__container__frame__slider__labels__label time-line__container__frame__slider__labels__label--third">Mai</div>
+      </div>
       <div class="time-line__container__frame__slider__columns">
         {{#each columns as |column|}}
           {{#time-line-column story=story date=column.value}}
             {{#each column.items as |chapter|}}
-              {{time-line-item
-                chapter=chapter
-              }}
+              {{#time-line-item chapter=chapter}}
+                {{chapter.number}}
+              {{/time-line-item}}
             {{/each}}
           {{/time-line-column}}
         {{/each}}
@@ -29,9 +37,7 @@
       {{#each columns as |column|}}
         {{#time-line-column story=story date=column.value}}
           {{#each column.items as |chapter|}}
-            {{time-line-navigator
-              chapter=chapter
-            }}
+            {{time-line-navigator chapter=chapter}}
           {{/each}}
         {{/time-line-column}}
       {{/each}}
@@ -41,3 +47,6 @@
 <div class="time-line__squished time-line__squished--end">
   <div class="time-line__squished__progressbar"></div>
 </div>
+{{#time-line-item chapter=lastChapter class='time-line-item--big time-line-item--last'}}
+  {{lastChapter.title}}
+{{/time-line-item}}

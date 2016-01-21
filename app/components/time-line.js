@@ -91,6 +91,14 @@ export default Component.extend(Gestures, Sly, MathHelper, {
     }
   }),
 
+  firstChapter: computed('chapters', function () {
+    return this.get('chapters').get('firstObject');
+  }),
+
+  lastChapter: computed('chapters', function () {
+    return this.get('chapters').get('lastObject');
+  }),
+
 
 
 
