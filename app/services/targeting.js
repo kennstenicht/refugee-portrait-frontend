@@ -15,55 +15,29 @@ export default Service.extend(Evented, MathHelper, {
   chapterAnimationSpeed: 300,
   overview: true,
   isVisible: false,
-  mapAnimation: true,
 
-  // init: function () {
-  //   this.get('map').on('moveend', bind(this, this.end));
-  // },
-
-  // didInsertElement: function () {
-  //   this.get('targeting').set('map', this.get('map'));
-  //
-  //   this.get('map').on('zoom', bind(this, this.checkFeatures));
-  //   this.get('map').on('move', bind(this, this.checkFeatures));
-  // },
-  //
-  // checkFeatures: function () {
-  //   if( this.get('map').getZoom() < 4.3) {
-  //     this.get('targeting').set('overview', true);
-  //   } else {
-  //     this.get('targeting').set('overview', false);
-  //   }
-  //
-  //   // this.get('map').featuresIn({layer: 'route_chapters'}, bind(this, function (err, features) {
-  //   //   this.get('targeting').set('route_chapters', features);
-  //   // }));
-  // },
+  init: function () {
+    this.get('map').on('moveend', bind(this, this.end));
+  },
 
   setChapter: function (newChapter) {
-    if(this.get('mapAnimation')) {
-      if(this.get('currentChapter') !== newChapter) {
-        if(this.get('currentChapter')) {
-          this.set('isVisible', false);
-        }
+    if(this.get('currentChapter') !== newChapter) {
+      if(this.get('currentChapter')) {
+        this.set('isVisible', false);
+      }
+
+      run.later(this, function () {
+        let transitionSpeed = this.calcTransitionSpeed(newChapter) || 2000;
+
+        this.set('currentChapter', newChapter);
+        this.setMood(newChapter.get('feeling'));
+        this.setTarget(newChapter, transitionSpeed);
+        this.trigger('newChapter', newChapter, transitionSpeed);
 
         run.later(this, function () {
-          let transitionSpeed = this.calcTransitionSpeed(newChapter) || 2000;
-
-          this.set('currentChapter', newChapter);
-
-          this.setMood(newChapter.get('feeling'));
-          this.setTarget(newChapter, transitionSpeed);
-          this.trigger('newChapter', newChapter, transitionSpeed);
-
-          run.later(this, function () {
-            this.set('isVisible', true);
-          }, transitionSpeed);
-        }, this.get('chapterAnimationSpeed'));
-      }
-    } else {
-      this.set('currentChapter', newChapter);
-      this.trigger('newChapter', newChapter, 100);
+          this.set('isVisible', true);
+        }, transitionSpeed);
+      }, this.get('chapterAnimationSpeed'));
     }
   },
 
@@ -74,6 +48,9 @@ export default Service.extend(Evented, MathHelper, {
       this.setMood('default');
       this.zoomOut();
       this.trigger('newChapter', '', 2000);
+      // run.later(this, function () {
+      //
+      // });
     }, this.get('chapterAnimationSpeed'));
   },
 
