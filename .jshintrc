@@ -3,7 +3,9 @@
     "document",
     "window",
     "-Promise",
-    "turf"
+    "turf",
+    "mapboxgl",
+    "Hammer"
   ],
   "browser": true,
   "boss": true,
