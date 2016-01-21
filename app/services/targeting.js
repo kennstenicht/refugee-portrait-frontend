@@ -48,6 +48,9 @@ export default Service.extend(Evented, MathHelper, {
       this.setMood('default');
       this.zoomOut();
       this.trigger('newChapter', '', 2000);
+      // run.later(this, function () {
+      //
+      // });
     }, this.get('chapterAnimationSpeed'));
   },
 
