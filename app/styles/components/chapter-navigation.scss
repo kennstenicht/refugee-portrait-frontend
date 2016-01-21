@@ -1,0 +1,35 @@
+.chapter-navigation {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: block;
+  width: 29px;
+  height: 79px;
+  transition: $transition-default;
+  background: {
+    size: 100% 100%;
+    repeat: no-repeat;
+  };
+  cursor: pointer;
+  transform: translate(0, -100%);
+
+  &--prev {
+    left: 30px;
+    background-image: url('icons/arrow-prev.png');
+  }
+
+  &--next {
+    right: 30px;
+    background-image: url('icons/arrow-next.png');
+  }
+}
+
+.chapter-content--hidden {
+  .chapter-navigation--prev {
+    left: -50px;
+  }
+
+  .chapter-navigation--next {
+    right: -50px;
+  }
+}
