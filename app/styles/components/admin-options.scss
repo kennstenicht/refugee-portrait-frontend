@@ -4,17 +4,17 @@
   right: 20px;
   background: rgba(0,0,0,0.6);
   z-index: 999;
+  padding: 20px;
 
   .button {
     background: rgba($gray-lighter,1);
     color: $gray-darker;
-    padding: 20px;
-    z-index: 999;
+    padding: 10px;
     margin-bottom: 5px;
     text-align: center;
 
-    &:hover {
-      background: rgba($gray-lighter,0.8);
+    &--toggle {
+      background: #ff0000;
     }
 
     &.true {
