@@ -8,6 +8,10 @@
     "draft": false,
     "glyphs": "mapbox://fonts/kennstenicht/{fontstack}/{range}.pbf",
     "id": "ciihh5j0x00clbhm0oxxahbad",
+    "transition": {
+      "duration": 1000,
+      "delay": 0
+    },
     "layers": [
         {
             "id": "background",
