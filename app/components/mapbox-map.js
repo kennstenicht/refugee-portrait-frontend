@@ -30,9 +30,6 @@ export default Component.extend(MapboxGl, {
   // Targeting Service
   targeting: inject.service('targeting'),
 
-  // Sort Chapters
-  sortProperties: ['number:asc'],
-  sortedChapters: computed.sort('chapters', 'sortProperties'),
 
   didInsertElement: function () {
     this.get('targeting').set('map', this.get('map'));

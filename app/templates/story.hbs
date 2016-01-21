@@ -1,13 +1,17 @@
 {{#object-detection}}
+  {{story-content
+    story=model
+  }}
+
   {{outlet}}
 
   {{time-line
-    chapters=model.chapters
+    chapters=model.sortedChapters
     story=model
   }}
 
   {{mapbox-map
-    chapters=model.chapters
+    chapters=model.sortedChapters
   }}
 {{/object-detection}}
 <div class="load-button" {{action 'addNewStory'}}>Load Data</div>
