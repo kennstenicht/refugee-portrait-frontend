@@ -5,6 +5,8 @@ const {
 } = Ember;
 
 export default Component.extend({
+  // TODO: zeigen wir erstmal nur highlights oder direkt alle chapters?
+
   didInsertElement: function () {
     let route = {
       "type": "Feature",
@@ -36,7 +38,6 @@ export default Component.extend({
       // route.geometry.coordinates.pushObject([chapter.get('lng'), chapter.get('lat')]);
       if(chapter.get('route')) {
         chapter.get('route').forEach(function (routeSegement) {
-          console.log(routeSegement);
           route.geometry.coordinates.pushObject([routeSegement.lng, routeSegement.lat]);
         });
       }
