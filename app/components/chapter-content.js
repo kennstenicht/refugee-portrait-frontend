@@ -51,52 +51,5 @@ export default Component.extend(Gestures, {
 
   pan: function () {
     this.get('targeting').backToStory();
-  },
-
-
-  // $(document).on('keydown', bind(this, this.keyDown));
-  // $(document).on('keyup', bind(this, this.keyUp));
-
-  // click: function (e) {
-  //   if(e.altKey) {
-  //     let newRouetPoint = this.get('targeting.map').unproject([e.clientX, e.clientY]);
-  //     if(!this.get('model.route')) {
-  //       this.get('model').set('route', []);
-  //     }
-  //     this.get('model.route').pushObject(newRouetPoint);
-  //     this.get('model').save();
-  //   }
-  // },
-  //
-  // keyDown: function (e) {
-  //   if(e.altKey) {
-  //     this.$().show();
-  //   }
-  // },
-  //
-  // keyUp: function () {
-  //   this.$().hide();
-  // },
-
-  actions: {
-    // Admin functions
-    save: function () {
-      let center = this.get('targeting.map').getCenter(),
-        zoom = this.get('targeting.map').getZoom(),
-        bearing = this.get('targeting.map').getBearing(),
-        pitch = this.get('targeting.map').getPitch();
-
-      this.get('model').set('lat', center.lat);
-      this.get('model').set('lng', center.lng);
-      this.get('model').set('bearing', bearing);
-      this.get('model').set('pitch', pitch);
-      this.get('model').set('zoom', zoom);
-      this.get('model').save();
-    },
-
-    adminRemoveRoute: function () {
-      this.get('model').set('route', null);
-      this.get('model').save();
-    }
   }
 });
