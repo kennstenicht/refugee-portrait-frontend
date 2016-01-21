@@ -21,7 +21,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'img-src': "'self' data: blob: *.mapbox.com",
       'child-src': "blob:",
-      'media-src': "'self'",
+      'media-src': "'self' http://media.ndr.de",
       'font-src': "'self' data: fonts.gstatic.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
