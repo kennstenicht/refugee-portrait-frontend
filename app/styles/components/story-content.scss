@@ -1,0 +1,28 @@
+.story-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  transform: translate(-900px, -220px);
+  z-index: 2;
+  transition: $transition-default;
+
+  &--hidden {
+    opacity: 0;
+  }
+
+  &__date {
+    @extend h2;
+    @extend %mono-font;
+    font-weight: 400;
+    letter-spacing: 0em;
+  }
+
+  &__title {
+    width: 400px;
+    line-height: 1.2em;
+    @include inuit-font-size($inuit-heading-size-1, false);
+    @extend %mono-font;
+    margin: 10px 0;
+  }
+}
