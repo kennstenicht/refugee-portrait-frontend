@@ -98,6 +98,17 @@ export default Component.extend(Gestures, Sly, MathHelper, {
     return this.get('chapters').get('lastObject');
   }),
 
+  days: computed(function () {
+    let dateArray = [],
+      currentDate = moment(this.get('story.start'));
+
+    while (currentDate <= moment(this.get('story.end'))) {
+      dateArray.push(moment(currentDate));
+      currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
+  })
+
 
 
 

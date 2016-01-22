@@ -14,7 +14,9 @@
       </div>
       <div class="time-line__container__frame__slider__columns">
         {{#each columns as |column|}}
+          {{#time-line-column story=story date=column.value}}
             {{#each column.items as |chapter|}}
+              {{#time-line-item chapter=chapter}}
                 {{chapter.number}}
               {{/time-line-item}}
             {{/each}}
@@ -25,7 +27,13 @@
         <div class="time-line__container__frame__slider__progressbar__indicator"></div>
       </div>
       <div class="time-line__container__frame__slider__axis">
-        9
+        {{#each days as |day|}}
+          {{time-line-date
+            story=story
+            day=day
+            chapters=chapters
+          }}
+        {{/each}}
       </div>
     </div>
   </div>

@@ -1,21 +1,11 @@
 .time-line {
   position: fixed;
-  bottom: 0px;
+  bottom: -30px;
   left: 0px;
   right: 0px;
-  height: 140px;
+  height: 150px;
   z-index: 2;
-  background: linear-gradient(
-    to top,
-    rgba(map-get(map-get($moods, default), timeline-background),0.8) 0%,
-    rgba(map-get(map-get($moods, default), timeline-background),0.8) 60%,
-    rgba(map-get(map-get($moods, default), timeline-background),0) 100%
-  );
   transition: $transition-default;
-
-  &--detail {
-    bottom: -30px;
-  }
 
   &__squished {
     position: absolute;
@@ -114,7 +104,8 @@
         }
 
         &__axis {
-          height: 30px;
+          position: relative;
+          height: 40px;
         }
       }
     }
@@ -169,15 +160,6 @@
     }
   }
   @each $mood, $map in $moods {
-    &--#{$mood} {
-      background: linear-gradient(
-        to top,
-        rgba(map-get($map, timeline-background),0.8) 0%,
-        rgba(map-get($map, timeline-background),0.8) 60%,
-        rgba(map-get($map, timeline-background),0) 100%
-      );
-    }
-
     &--#{$mood} &__squished__progressbar {
       border-color: map-get($map, timeline-progressbar);
     }

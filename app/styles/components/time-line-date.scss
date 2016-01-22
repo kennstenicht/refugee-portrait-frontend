@@ -1,0 +1,18 @@
+.time-line-date {
+  position: absolute;
+  top: 0px;
+  @include inuit-font-size($small-font);
+  opacity: 0.2;
+  width: 17px;
+  @extend %mono-font;
+  transform: translate(-8px, 0);
+  text-align: center;
+
+  &--active {
+    opacity: 1;
+  }
+
+  &:first-child, &:last-child {
+    opacity: 0;
+  }
+}
