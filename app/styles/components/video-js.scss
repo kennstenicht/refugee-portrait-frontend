@@ -1,0 +1,40 @@
+.video-js {
+  .vjs-control-bar {
+    display: flex;
+    background-color: transparent;
+  }
+
+  .vjs-big-play-button {
+    background-color: transparent;
+  }
+
+  .vjs-volume-menu-button {
+    display: none;
+  }
+
+  .vjs-fullscreen-control {
+    display: none;
+  }
+
+  &.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .vjs-big-play-button {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    border: 0px;
+    background: rgba($gray-darker, 0.6);
+  }
+
+  .vjs-big-play-button:before {
+    position: relative;
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
+  }
+}
