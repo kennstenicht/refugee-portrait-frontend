@@ -28,7 +28,8 @@ $moods: (
     timeline-item: $gray,
     timeline-progressbar: $gray-light,
     timeline-scrollbar: $gray-light,
-    timeline-navigator: $gray-lighter
+    timeline-navigator: $gray-lighter,
+    hotspot: $gray-lighter
   ),
   danger: (
     font: $gray-lighter,
@@ -36,14 +37,25 @@ $moods: (
     timeline-item: $gray,
     timeline-progressbar: $gray-dark,
     timeline-scrollbar: $gray-darker,
-    timeline-navigator: $gray-darker
+    timeline-navigator: $gray-darker,
+    hotspot: $gray-dark
   ),
-  happy: (
+  frustrated: (
     font: $inuit-base-text-color,
-    timeline-background: $gray-darker,
+    timeline-background: $gray-lighter,
     timeline-item: $gray,
-    timeline-progressbar: $gray-dark,
-    timeline-scrollbar: $gray-darker,
-    timeline-navigator: $gray-darker
+    timeline-progressbar: $gray-light,
+    timeline-scrollbar: $gray-light,
+    timeline-navigator: $gray-lighter,
+    hotspot: $gray-light
+  ),
+  hope: (
+    font: $inuit-base-text-color,
+    timeline-background: $gray-lighter,
+    timeline-item: $gray,
+    timeline-progressbar: $gray-light,
+    timeline-scrollbar: $gray-light,
+    timeline-navigator: $gray-lighter,
+    hotspot: $gray-lighter
   )
 );

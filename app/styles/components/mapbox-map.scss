@@ -16,4 +16,16 @@
   .mapboxgl-control-container {
     display: none;
   }
+
+  &--overview {
+    position: fixed;
+    top: 20px;
+    left: auto;
+    right: 20px;
+    bottom: auto;
+    width: 350px;
+    height: 280px;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba($gray-darker, 0.4);
+  }
 }

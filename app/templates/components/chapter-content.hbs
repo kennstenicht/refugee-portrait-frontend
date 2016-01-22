@@ -2,7 +2,7 @@
 {{chapter-navigation direction='next' model=model}}
 
 {{#if model.background}}
-  <div class="chapter-content__background" style="background-image: url({{model.background}});"></div>
+  <div class="chapter-content__background" style="{{backgroundStyle}}"></div>
 {{/if}}
 
 <div class="chapter-content__journal">
@@ -21,6 +21,6 @@
 <div class="chapter-content__weather">
   Wetter
 </div>
-{{#each model.hotspots as |hotspot|}}
-  {{chapter-hotspot hotspot=hotspot}}
+{{#each model.hotspots as |hotspot index|}}
+  {{chapter-hotspot hotspot=hotspot number=index}}
 {{/each}}

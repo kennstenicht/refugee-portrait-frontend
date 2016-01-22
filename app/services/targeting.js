@@ -6,6 +6,7 @@ const {
   Evented,
   computed,
   run,
+  $,
   run: {
     bind
   }
@@ -18,6 +19,7 @@ export default Service.extend(Evented, MathHelper, {
   isVisible: false,
   mapAnimation: true,
   route: [],
+  routeChapters: [],
   routeAnimation: false,
 
   // New chapter is selected
@@ -73,7 +75,7 @@ export default Service.extend(Evented, MathHelper, {
     this.get('map').flyTo({
       center: [target.lng, target.lat],
       zoom: target.zoom,
-      speed: 0.8,
+      speed: 1.2,
       curve: 1,
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,
@@ -222,8 +224,8 @@ export default Service.extend(Evented, MathHelper, {
       this.set('overview', false);
     }
 
-    // this.get('map').featuresIn({layer: 'route_chapters'}, bind(this, function (err, features) {
-    //   this.set('route_chapters', features);
-    // }));
+    this.get('map').featuresIn({layer: 'route_chapters'}, bind(this, function (err, features) {
+      this.set('routeChapters', features);
+    }));
   }
 });

@@ -3,6 +3,7 @@ import MapboxGl from 'ember-cli-mapbox-gl/mixins/mapbox-gl';
 
 const {
   Component,
+  computed,
   run: {
     bind
   },
@@ -11,6 +12,12 @@ const {
 
 export default Component.extend(MapboxGl, {
   classNames: ['mapbox-map'],
+  classNameBindings: ['modifierIdenrifier'],
+
+  // BEM Modifier
+  modifierIdenrifier: computed('identifier', function () {
+    return 'mapbox-map--' + this.get('identifier');
+  }),
 
   // Targeting Service
   targeting: inject.service('targeting'),
@@ -28,6 +35,9 @@ export default Component.extend(MapboxGl, {
       this.get('map').on('style.load', bind(this, function () {
         this.get('map').addSource(id, source);
         this.get('map').addLayer(layer);
+        Ember.run.next(this, function () {
+          this.get('targeting').checkFeatures();
+        });
       }));
     }
   }

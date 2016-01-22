@@ -5,9 +5,14 @@
   bottom: 0px;
   right: 0px;
   z-index: 2;
-  transition: all 0.3s ease-in-out;
-  opacity: 1;
-  visibility: visible;
+  transition: all 1s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &--hidden {
     opacity: 0;
@@ -121,8 +126,13 @@
   }
 
   // Custom Style of Chapter 4
+  &--4 &__background {
+    opacity: 0.2;
+  }
+
   &--4 &__journal {
-    transform: translate(100px, -50px);
+    width: 700px;
+    transform: translate(0px, -50px) rotate(-11deg);
   }
 
   // Custom Style of Chapter 5
@@ -142,7 +152,11 @@
   }
 
   // Custom Style of Chapter 10
-  &--7 &__journal {
+  &--10 &__background {
+    opacity: 0.05;
+  }
+
+  &--10 &__journal {
     width: 600px;
     transform: translate(-700px, -350px);
   }

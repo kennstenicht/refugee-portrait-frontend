@@ -1,5 +1,5 @@
 {{#time-line-item chapter=firstChapter class='time-line-item--big time-line-item--first'}}
-  {{firstChapter.title}}
+  {{{firstChapter.title}}}
 {{/time-line-item}}
 <div class="time-line__squished time-line__squished--start">
   <div class="time-line__squished__progressbar"></div>
@@ -14,9 +14,7 @@
       </div>
       <div class="time-line__container__frame__slider__columns">
         {{#each columns as |column|}}
-          {{#time-line-column story=story date=column.value}}
             {{#each column.items as |chapter|}}
-              {{#time-line-item chapter=chapter}}
                 {{chapter.number}}
               {{/time-line-item}}
             {{/each}}
@@ -48,5 +46,5 @@
   <div class="time-line__squished__progressbar"></div>
 </div>
 {{#time-line-item chapter=lastChapter class='time-line-item--big time-line-item--last'}}
-  {{lastChapter.title}}
+  {{{lastChapter.title}}}
 {{/time-line-item}}

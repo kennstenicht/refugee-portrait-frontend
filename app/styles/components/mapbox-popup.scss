@@ -18,22 +18,45 @@
 .mapboxgl-popup-content {
   background: $green;
   color: $white;
-  width: 400px;
+  width: 430px;
   padding: 30px;
 
+  &__location {
+    @extend h4;
+    opacity: 0.4;
+  }
+
   &__header {
-    display: table;
-    vertical-align: top;
-    @extend h2;
-    @extend %mono-font;
+    margin: 5px 0 0px;
 
     &__number {
+      display: inline-block;
+      vertical-align: top;
+      @include inuit-font-size(55px);
+      @extend %mono-font;
       line-height: 1;
       padding-right: 15px;
     }
 
-    &__title {
-      line-height: 1.2;
+    &__separator {
+      display: inline-block;
+      height: 43px;
+      width: 4px;
+      background: $white;
+      margin-top: 2px;
+      margin-right: 20px;
     }
+
+    &__title {
+      display: inline-block;
+      vertical-align: top;
+      @extend h2;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+  }
+
+  &__content {
+    @include inuit-font-size($small-font);
   }
 }

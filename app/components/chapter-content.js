@@ -26,7 +26,12 @@ export default Component.extend(Gestures, {
   }),
 
   modifierVisible: computed('targeting.isVisible', function () {
-    return this.get('targeting.isVisible') ? '' : 'chapter-content--hidden';
+    return this.get('targeting.isVisible') ? 'chapter-content--visible' : 'chapter-content--hidden';
+  }),
+
+  // Style binding
+  backgroundStyle: computed('model.background', function() {
+    return new Ember.Handlebars.SafeString("background-image: url(" + this.get('model.background') + ")");
   }),
 
   // Gesture Settings
