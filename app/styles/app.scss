@@ -48,17 +48,9 @@
 @import "components/time-line-navigator";
 @import "components/time-line-preview";
 @import "components/time-line";
+@import "components/video-js";
 
 
 // Trumps
 @import "inuit-clearfix/trumps.clearfix";
 // @import "trumps.widths";
-
-.load-button {
-  display: block;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: 999;
-  background: red;
-}
