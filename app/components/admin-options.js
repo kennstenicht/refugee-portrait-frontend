@@ -73,7 +73,19 @@ export default Component.extend({
     },
 
     addHotspot: function () {
-      console.log('add Hotspot');
+      let chapter = this.get('targeting.currentChapter');
+      let newHotspot = this.store.createRecord('hotspot', {
+        title: 'title',
+        description: 'description',
+        type: 'type',
+        video: 'video',
+        image: 'image',
+        audio: 'audio',
+      });
+      chapter.get('hotspots').pushObject(newHotspot);
+      chapter.save();
+      newHotspot.save();
+
       this.set('adminText', 'Hotspot added');
     },
 
