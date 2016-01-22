@@ -7,7 +7,7 @@
   z-index: 1;
 
   .mapboxgl-canvas-container {
-    position: fixed;
+    position: absolute;
     top: 0px;
     bottom: 0px;
     left: 0px;
@@ -23,7 +23,7 @@
     left: auto;
     right: 20px;
     bottom: auto;
-    width: 350px;
+    width: 280px;
     height: 280px;
     z-index: 2;
     box-shadow: 0 0 10px rgba($gray-darker, 0.4);

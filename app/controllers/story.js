@@ -25,9 +25,9 @@ export default Controller.extend({
 
   overviewSettings: {
     style: "assets/map-styles/default.json",
-    lat: 44.68,
-    lng: 8.43,
-    zoom: 9,
+    lat: 45.221190,
+    lng: 21.621094,
+    zoom: 2.2,
     bearing: 0,
     interactive: false,
   },
