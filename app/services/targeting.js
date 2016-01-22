@@ -153,11 +153,19 @@ export default Service.extend(Evented, MathHelper, {
 
   // Show and hiden chapter Preview
   setPreview: function (chapter) {
-    let longlat = new mapboxgl.LngLat(chapter.get('lng'), chapter.get('lat'));
+    let marker = new mapboxgl.LngLat(chapter.get('marker.lng'), chapter.get('marker.lat'));
+    let coordinates = this.get('map').project(marker);
+
+    coordinates.x = (coordinates.x < 0) ? 10 : coordinates.x;
+    coordinates.y = (coordinates.y < 0) ? 0 : coordinates.y;
+    coordinates.x = (coordinates.x > $(window).width()) ? $(window).width()-10 : coordinates.x;
+    coordinates.y = (coordinates.y > $(window).height()) ? $(window).height() : coordinates.y;
+
+    let lnglat = this.get('map').unproject([coordinates.x, coordinates.y]);
 
     let preview = new mapboxgl.Popup()
-      .setLngLat(longlat)
-      .setHTML('<div class="mapboxgl-popup-content__location">' + chapter.get('location') + '</div><div class="mapboxgl-popup-content__header"><div class="mapboxgl-popup-content__header__number">' + chapter.get('number') + '</div><div class="mapboxgl-popup-content__header__title">' + chapter.get('title') + '</div></div><div class="mapboxgl-popup-content__description">' + chapter.get('excerpt') + '</div>')
+      .setLngLat(lnglat)
+      .setHTML('<div class="mapboxgl-popup-content__location">' + chapter.get('location') + '</div><div class="mapboxgl-popup-content__header"><div class="mapboxgl-popup-content__header__number">' + chapter.get('number') + '</div><div class="mapboxgl-popup-content__header__separator"></div><div class="mapboxgl-popup-content__header__title">' + chapter.get('title') + '</div></div><div class="mapboxgl-popup-content__description">' + chapter.get('excerpt') + '</div>')
       .addTo(this.get('map'));
 
     this.set('currentPreview', preview);
