@@ -23,6 +23,15 @@ export default Controller.extend({
     ]
   },
 
+  overviewSettings: {
+    style: "assets/map-styles/default.json",
+    lat: 44.68,
+    lng: 8.43,
+    zoom: 9,
+    bearing: 0,
+    interactive: false,
+  },
+
   // Targeting Service
   targeting: Ember.inject.service('targeting'),
 
