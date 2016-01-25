@@ -3,7 +3,7 @@ $red: #c32121;
 $green: #33662d;
 
 $white: #fff;
-$gray-lighter: #cbcbcb;
+$gray-lighter: #ebebeb;
 $gray-light: #9c9c9c;
 $gray: #3f3f3f;
 $gray-dark: #252525;
@@ -39,6 +39,15 @@ $moods: (
     timeline-scrollbar: $gray-darker,
     timeline-navigator: $gray-darker,
     hotspot: $gray-dark
+  ),
+  fear: (
+    font: $gray-lighter,
+    timeline-background: $gray-darker,
+    timeline-item: $gray,
+    timeline-progressbar: $gray-dark,
+    timeline-scrollbar: $gray-darker,
+    timeline-navigator: $gray-darker,
+    hotspot: $gray-darker
   ),
   frustrated: (
     font: $inuit-base-text-color,

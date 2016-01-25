@@ -160,4 +160,33 @@
     width: 600px;
     transform: translate(-700px, -350px);
   }
+
+  &--19 &__journal {
+    transform: translate(-400px, -100px);
+  }
+
+  &--20 &__journal {
+    background: {
+      color: #ebebeb;
+      image: url(textures/grain-10.png);
+    }
+    padding: 30px;
+    width: 605px;
+    transform: translate(-668px, -236px);
+  }
+
+  &--22 &__journal {
+    width: 600px;
+    transform: translate(-400px, -100px);
+  }
+
+  &--23 &__journal {
+    width: 600px;
+    transform: translate(-50px, -100px);
+  }
+
+  &--24 &__journal {
+    width: 600px;
+    transform: translate(100px, -100px);
+  }
 }

@@ -39,7 +39,7 @@
       right: 10px;
       width: 30px;
       height: 30px;
-      background: $gray-lighter;
+      background: $white;
       z-index: 2;
     }
 
@@ -49,6 +49,7 @@
 
     &__content {
       padding: 20px;
+      @include inuit-font-size($small-font, false);
     }
   }
 
@@ -108,9 +109,45 @@
     }
   }
 
+  &--7 .chapter-hotspot {
+    &--0 {
+      transform: translate(150px, -150px);
+    }
+  }
+
   &--10 .chapter-hotspot {
     &--0 {
       transform: translate(-100px, -80px);
+    }
+  }
+
+  &--15 .chapter-hotspot {
+    &--0 {
+      transform: translate(-100px, -80px);
+    }
+  }
+
+  &--15 .chapter-hotspot {
+    &--0 {
+      transform: translate(100px, 200px);
+    }
+  }
+
+  &--19 .chapter-hotspot {
+    &--0 {
+      transform: translate(0px, -271px);
+    }
+  }
+
+  &--20 .chapter-hotspot {
+    &--0 {
+      transform: translate(500px, -110px);
+    }
+  }
+
+  &--23 .chapter-hotspot {
+    &--0 {
+      transform: translate(-500px, 110px);
     }
   }
 }
