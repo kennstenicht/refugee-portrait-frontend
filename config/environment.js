@@ -20,16 +20,16 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'img-src': "'self' data: blob: *.mapbox.com",
-      'child-src': "blob:",
-      'media-src': "'self' http://media.ndr.de",
+      'child-src': "blob: *.infogr.am",
+      'media-src': "'self' *.ndr.de *.tagesschau.de",
       'font-src': "'self' data: fonts.gstatic.com",
       'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'script-src': "'self' 'unsafe-eval' 'unsafe-inline' " +
         "apis.google.com *.firebaseio.com",
       'connect-src': "'self' *.mapbox.com http://localhost:5000 " +
-      "ws://localhost:5000 https://auth.firebase.com wss://*.firebaseio.com",
+      "ws://localhost:5000 https://auth.firebase.com wss://*.firebaseio.com " +
+      "*.firebaseio.com",
     },
-
     mapbox: {
       accessToken: 'pk.eyJ1Ijoia2VubnN0ZW5pY2h0IiwiYSI6ImNpZXBpMGZ5ejAwNHlzcGt1b3NwcWI1aWQifQ.SRy8JsaaUHRDdLGjKiE_kQ',
     },
