@@ -75,7 +75,7 @@ export default Service.extend(Evented, MathHelper, {
     this.get('map').flyTo({
       center: [target.lng, target.lat],
       zoom: target.zoom,
-      speed: 1.2,
+      speed: 1.8,
       curve: 1,
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,
@@ -148,7 +148,6 @@ export default Service.extend(Evented, MathHelper, {
       this.get('map').setClasses([mood]);
       this.set('currentMood', mood);
       this.trigger('newMood', mood);
-      console.log(this.get('map').getClasses());
     }
   },
 
