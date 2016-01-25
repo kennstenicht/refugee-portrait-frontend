@@ -6,6 +6,10 @@ const {
   belongsTo
 } = DS;
 
+const {
+  computed
+} = Ember;
+
 export default Model.extend({
   title: attr('string'),
   description: attr('string'),
@@ -13,6 +17,17 @@ export default Model.extend({
   video: attr('string'),
   audio: attr('string'),
   type: attr('string'),
+  source: attr('string'),
 
-  chapter: belongsTo('chapter', { async: true })
+  chapter: belongsTo('chapter', { async: true }),
+
+  sourceExcerpt: computed('source', function() {
+    var text = this.get('source'),
+      max_length = 25,
+      suffix = (text && text.length > max_length) ? '...' : '';
+
+    if (text) {
+      return text.substring(0, max_length) + suffix;
+    }
+  }),
 });
