@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 const {
   Component,
+  computed,
   inject,
   run: {
     bind
@@ -16,6 +17,10 @@ export default Component.extend({
 
   // Variables
   adminText: '',
+  feelings: ['default', 'danger', 'fear', 'hope'],
+  selectedFeeling: computed('targeting.currentChapter.feeling', function () {
+    return this.get('targeting.currentChapter.feeling');
+  }),
 
   didInsertElement: function () {
     $(document).on('click', bind(this, this.addRouteSegment) );
@@ -61,6 +66,7 @@ export default Component.extend({
       this.get('targeting.currentChapter').set('camera.bearing', bearing);
       this.get('targeting.currentChapter').set('camera.pitch', pitch);
       this.get('targeting.currentChapter').set('camera.zoom', zoom);
+      this.get('targeting.currentChapter').set('feeling', this.get('selectedFeeling'));
 
       this.get('targeting.currentChapter').save();
       this.set('adminText', 'Chapter saved: ' + this.get('targeting.currentChapter.number'));

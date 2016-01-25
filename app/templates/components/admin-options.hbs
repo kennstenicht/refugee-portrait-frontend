@@ -4,4 +4,9 @@
 <div class="button button--toggle {{targeting.mapAnimation}}" {{action 'toggleAnimation'}}>Map Animation</div>
 <div class="button" {{action 'removeRoute'}}>Remove Route</div>
 <div class="button" {{action 'addHotspot'}}>Add Hotspot</div>
+<select onchange={{action (mut selectedFeeling) value="target.value"}}>
+  {{#each feelings as |feeling|}}
+    <option value={{feeling}} selected={{eq feeling selectedFeeling}}>{{feeling}}</option>
+  {{/each}}
+</select>
 <div class="button" {{action 'save'}}>Save</div>
