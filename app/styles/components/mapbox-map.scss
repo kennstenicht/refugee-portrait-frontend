@@ -27,5 +27,10 @@
     height: 280px;
     z-index: 2;
     box-shadow: 0 0 10px rgba($gray-darker, 0.4);
+    display: none;
+  }
+
+  &--overview.mapbox-map--detail {
+    display: block;
   }
 }

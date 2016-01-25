@@ -12,11 +12,17 @@ const {
 
 export default Component.extend(MapboxGl, {
   classNames: ['mapbox-map'],
-  classNameBindings: ['modifierIdenrifier'],
+  classNameBindings: ['modifierIdenrifier', 'modifierMode'],
 
   // BEM Modifier
   modifierIdenrifier: computed('identifier', function () {
     return 'mapbox-map--' + this.get('identifier');
+  }),
+
+  modifierMode: computed('targeting.currentChapter', function () {
+    if (this.get('targeting.currentChapter')) {
+      return 'mapbox-map--detail';
+    }
   }),
 
   // Targeting Service
