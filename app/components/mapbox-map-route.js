@@ -35,7 +35,7 @@ export default Component.extend({
       });
 
       // Push coordinates into the route array
-      // route.geometry.coordinates.pushObject([chapter.get('lng'), chapter.get('lat')]);
+      route.geometry.coordinates.pushObject([chapter.get('marker.lng'), chapter.get('marker.lat')]);
       if(chapter.get('route')) {
         chapter.get('route').forEach(function (routeSegement) {
           route.geometry.coordinates.pushObject([routeSegement.lng, routeSegement.lat]);

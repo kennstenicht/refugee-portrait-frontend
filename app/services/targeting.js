@@ -75,7 +75,7 @@ export default Service.extend(Evented, MathHelper, {
     this.get('map').flyTo({
       center: [target.lng, target.lat],
       zoom: target.zoom,
-      speed: 1.8,
+      speed: 0.5,
       curve: 1,
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,

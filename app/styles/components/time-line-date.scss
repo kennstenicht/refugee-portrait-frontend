@@ -7,7 +7,7 @@
   @extend %mono-font;
   transform: translate(-8px, 0);
   text-align: center;
-  color: map-get(map-get($moods, default), timeline-progressbar);
+  color: map-get(map-get($moods, default), font);
 
   &--active {
     opacity: 1;
