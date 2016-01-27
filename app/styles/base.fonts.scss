@@ -2,6 +2,9 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,300,300italic,400italic,500,500italic,700,700italic);
 @import url(https://fonts.googleapis.com/css?family=Fira+Mono:400,700);
 
+body {
+  -webkit-font-smoothing: antialiased;
+}
 
 %mono-font {
   font-family: 'Fira Mono';

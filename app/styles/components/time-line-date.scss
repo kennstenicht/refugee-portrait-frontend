@@ -7,6 +7,7 @@
   @extend %mono-font;
   transform: translate(-8px, 0);
   text-align: center;
+  color: map-get(map-get($moods, default), timeline-progressbar);
 
   &--active {
     opacity: 1;
@@ -14,5 +15,11 @@
 
   &:first-child, &:last-child {
     opacity: 0;
+  }
+}
+
+@each $mood, $map in $moods {
+  .time-line--#{$mood} .time-line-date {
+    color: map-get($map, font);
   }
 }
