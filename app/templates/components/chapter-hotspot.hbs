@@ -1,7 +1,11 @@
 {{yield}}
-<div class="chapter-hotspot__icon" {{action 'toggleHotspot' on='click'}}></div>
+{{#touch-toggle callback='openHotspot'}}
+  <div class="chapter-hotspot__icon"></div>
+{{/touch-toggle}}
 <div class="chapter-hotspot__overlay">
-  <div class="chapter-hotspot__overlay__close" {{action 'toggleHotspot' on='click'}}></div>
+  {{#touch-toggle callback='closeHotspot'}}
+    <div class="chapter-hotspot__overlay__close"></div>
+  {{/touch-toggle}}
   <div class="chapter-hotspot__overlay__media">
     {{#if (eq hotspot.type "video")}}
       {{ivy-videojs src=hotspot.video setup=setup}}
@@ -15,6 +19,10 @@
       {{hotspot.title}}
     </h3>
     {{{hotspot.description}}}
-    Quelle: <a href="{{hotspot.source}}">{{hotspot.sourceExcerpt}}</a>
+    {{#if hotspot.source}}
+      <div class="chapter-hotspot__overlay__content__source">
+        Quelle: <a href="{{hotspot.source}}">{{hotspot.sourceExcerpt}}</a>
+      </div>
+    {{/if}}
   </div>
 </div>

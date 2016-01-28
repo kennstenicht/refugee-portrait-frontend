@@ -1,6 +1,3 @@
-{{chapter-navigation direction='prev' model=model}}
-{{chapter-navigation direction='next' model=model}}
-
 {{#if model.background}}
   <div class="chapter-content__background" style="{{backgroundStyle}}"></div>
 {{/if}}
@@ -24,3 +21,7 @@
 {{#each model.hotspots as |hotspot index|}}
   {{chapter-hotspot hotspot=hotspot number=index}}
 {{/each}}
+
+{{#if closeHint}}
+  {{chapter-close closeHintPos=closeHintPos}}
+{{/if}}

@@ -2,7 +2,7 @@ import Ember from 'ember';
 import Gestures from 'ember-cli-tuio/mixins/gestures';
 import MathHelper from '../mixins/math-helper';
 import groupBy from 'ember-group-by';
-import Sly from '../mixins/sly';
+// import Sly from '../mixins/sly';
 import moment from 'moment';
 
 const {
@@ -17,7 +17,7 @@ const {
   $
 } = Ember;
 
-export default Component.extend(Gestures, Sly, MathHelper, {
+export default Component.extend(Gestures, MathHelper, {
   classNames: ['time-line'],
   classNameBindings: ['modifierMode', 'modifierMood'],
 
@@ -73,22 +73,22 @@ export default Component.extend(Gestures, Sly, MathHelper, {
 
   // Functions
   didInsertElement: function () {
-    this.initSly();
+    // this.initSly();
   },
 
   willDestroyElement: function () {
-    this.destroySly();
+    // this.destroySly();
   },
 
-  overview: observer('targeting.currentChapter', function () {
-    let frameWidth = $('.time-line__container__frame').width();
-
-    if( this.get('targeting.currentChapter') ) {
-      $('.time-line__container__frame__slider').animate({'width': frameWidth}, 600, bind(this, function () {
-        this.get('sly').reload();
-      }));
-    }
-  }),
+  // overview: observer('targeting.currentChapter', function () {
+  //   let frameWidth = $('.time-line__container__frame').width();
+  //
+  //   if( this.get('targeting.currentChapter') ) {
+  //     $('.time-line__container__frame__slider').animate({'width': frameWidth}, 600, bind(this, function () {
+  //       this.get('sly').reload();
+  //     }));
+  //   }
+  // }),
 
   firstChapter: computed('chapters', function () {
     return this.get('chapters').get('firstObject');

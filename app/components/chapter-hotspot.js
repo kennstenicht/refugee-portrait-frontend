@@ -25,12 +25,16 @@ export default Component.extend(Gestures, {
     }
   }),
 
+  // Variables
+  open: false,
+
   // Gesture Settings
-  gestures: ['tap', 'pinch', 'pinchin'],
+  gestures: ['tap'],
 
   recognizers: {
-    pan: {direction: Hammer.DIRECTION_HORIZONTAL}
+    tap: {threshold: 20}
   },
+
 
   // Video.js settings
   setup: {
@@ -38,13 +42,23 @@ export default Component.extend(Gestures, {
     fluid: true,
   },
 
-  pinchin: function () {
-    this.set('open', false);
-  },
+  // Gesture Events
+  // pinchin: function () {
+  //   this.set('open', false);
+  // },
+  //
+  // tap: function (e) {
+  //   this.toggleProperty('open');
+  //   e.stopPropagation();
+  // },
 
   actions: {
-    toggleHotspot: function () {
-      this.toggleProperty('open');
+    openHotspot: function () {
+      this.set('open', true);
+    },
+
+    closeHotspot: function () {
+      this.set('open', false);
     }
   }
 });

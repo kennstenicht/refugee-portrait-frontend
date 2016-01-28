@@ -19,7 +19,7 @@
 
   &--overview {
     position: fixed;
-    top: 20px;
+    top: -300px;
     left: auto;
     right: 20px;
     bottom: auto;
@@ -27,10 +27,12 @@
     height: 280px;
     z-index: 2;
     box-shadow: 0 0 10px rgba($gray-darker, 0.4);
-    display: none;
+    opacity: 0;
+    transition: $transition-default;
   }
 
   &--overview.mapbox-map--detail {
-    display: block;
+    top: 20px;
+    opacity: 1;
   }
 }

@@ -3,6 +3,7 @@
   top: 50%;
   left: 50%;
   z-index: 3;
+  cursor: pointer;
 
   &__icon {
     width: 40px;
@@ -31,7 +32,7 @@
     transition: $transition-default;
     box-shadow: 0 0px 40px rgba($gray-darker, 0.4);
     transform: translate(-50%, -50%) scale(0);
-    z-index: 4;
+    z-index: 999;
 
     &__close {
       position: absolute;
@@ -117,7 +118,7 @@
 
   &--10 .chapter-hotspot {
     &--0 {
-      transform: translate(-100px, -80px);
+      transform: translate(100px, 80px);
     }
   }
 

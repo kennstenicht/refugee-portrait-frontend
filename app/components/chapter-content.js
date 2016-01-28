@@ -35,7 +35,7 @@ export default Component.extend(Gestures, {
   }),
 
   // Gesture Settings
-  gestures: ['pan'],
+  gestures: ['pan', 'panstart'],
 
   recognizers: {
     pan: {direction: Hammer.DIRECTION_HORIZONTAL}
@@ -54,7 +54,13 @@ export default Component.extend(Gestures, {
     }
   },
 
-  pan: function () {
-    this.get('targeting').backToStory();
+  panstart: function (e) {
+    this.set('closeHintPos', e.gesture.center);
+    console.log(e.gesture.center);
+    this.set('closeHint', true);
+    Ember.run.later(this, function () {
+      this.set('closeHint', false);
+    }, 4000);
+    //this.get('targeting').backToStory();
   }
 });

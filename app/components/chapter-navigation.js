@@ -9,20 +9,39 @@ const {
 
 export default Component.extend(Gestures, {
   classNames: ['chapter-navigation'],
-  classNameBindings: ['modifierDirection'],
+  classNameBindings: ['modifierDirection', 'modifierVisible'],
 
   // BEM Modifier
   modifierDirection: computed('direction', function () {
     return 'chapter-navigation--' + this.get('direction');
   }),
 
+  modifierVisible: computed('targeting.isVisible', function () {
+    return this.get('targeting.isVisible') ? 'chapter-navigation--visible' : 'chapter-navigation--hidden';
+  }),
+
   // Gesture Settings
-  gestures: ['tap'],
+  gestures: ['tap', 'pan'],
+
+  recognizers: {
+    tap: {threshold: 20},
+    pan: {direction: Hammer.DIRECTION_HORIZONTAL}
+  },
 
   // Targeting Service
   targeting: Ember.inject.service('targeting'),
 
-  tap: function () {
+  tap: function (e) {
+    e.stopPropagation();
+    this.setChapter();
+  },
+
+  pan: function (e) {
+    e.stopPropagation();
+    this.setChapter();
+  },
+
+  setChapter: function () {
     var chapters = this.get('model.story.sortedChapters'),
       direction = (this.get('direction') === 'prev') ? -1 : 1,
       index = chapters.indexOf(this.get('model')),

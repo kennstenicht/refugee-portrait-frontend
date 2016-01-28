@@ -1,0 +1,14 @@
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.chapter-close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: $gray-lighter;
+  padding: 15px;
+  animation-name: fadeOut;
+  animation-duration: 4s;
+}

@@ -3,33 +3,42 @@
   top: 50%;
   z-index: 4;
   display: block;
-  width: 29px;
-  height: 79px;
+  width: 150px;
+  height: 400px;
   transition: $transition-default;
   background: {
-    size: 100% 100%;
+    size: 29px 79px;
     repeat: no-repeat;
   };
   cursor: pointer;
-  transform: translate(0, -100%);
+  transform: translate(0, -50%);
+  opacity: 1;
 
   &--prev {
-    left: 30px;
-    background-image: url('icons/arrow-prev.png');
+    left: 0px;
+    background: {
+      image: url('icons/arrow-prev.png');
+      position: center right 70px;
+    }
   }
 
   &--next {
-    right: 30px;
-    background-image: url('icons/arrow-next.png');
-  }
-}
-
-.chapter-content--hidden {
-  .chapter-navigation--prev {
-    left: -50px;
+    right: 0px;
+    background: {
+      image: url('icons/arrow-next.png');
+      position: center left 70px;
+    }
   }
 
-  .chapter-navigation--next {
-    right: -50px;
+  &--hidden {
+    opacity: 0;
+  }
+
+  &--hidden.chapter-navigation--prev {
+    left: -150px;
+  }
+
+  &--hidden.chapter-navigation--next {
+    right: -150px;
   }
 }

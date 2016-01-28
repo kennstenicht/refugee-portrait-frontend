@@ -14,7 +14,9 @@
   border-bottom-color: $green;
 }
 
-
+.mapboxgl-popup {
+  z-index: 999;
+}
 .mapboxgl-popup-content {
   background: $green;
   color: $white;

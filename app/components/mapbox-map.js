@@ -19,8 +19,8 @@ export default Component.extend(MapboxGl, {
     return 'mapbox-map--' + this.get('identifier');
   }),
 
-  modifierMode: computed('targeting.currentChapter', function () {
-    if (this.get('targeting.currentChapter')) {
+  modifierMode: computed('targeting.isVisible', function () {
+    if (this.get('targeting.isVisible')) {
       return 'mapbox-map--detail';
     }
   }),

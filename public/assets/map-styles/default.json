@@ -82,6 +82,10 @@
       "type": "vector"
     }
   },
+  "transition": {
+    "duration": 2000,
+    "delay": 0
+  },
   "sprite": "mapbox://sprites/kennstenicht/ciihh5j0x00clbhm0oxxahbad",
   "glyphs": "mapbox://fonts/kennstenicht/{fontstack}/{range}.pbf",
   "layers": [

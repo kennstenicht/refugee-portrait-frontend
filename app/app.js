@@ -13,7 +13,8 @@ App = Ember.Application.extend({
   customEvents: {
     objectadded: 'objectAdded',
     objectmoved: 'objectMoved',
-    objectremoved: 'objectRemoved'
+    objectremoved: 'objectRemoved',
+    tap: 'tap'
   },
   Resolver: Resolver
 });

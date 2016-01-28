@@ -24,10 +24,10 @@ export default Service.extend(Evented, MathHelper, {
 
   // New chapter is selected
   setChapter: function (newChapter) {
+    if(!this.get('isVisible') && this.get('currentChapter')) return;
+
     // Hide current chepter
-    if(this.get('currentChapter')) {
       this.set('isVisible', false);
-    }
 
     run.later(this, function () {
       // // TODO: check direction of movment
@@ -66,16 +66,19 @@ export default Service.extend(Evented, MathHelper, {
   moveToChapter: function (newChapter) {
     let transitionSpeed = this.calcTransitionSpeed(newChapter.get('camera')) || 2000;
 
-    this.set('currentChapter', newChapter);
     this.moveToTarget(newChapter.get('camera'), transitionSpeed, false);
-    this.trigger('newChapter', newChapter, transitionSpeed);
+
+    run.next(this, function () {
+      this.set('currentChapter', newChapter);
+      this.trigger('newChapter', newChapter, transitionSpeed);
+    });
   },
 
   moveToTarget: function(target, duration, linear) {
     this.get('map').flyTo({
       center: [target.lng, target.lat],
       zoom: target.zoom,
-      speed: 0.5,
+      speed: 0.8,
       curve: 1,
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,
@@ -154,13 +157,17 @@ export default Service.extend(Evented, MathHelper, {
 
   // Show and hiden chapter Preview
   setPreview: function (chapter) {
+    if(this.get('currentPreview')) {
+      this.get('currentPreview').remove();
+    }
+    
     let marker = new mapboxgl.LngLat(chapter.get('marker.lng'), chapter.get('marker.lat'));
     let coordinates = this.get('map').project(marker);
 
     coordinates.x = (coordinates.x < 0) ? 10 : coordinates.x;
     coordinates.y = (coordinates.y < 0) ? 0 : coordinates.y;
     coordinates.x = (coordinates.x > $(window).width()) ? $(window).width()-10 : coordinates.x;
-    coordinates.y = (coordinates.y > $(window).height()) ? $(window).height() : coordinates.y;
+    coordinates.y = (coordinates.y > $(window).height()) ? $(window).height()-140 : coordinates.y;
 
     let lnglat = this.get('map').unproject([coordinates.x, coordinates.y]);
 
