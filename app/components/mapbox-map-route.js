@@ -1,13 +1,20 @@
 import Ember from 'ember';
 
 const {
-  Component
+  Component,
+  computed,
+  inject
 } = Ember;
 
 export default Component.extend({
-  // TODO: zeigen wir erstmal nur highlights oder direkt alle chapters?
+  targetObject: computed.alias('parentView'),
+
+  // Targeting Service
+  targeting: inject.service('targeting'),
 
   didInsertElement: function () {
+    this.get('targeting').set('chapters', this.get('chapters'));
+
     let route = {
       "type": "Feature",
       "properties": {},
@@ -56,8 +63,8 @@ export default Component.extend({
         "interactive": true,
         "layout": {},
         "paint": {
-          "circle-color": "#888",
-          "circle-radius": 8
+          "circle-color": "#3f3f3f",
+          "circle-radius": 10
         }
       };
 
@@ -79,7 +86,7 @@ export default Component.extend({
         "source": routeId,
         "layout": {},
         "paint": {
-          "line-color": "#888",
+          "line-color": "#3f3f3f",
           "line-width": 1
         }
       };
