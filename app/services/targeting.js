@@ -70,6 +70,9 @@ export default Service.extend(Evented, MathHelper, {
     let transitionSpeed = this.calcTransitionSpeed(newChapter.get('camera')) || 2000;
 
     this.moveToTarget(newChapter.get('camera'), transitionSpeed, false);
+    run.later(this, function () {
+      this.setMood(newChapter.get('feeling'));
+    }, transitionSpeed-2000);
 
     run.next(this, function () {
       this.set('currentChapter', newChapter);
@@ -98,7 +101,6 @@ export default Service.extend(Evented, MathHelper, {
 
   showChapter: function () {
     this.set('isVisible', true);
-    this.setMood(this.get('currentChapter.feeling'));
   },
 
   moveEnd: function () {
@@ -193,7 +195,6 @@ export default Service.extend(Evented, MathHelper, {
       },
       distance = turf.distance(start, end, "miles");
 
-    console.log(distance);
     if(distance > 0) {
       let transitionSpeed = this.scale(
         distance,
