@@ -10,16 +10,27 @@
     story=model
   }}
 
-  {{mapbox-map
-    chapters=model.sortedChapters
-    identifier='map'
+  {{#mapbox-map
     mapSettings=mapSettings
+    identifier='map'
   }}
+    {{mapbox-map-route
+      chapters=model.sortedChapters
+      addSourceAndLayer='addSourceAndLayer'
+    }}
+  {{/mapbox-map}}
 
-  {{mapbox-map
-    chapters=model.sortedChapters
-    identifier='overview'
+  {{#mapbox-map
     mapSettings=overviewSettings
+    identifier='overview'
   }}
+    {{mapbox-map-current
+      chapters=model.sortedChapters
+      addSourceAndLayer='addSourceAndLayer'
+    }}
+  {{/mapbox-map}}
 {{/object-detection}}
-{{admin-options}}
+
+<!-- {{admin-options}} -->
+
+{{splash-screen}}
