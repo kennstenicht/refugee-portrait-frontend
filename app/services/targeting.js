@@ -233,5 +233,19 @@ export default Service.extend(Evented, MathHelper, {
     this.get('map').featuresIn({layer: 'route_chapters'}, bind(this, function (err, features) {
       this.set('routeChapters', features);
     }));
+  },
+
+  checkFeatureAt: function (e, touchType) {
+    this.get('map').featuresAt(e, {radius: 5, layer: 'route_chapters'}, bind(this, function (err, features) {
+      if(features) {
+        let feature = features.get('firstObject'),
+          chapter = this.get('chapters').findBy('id', feature.properties.id);
+        if(touchType == 'press') {
+          this.setPreview(chapter);
+        } else {
+          this.setChapter(chapter);
+        }
+      }
+    }));
   }
 });
