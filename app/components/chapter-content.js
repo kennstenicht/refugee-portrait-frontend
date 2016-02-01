@@ -3,11 +3,7 @@ import Gestures from 'ember-cli-tuio/mixins/gestures';
 
 const {
   Component,
-  computed,
-  $,
-  run: {
-    bind
-  }
+  computed
 } = Ember;
 
 export default Component.extend(Gestures, {
@@ -56,7 +52,6 @@ export default Component.extend(Gestures, {
 
   panstart: function (e) {
     this.set('closeHintPos', e.gesture.center);
-    console.log(e.gesture.center);
     this.set('closeHint', true);
     Ember.run.later(this, function () {
       this.set('closeHint', false);
