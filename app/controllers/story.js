@@ -12,7 +12,7 @@ export default Controller.extend({
   // Variables
   mapSettings: {
     style: "assets/map-styles/default.json",
-    lat: 44.68,
+    lat: 4.68,
     lng: 8.43,
     zoom: 4.2,
     bearing: 0,
@@ -25,11 +25,10 @@ export default Controller.extend({
 
   overviewSettings: {
     style: "mapbox://styles/kennstenicht/cik439q7u00349um68mwlzn5r",
-    lat: 45.221190,
-    lng: 21.621094,
-    zoom: 2.2,
-    bearing: 0,
-    interactive: false,
+    lat: 47.221190,
+    lng: 8.621094,
+    zoom: 2.5,
+    bearing: 0
   },
 
   // Targeting Service

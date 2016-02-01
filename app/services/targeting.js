@@ -201,7 +201,7 @@ export default Service.extend(Evented, MathHelper, {
         0,
         600,
         2000,
-        12000
+        2000
       );
 
       return transitionSpeed;

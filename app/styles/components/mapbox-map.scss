@@ -19,19 +19,18 @@
 
   &--overview {
     position: fixed;
-    top: -300px;
+    top: 0px;
     left: auto;
-    right: 20px;
+    right: 0px;
     bottom: auto;
-    width: 280px;
-    height: 280px;
+    width: 480px;
+    height: 300px;
     z-index: 2;
     opacity: 0;
-    transition: $transition-default;
+    transition: $transition-slow;
   }
 
   &--overview.mapbox-map--detail {
-    top: 20px;
     opacity: 1;
   }
 }

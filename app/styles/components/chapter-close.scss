@@ -21,6 +21,7 @@
   animation-duration: 4s;
   text-align: center;
   box-shadow: 0 0px 40px rgba($gray-darker, 0.4);
+  z-index: 10;
 }
 
 @each $mood, $map in $moods {
