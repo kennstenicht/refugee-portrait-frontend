@@ -30,6 +30,15 @@
     opacity: 0.1;
   }
 
+  &__map-gradient {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(44deg, rgba($gray-dark,0) 0%,rgba(19,5,5,0) 55%,rgba($gray-dark,0.7) 100%);
+  }
+
   &__journal {
     position: absolute;
     top: 50%;

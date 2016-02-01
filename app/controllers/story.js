@@ -24,7 +24,7 @@ export default Controller.extend({
   },
 
   overviewSettings: {
-    style: "assets/map-styles/default.json",
+    style: "mapbox://styles/kennstenicht/cik439q7u00349um68mwlzn5r",
     lat: 45.221190,
     lng: 21.621094,
     zoom: 2.2,
