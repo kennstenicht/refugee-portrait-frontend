@@ -30,6 +30,7 @@ export default Service.extend(Evented, MathHelper, {
 
     // Hide current chepter
     this.set('isVisible', false);
+    this.closePreview();
 
     run.later(this, function () {
       // // TODO: check direction of movment
@@ -93,22 +94,6 @@ export default Service.extend(Evented, MathHelper, {
         return 4 * (t < 0.5 ? t3 : 3 * (t - t2) + t3 - 0.75);
       }
     });
-    // this.get('map').easeTo({
-    //   center: [target.lng, target.lat],
-    //   zoom: target.zoom,
-    //   bearing: target.bearing || 0,
-    //   pitch: target.pitch || 0,
-    //   duration: duration,
-    //   easing: function (t) {
-    //     if (linear) return t;
-    //
-    //     if (t <= 0) return 0;
-    //     if (t >= 1) return 1;
-    //     var t2 = t * t,
-    //         t3 = t2 * t;
-    //     return 4 * (t < 0.5 ? t3 : 3 * (t - t2) + t3 - 0.75);
-    //   }
-    // });
   },
 
   showChapter: function () {
@@ -208,14 +193,14 @@ export default Service.extend(Evented, MathHelper, {
       },
       distance = turf.distance(start, end, "miles");
 
-
+    console.log(distance);
     if(distance > 0) {
       let transitionSpeed = this.scale(
         distance,
         0,
-        300,
+        600,
         2000,
-        20000
+        12000
       );
 
       return transitionSpeed;
@@ -239,15 +224,15 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   checkFeatureAt: function (e, touchType) {
-    this.get('map').featuresAt(e, {radius: 5, layer: 'route_chapters'}, bind(this, function (err, features) {
-      if(features) {
-        let feature = features.get('firstObject'),
-          chapter = this.get('chapters').findBy('id', feature.properties.id);
-        if(touchType == 'press') {
-          this.setPreview(chapter);
-        } else {
-          this.setChapter(chapter);
-        }
+    this.get('map').featuresAt(e, {radius: 20, layer: 'route_chapters'}, bind(this, function (err, features) {
+      if(err || !features.length) return;
+
+      let feature = features.get('firstObject'),
+        chapter = this.get('chapters').findBy('id', feature.properties.id);
+      if(touchType == 'press') {
+        this.setPreview(chapter);
+      } else {
+        this.setChapter(chapter);
       }
     }));
   }

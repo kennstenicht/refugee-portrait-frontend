@@ -34,7 +34,7 @@ export default Component.extend(Gestures, {
   gestures: ['pan', 'panstart'],
 
   recognizers: {
-    pan: {direction: Hammer.DIRECTION_HORIZONTAL}
+    pan: {direction: Hammer.DIRECTION_ALL, threshold: 50}
   },
 
   // Targeting Service

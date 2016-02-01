@@ -40,7 +40,7 @@ export default Component.extend(Gestures, {
   gestures: ['tap', 'press', 'pressup'],
 
   recognizers: {
-    tap: {threshold: 20},
+    tap: {threshold: 20, time: 480},
     press: {threshold: 20},
   },
 

@@ -33,7 +33,7 @@ export default Component.extend(MapboxGl, Gestures, {
   gestures: ['tap', 'press', 'pressup'],
 
   recognizers: {
-    tap: {threshold: 20},
+    tap: {threshold: 20, time: 480},
     press: {threshold: 20},
   },
 
@@ -47,6 +47,7 @@ export default Component.extend(MapboxGl, Gestures, {
   },
 
   tap: function (e) {
+    this.get('targeting').closePreview();
     this.get('targeting').checkFeatureAt([e.gesture.center.x, e.gesture.center.y], 'tap');
   },
 

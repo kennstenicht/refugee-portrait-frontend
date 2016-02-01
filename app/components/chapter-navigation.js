@@ -24,7 +24,7 @@ export default Component.extend(Gestures, {
   gestures: ['tap', 'pan'],
 
   recognizers: {
-    tap: {threshold: 20},
+    tap: {threshold: 20, time: 480},
     pan: {direction: Hammer.DIRECTION_HORIZONTAL}
   },
 

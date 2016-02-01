@@ -9,7 +9,7 @@
   top: 20px;
   left: 20px;
   background: {
-    color: map-get(map-get($moods, default), timeline-item);
+    color: map-get(map-get($moods, default), timeline-background);
     image: url('textures/grain-30.png');
     size: 40px 40px;
   }
@@ -25,7 +25,7 @@
 
 @each $mood, $map in $moods {
   .chapter-content--#{$mood} .chapter-close {
-    background-color: map-get($map, timeline-item);
+    background-color: map-get($map, timeline-background);
     color: map-get($map, font);
   }
 }
