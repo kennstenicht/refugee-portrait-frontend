@@ -64,15 +64,32 @@
   }
 
   &--big &__line {
-    background-color: transparent;
+    position: absolute;
+    top: 50px;
+    height: 79px !important;
+    width: 81px;
+    background: {
+      color: transparent;
+      repeat: no-repeat;
+    }
   }
 
   &--first {
     left: 30px;
   }
 
+  &--first &__line {
+    left: -30px;
+    background-image: url('icons/line/line-first-default.png');
+  }
+
   &--last {
     right: 30px;
+  }
+
+  &--last &__line {
+    right: -30px;
+    background-image: url('icons/line/line-last-default.png');
   }
 }
 

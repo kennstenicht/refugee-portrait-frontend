@@ -8,7 +8,7 @@ const {
 
 export default Component.extend(Gestures, {
   classNames: ['chapter-hotspot'],
-  classNameBindings: ['modifierType', 'modifierNumber', 'modifierOpen'],
+  classNameBindings: ['modifierType', 'modifierNumber', 'modifierOpen', 'modifierSecondary'],
 
   // BEM modifier
   modifierNumber: computed('number', function () {
@@ -22,6 +22,12 @@ export default Component.extend(Gestures, {
   modifierOpen: computed('open', function () {
     if(this.get('open')) {
       return 'chapter-hotspot--open';
+    }
+  }),
+
+  modifierSecondary: computed('hotspot.secondary', function () {
+    if(this.get('hotspot.secondary')) {
+      return 'chapter-hotspot--secondary';
     }
   }),
 

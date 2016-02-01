@@ -8,7 +8,6 @@
   &__icon {
     width: 40px;
     height: 40px;
-    background: $red;
     border-radius: 50%;
     background-size: 100% 100%;
     box-shadow: 0 0 8px rgba($gray-darker, 0.8);
@@ -21,6 +20,30 @@
 
   &--image &__icon {
     background-image: url('icons/hotspots/image.png');
+  }
+
+  &--info &__icon {
+    background-image: url('icons/hotspots/info.png');
+  }
+
+  &--audio &__icon {
+    background-image: url('icons/hotspots/audio.png');
+  }
+
+  &--secondary.chapter-hotspot--video &__icon {
+    background-image: url('icons/hotspots/video-secondary.png');
+  }
+
+  &--secondary.chapter-hotspot--image &__icon {
+    background-image: url('icons/hotspots/image-secondary.png');
+  }
+
+  &--secondary.chapter-hotspot--info &__icon {
+    background-image: url('icons/hotspots/info-secondary.png');
+  }
+
+  &--secondary.chapter-hotspot--audio &__icon {
+    background-image: url('icons/hotspots/audio-secondary.png');
   }
 
   &__overlay {

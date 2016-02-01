@@ -18,6 +18,7 @@ export default Model.extend({
   audio: attr('string'),
   type: attr('string'),
   source: attr('string'),
+  secondary: attr('boolean'),
 
   chapter: belongsTo('chapter', { async: true }),
 
