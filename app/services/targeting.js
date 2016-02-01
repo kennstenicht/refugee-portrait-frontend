@@ -24,10 +24,12 @@ export default Service.extend(Evented, MathHelper, {
 
   // New chapter is selected
   setChapter: function (newChapter) {
-    if(!this.get('isVisible') && this.get('currentChapter')) return;
+    if(!this.get('isVisible') && this.get('currentChapter')) {
+      return;
+    }
 
     // Hide current chepter
-      this.set('isVisible', false);
+    this.set('isVisible', false);
 
     run.later(this, function () {
       // // TODO: check direction of movment
@@ -40,7 +42,7 @@ export default Service.extend(Evented, MathHelper, {
       //   this.moveToChapter(newChapter);
       // }
 
-      this.moveToChapter(newChapter)
+      this.moveToChapter(newChapter);
     }, this.get('chapterAnimationSpeed'));
   },
 
@@ -78,8 +80,7 @@ export default Service.extend(Evented, MathHelper, {
     this.get('map').flyTo({
       center: [target.lng, target.lat],
       zoom: target.zoom,
-      speed: 0.8,
-      curve: 1,
+      duration: duration,
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,
       easing: function (t) {
@@ -91,7 +92,7 @@ export default Service.extend(Evented, MathHelper, {
             t3 = t2 * t;
         return 4 * (t < 0.5 ? t3 : 3 * (t - t2) + t3 - 0.75);
       }
-    })
+    });
     // this.get('map').easeTo({
     //   center: [target.lng, target.lat],
     //   zoom: target.zoom,
@@ -160,7 +161,7 @@ export default Service.extend(Evented, MathHelper, {
     if(this.get('currentPreview')) {
       this.get('currentPreview').remove();
     }
-    
+
     let marker = new mapboxgl.LngLat(chapter.get('marker.lng'), chapter.get('marker.lat'));
     let coordinates = this.get('map').project(marker);
 
@@ -180,45 +181,47 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   closePreview: function () {
-    this.get('currentPreview').remove();
+    if(this.get('currentPreview')) {
+      this.get('currentPreview').remove();
+    }
   },
 
 
   // Get distance between to points and map this value on a time range
   calcTransitionSpeed: function (target) {
-    // let center = this.get('map').getCenter(),
-    //   start = {
-    //     "type": "Feature",
-    //     "properties": {},
-    //     "geometry": {
-    //       "type": "Point",
-    //       "coordinates": [center.lng, center.lat]
-    //     }
-    //   },
-    //   end = {
-    //     "type": "Feature",
-    //     "properties": {},
-    //     "geometry": {
-    //       "type": "Point",
-    //       "coordinates": [target.lng, target.lat]
-    //     }
-    //   },
-    //   distance = turf.distance(start, end, "miles");
-    //
-    //
-    // if(distance > 0) {
-    //   let transitionSpeed = this.scale(
-    //     distance,
-    //     0,
-    //     300,
-    //     2000,
-    //     10000
-    //   );
-    //
-    //   return transitionSpeed;
-    // } else {
-    //   return 300;
-    // }
+    let center = this.get('map').getCenter(),
+      start = {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [center.lng, center.lat]
+        }
+      },
+      end = {
+        "type": "Feature",
+        "properties": {},
+        "geometry": {
+          "type": "Point",
+          "coordinates": [target.lng, target.lat]
+        }
+      },
+      distance = turf.distance(start, end, "miles");
+
+
+    if(distance > 0) {
+      let transitionSpeed = this.scale(
+        distance,
+        0,
+        300,
+        2000,
+        20000
+      );
+
+      return transitionSpeed;
+    } else {
+      return 300;
+    }
 
   },
 
