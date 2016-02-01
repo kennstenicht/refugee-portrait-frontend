@@ -24,10 +24,10 @@ export default Component.extend(Gestures, {
     this.$().css({
       top: this.get('closeHintPos.y') + "px",
       left: this.get('closeHintPos.x') + "px"
-    })
+    });
   },
 
-  tap: function (e) {
+  tap: function () {
     this.get('targeting').backToStory();
   }
 });
