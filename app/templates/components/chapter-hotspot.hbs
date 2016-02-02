@@ -10,6 +10,9 @@
     {{#if (eq hotspot.type "video")}}
       {{ivy-videojs src=hotspot.video setup=setup}}
     {{/if}}
+    {{#if (eq hotspot.type "audio")}}
+      {{ivy-videojs src=hotspot.audio setup=setup}}
+    {{/if}}
     {{#if (eq hotspot.type "image")}}
       <img src="{{hotspot.image}}">
     {{/if}}
