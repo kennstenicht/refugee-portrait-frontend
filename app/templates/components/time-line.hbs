@@ -1,4 +1,7 @@
 {{#time-line-item chapter=firstChapter class='time-line-item--big time-line-item--first'}}
+  <div class="time-line-item__number">
+    0{{firstChapter.number}}
+  </div>
   {{{firstChapter.title}}}
 {{/time-line-item}}
 <div class="time-line__squished time-line__squished--start">
@@ -34,6 +37,7 @@
             chapters=chapters
           }}
         {{/each}}
+        {{time-line-indicator}}
       </div>
     </div>
   </div>
@@ -54,5 +58,8 @@
   <div class="time-line__squished__progressbar"></div>
 </div>
 {{#time-line-item chapter=lastChapter class='time-line-item--big time-line-item--last'}}
+  <div class="time-line-item__number">
+    {{lastChapter.number}}
+  </div>
   {{{lastChapter.title}}}
 {{/time-line-item}}

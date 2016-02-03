@@ -2,7 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 3;
+  z-index: 2;
   cursor: pointer;
 
   &__icon {
@@ -78,7 +78,7 @@
   }
 
   &--open {
-    z-index: 4;
+    z-index: 999;
   }
 
   &--open &__overlay {
@@ -117,7 +117,7 @@
 
   &--3 .chapter-hotspot {
     &--0 {
-      transform: translate(300px, -120px);
+      transform: translate(300px, 20px);
     }
   }
 
@@ -135,7 +135,17 @@
 
   &--7 .chapter-hotspot {
     &--0 {
-      transform: translate(150px, -150px);
+      transform: translate(150px, -50px);
+    }
+
+    &--1 {
+      transform: translate(0px, 150px);
+    }
+  }
+
+  &--9 .chapter-hotspot {
+    &--0 {
+      transform: translate(170px, 80px);
     }
   }
 
@@ -147,13 +157,33 @@
 
   &--15 .chapter-hotspot {
     &--0 {
-      transform: translate(-100px, -80px);
+      transform: translate(100px, 40px);
+    }
+
+    &--1 {
+      transform: translate(-250px, -80px);
+    }
+
+    &--2 {
+      transform: translate(-180px, 100px);
     }
   }
 
-  &--15 .chapter-hotspot {
+  &--16 .chapter-hotspot {
     &--0 {
-      transform: translate(100px, 200px);
+      transform: translate(-50px, -20px);
+    }
+  }
+
+  &--17 .chapter-hotspot {
+    &--0 {
+      transform: translate(200px, 100px);
+    }
+  }
+
+  &--18 .chapter-hotspot {
+    &--0 {
+      transform: translate(250px, 20px);
     }
   }
 
@@ -169,9 +199,21 @@
     }
   }
 
+  &--22 .chapter-hotspot {
+    &--0 {
+      transform: translate(100px, -110px);
+    }
+  }
+
   &--23 .chapter-hotspot {
     &--0 {
       transform: translate(-500px, 110px);
+    }
+  }
+
+  &--47 .chapter-hotspot {
+    &--0 {
+      transform: translate(80px, -250px);
     }
   }
 }

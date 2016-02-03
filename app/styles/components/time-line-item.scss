@@ -58,7 +58,7 @@
     height: 50px;
     border-radius: 5px;
     transform: translate(0px, 0px);
-    padding: 11px;
+    padding: 11px 0px;
     @include inuit-font-size(13px);
     line-height: 1.2em;
   }
@@ -67,11 +67,19 @@
     position: absolute;
     top: 50px;
     height: 79px !important;
-    width: 81px;
+    width: 85px;
     background: {
       color: transparent;
       repeat: no-repeat;
     }
+  }
+
+  &--big &__number {
+    position: absolute;
+    bottom: -18px;
+    left: 11px;
+    @include inuit-font-size(69px);
+    opacity: 0.2;
   }
 
   &--first {

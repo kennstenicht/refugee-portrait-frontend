@@ -17,6 +17,12 @@
 .mapboxgl-popup {
   z-index: 999;
 }
+
+.mapboxgl-popup-close-button {
+  font-size: 32px;
+  right: 15px;
+}
+
 .mapboxgl-popup-content {
   background: $green;
   color: $white;

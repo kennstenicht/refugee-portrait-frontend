@@ -8,6 +8,7 @@
   transform: translate(-8px, 0);
   text-align: center;
   color: map-get(map-get($moods, default), font);
+  padding: 5px 0 0;
 
   &--active {
     opacity: 1;

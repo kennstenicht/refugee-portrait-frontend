@@ -22,7 +22,7 @@ export default Component.extend(MathHelper, {
   }),
 
   // Attributes
-  style: computed('indicator', 'targeting.transitionSpeed', function () {
+  style: computed('indicator', 'transitionSpeed', function () {
     let position = this.scale(
       this.get('indicator.unixDate'),
       moment(this.get('indicator.story.start')).format('X'),
@@ -31,7 +31,7 @@ export default Component.extend(MathHelper, {
       100
     );
 
-    return 'transition-duration: ' + this.get('targeting.transitionSpeed') + 'ms; left: ' + position + '%';
+    return 'transition-duration: ' + this.get('transitionSpeed') + 'ms; left: ' + position + '%';
   }),
 
   // Targeting Service
@@ -43,6 +43,14 @@ export default Component.extend(MathHelper, {
       return this.get('targeting.currentPreview');
     } else if(this.get('targeting.currentChapter')) {
       return this.get('targeting.currentChapter');
+    }
+  }),
+
+  transitionSpeed: computed('targeting.currentPreview', 'targeting.currentChapter', function () {
+    if(this.get('targeting.currentPreview')) {
+      return 300;
+    } else if(this.get('targeting.currentChapter')) {
+      return this.get('targeting.transitionSpeed');
     }
   })
 });

@@ -1,3 +1,30 @@
+@keyframes minimalMovement {
+    0% {left: 0;}
+    50% {left: 10px;}
+    100% {left: 0;}
+}
+
+@keyframes smallMovement {
+    0% {left: 0;}
+    50% {left: 30px;}
+    100% {left: 0px;}
+}
+
+@keyframes upAndDown {
+    0% {transform: translate(0,0);}
+    5% {transform: translate(0,-1px);}
+    10% {transform: translate(0,0);}
+    20% {transform: translate(0,-1px);}
+    25% {transform: translate(0,0);}
+    30% {transform: translate(0,-1px);}
+    35% {transform: translate(0,0);}
+    40% {transform: translate(0,-1px);}
+    45% {transform: translate(0,0);}
+    70% {transform: translate(0,-1px);}
+    75% {transform: translate(0,0);}
+    100% {transform: translate(0,0);}
+}
+
 .chapter-content {
   position: fixed;
   top: 0px;
@@ -21,13 +48,15 @@
 
   &__background {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
     z-index: 2;
     background-size: cover;
     opacity: 0.1;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
   }
 
   &__journal {
@@ -81,8 +110,6 @@
 
   &__weather {
     position: fixed;
-    top: 500px;
-    right: 300px;
     z-index: 3;
   }
 
@@ -96,9 +123,11 @@
     }
   }
 
+
+
   // Custom Style of Chapter 2
   &--1 &__background {
-    opacity: 0.2;
+    opacity: 0.5;
   }
 
   &--1 &__journal {
@@ -106,15 +135,28 @@
     transform: translate(-800px, -400px);
   }
 
+
+
   // Custom Style of Chapter 2
   &--2 &__background {
-    opacity: 0.2;
+    opacity: 0.05;
   }
 
   &--2 &__journal {
-    width: 700px;
-    transform: translate(150px, 110px);
+    width: 550px;
+    transform: translate(150px, 0px);
   }
+
+  &--2 &__weather {
+    top: 60px;
+    left: 60px;
+    width: 311px;
+    height: 247px;
+    background-image: url(images/weather/2.png);
+    transform: rotate(-6deg);
+  }
+
+
 
   // Custom Style of Chapter 3
   &--3 &__background {
@@ -122,8 +164,10 @@
   }
 
   &--3 &__journal {
-    transform: translate(-650px, -230px);
+    transform: translate(-650px, -230px) rotate(-12deg);
   }
+
+
 
   // Custom Style of Chapter 4
   &--4 &__background {
@@ -135,29 +179,72 @@
     transform: translate(0px, -30px);
   }
 
+  &--4 &__weather {
+    top: 60px;
+    left: 60px;
+    width: 311px;
+    height: 247px;
+    background-image: url(images/weather/2.png);
+    transform: rotate(-6deg);
+  }
+
+
+
   // Custom Style of Chapter 5
   &--5 &__background {
-    opacity: 0.2;
+    opacity: 0.1;
+    animation-name: minimalMovement;
+    animation-duration: 8s;
   }
 
   &--5 &__journal {
-    transform: translate(100px, 50px);
+    transform: translate(-700px, -350px);
   }
+
+  &--5 &__weather {
+    bottom: 190px;
+    right: 60px;
+    width: 311px;
+    height: 247px;
+    background-image: url(images/weather/2.png);
+    transform: rotate(-1deg) skewX(30deg);
+  }
+
+
 
   // Custom Style of Chapter 6
   &--6 &__journal {
     transform: translate(230px, 100px);
   }
 
+
+
   // Custom Style of Chapter 7
   &--7 &__journal {
     width: 600px;
-    transform: translate(-700px, -270px) rotate(6deg);
+    transform: translate(-753px, -224px);
   }
+
+
+
+  // Custom Style of Chapter 8
+  &--8 &__background {
+    animation-name: upAndDown;
+    animation-duration: 4s;
+  }
+
+  &--8 &__journal {
+    width: 600px;
+    transform: translate(-500px, -250px);
+  }
+
+
 
   // Custom Style of Chapter 10
   &--10 &__background {
     opacity: 0.05;
+    animation-name: minimalMovement;
+    animation-duration: 8s;
   }
 
   &--10 &__journal {
@@ -165,15 +252,66 @@
     transform: translate(-700px, -350px);
   }
 
+
+
   // Custom Style of Chapter 14
-  &--14 &__journal {
-    transform: translate(-50px, -150px);
+  &--12 &__journal {
+    transform: translate(-600px, 50px);
+    width: 650px;
   }
 
+
+
+  // Custom Style of Chapter 14
+  &--14 &__journal {
+    transform: translate(-700px, -350px);
+  }
+
+
+
+  // Custom Style of Chapter 15
+  &--15 &__journal {
+    transform: translate(0px, -250px);
+  }
+
+
+
+  // Custom Style of Chapter 16
+  &--16 &__journal {
+    transform: translate(-150px, 100px);
+  }
+
+
+
+  // Custom Style of Chapter 17
+  &--17 &__journal {
+    background: {
+      color: #ebebeb;
+      image: url(textures/grain-10.png);
+    }
+    padding: 45px 100px 43px 300px;
+    width: 952px;
+    transform: translate(-971px, -245px);
+  }
+
+
+
+  // Custom Style of Chapter 18
+  &--18 &__journal {
+    width: 750px;
+    transform: translate(-820px, -200px);
+  }
+
+
+
+  // Custom Style of Chapter 19
   &--19 &__journal {
     transform: translate(-400px, -100px);
   }
 
+
+
+  // Custom Style of Chapter 20
   &--20 &__journal {
     background: {
       color: #ebebeb;
@@ -184,18 +322,43 @@
     transform: translate(-668px, -236px);
   }
 
-  &--22 &__journal {
-    width: 600px;
-    transform: translate(-400px, -100px);
+
+
+  // Custom Style of Chapter 22
+  &--21 &__journal {
+    width: 750px;
+    transform: translate(-50px, -75px) rotate(23deg);
   }
 
+
+
+  // Custom Style of Chapter 22
+  &--22 &__journal {
+    width: 600px;
+    transform: translate(-700px, -200px);
+  }
+
+
+
+  // Custom Style of Chapter 23
   &--23 &__journal {
     width: 600px;
     transform: translate(-50px, -100px);
   }
 
+
+
+  // Custom Style of Chapter 24
   &--24 &__journal {
     width: 600px;
     transform: translate(100px, -100px);
+  }
+
+
+
+  // Custom Style of Chapter 24
+  &--47 &__journal {
+    width: 600px;
+    transform: translate(-700px, -150px);
   }
 }
