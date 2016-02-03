@@ -1,0 +1,11 @@
+.time-line-progressbar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  background: {
+    color: $green;
+    image: url('textures/grain-10.png');
+  };
+  width: 0px;
+}

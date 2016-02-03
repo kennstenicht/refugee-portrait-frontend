@@ -14,6 +14,7 @@ const {
 
 export default Service.extend(Evented, MathHelper, {
   currentChapter: null,
+  currentPreview: null,
   chapterAnimationSpeed: 1000,
   overview: true,
   isVisible: false,
@@ -68,6 +69,7 @@ export default Service.extend(Evented, MathHelper, {
 
   moveToChapter: function (newChapter) {
     let transitionSpeed = this.calcTransitionSpeed(newChapter.get('camera')) || 2000;
+    this.set('transitionSpeed', transitionSpeed);
 
     this.moveToTarget(newChapter.get('camera'), transitionSpeed, false);
     run.later(this, function () {
@@ -145,8 +147,10 @@ export default Service.extend(Evented, MathHelper, {
 
   // Show and hiden chapter Preview
   setPreview: function (chapter) {
-    if(this.get('currentPreview')) {
-      this.get('currentPreview').remove();
+    this.set('currentPreview', chapter);
+
+    if(this.get('previewPopup')) {
+      this.get('previewPopup').remove();
     }
 
     let marker = new mapboxgl.LngLat(chapter.get('marker.lng'), chapter.get('marker.lat'));
@@ -164,12 +168,13 @@ export default Service.extend(Evented, MathHelper, {
       .setHTML('<div class="mapboxgl-popup-content__location">' + chapter.get('location') + '</div><div class="mapboxgl-popup-content__header"><div class="mapboxgl-popup-content__header__number">' + chapter.get('number') + '</div><div class="mapboxgl-popup-content__header__separator"></div><div class="mapboxgl-popup-content__header__title">' + chapter.get('title') + '</div></div><div class="mapboxgl-popup-content__description">' + chapter.get('excerpt') + '</div>')
       .addTo(this.get('map'));
 
-    this.set('currentPreview', preview);
+    this.set('previewPopup', preview);
   },
 
   closePreview: function () {
-    if(this.get('currentPreview')) {
-      this.get('currentPreview').remove();
+    if(this.get('previewPopup')) {
+      this.get('previewPopup').remove();
+      this.set('currentPreview', '');
     }
   },
 

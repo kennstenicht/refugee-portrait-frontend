@@ -46,26 +46,7 @@ export default Component.extend(Gestures, MathHelper, {
   // Targeting Service
   targeting: inject.service('targeting'),
 
-  listen: on('init', function() {
-    this.get('targeting').on('newChapter', this, 'setProgressbar');
-  }),
-
-  // Targeting Functions
-  setProgressbar: function (chapter, speed) {
-    let position = 0;
-    if(chapter) {
-      position = this.scale(
-        chapter.get('unixDate'),
-        moment(this.get('story.start')).format('X'),
-        moment(this.get('story.end')).format('X'),
-        0,
-        100
-      );
-    }
-
-    $('.time-line__container__frame__slider__progressbar__indicator').animate({width: position + '%'}, speed, 'easeOutCirc');
-  },
-
+  // Computed Properties
   firstChapter: computed('chapters', function () {
     return this.get('chapters').get('firstObject');
   }),

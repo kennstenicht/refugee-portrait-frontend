@@ -1,0 +1,32 @@
+.time-line-indicator {
+  position: absolute;
+  z-index: 3;
+  top: 2px;
+  left: 0px;
+  opacity: 0;
+  visibility: hidden;
+  animation-timing-function: ease-in-out;
+  transform: translate(-50%, 0);
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__tip {
+    width: 8px;
+    height: 8px;
+    background: $green;
+    transform: rotate(45deg);
+    margin: 0 auto;
+  }
+
+  &__date {
+    margin-top: -5px;
+    background-color: $green;
+    color: $white;
+    @extend %mono-font;
+    @include inuit-font-size($small-font);
+    padding: 2px 15px 0px;
+  }
+}
