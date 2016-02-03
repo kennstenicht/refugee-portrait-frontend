@@ -10,7 +10,7 @@
   left: 20px;
   background: {
     color: map-get(map-get($moods, default), timeline-background);
-    image: url('textures/grain-30.png');
+    image: url('textures/grain-10.png');
     size: 40px 40px;
   }
   color: map-get(map-get($moods, default), font);

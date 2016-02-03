@@ -18,5 +18,6 @@ export default Component.extend(Gestures, {
   tap: function (e) {
     this.sendAction('callback');
     e.stopPropagation();
+    return;
   }
 });
