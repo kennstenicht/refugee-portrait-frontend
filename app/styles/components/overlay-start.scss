@@ -1,0 +1,18 @@
+.overlay-start {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  z-index: 999;
+  background-image: url(images/start.jpg);
+  background-size: cover;
+  opacity: 1;
+  visibility: visible;
+  transition: $transition-default;
+
+  &--hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
