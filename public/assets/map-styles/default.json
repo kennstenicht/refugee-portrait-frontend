@@ -82,10 +82,6 @@
       "type": "vector"
     }
   },
-  "transition": {
-    "duration": 2000,
-    "delay": 0
-  },
   "sprite": "mapbox://sprites/kennstenicht/ciihh5j0x00clbhm0oxxahbad",
   "glyphs": "mapbox://fonts/kennstenicht/{fontstack}/{range}.pbf",
   "layers": [
@@ -93,29 +89,30 @@
       "id": "background",
       "type": "background",
       "paint": {
-        "background-color": "rgba(235,235,235,1)"
       },
       "interactive": true,
       "metadata": {
         "mapbox:group": "1444722292208.1165"
       },
+      "paint.default": {
+        "background-color": "rgba(235,235,235,1)"
+      },
       "paint.danger": {
         "background-color": "rgba(0,0,0,1)"
       },
       "paint.hope": {
-        "background-color": "rgba(242,235,191,1)"
+        "background-color": "rgba(242,228,184,1)"
       },
       "paint.fear": {
-        "background-color": "rgba(0,0,0,1)",
-        "background-opacity": 1
+        "background-color": "rgba(0,0,0,1)"
+      },
+      "paint.lost": {
+        "background-color": "rgba(199,199,199,1)"
       }
     },
     {
       "id": "background_texture",
       "paint": {
-        "background-color": "#dedede",
-        "background-pattern": "texture-style-7",
-        "background-opacity": 0.35
       },
       "interactive": true,
       "type": "background",
@@ -125,6 +122,11 @@
       "metadata": {
         "mapbox:group": "1444722292208.1165"
       },
+      "paint.default": {
+        "background-color": "#dedede",
+        "background-pattern": "texture-style-7",
+        "background-opacity": 0.35
+      },
       "paint.danger": {
         "background-color": "#dedede",
         "background-pattern": "texture-style-7",
@@ -133,9 +135,14 @@
       "paint.hope": {
         "background-color": "#dedede",
         "background-pattern": "texture-style-7",
-        "background-opacity": 0.35
+        "background-opacity": 0.25
       },
       "paint.fear": {
+        "background-color": "#dedede",
+        "background-pattern": "texture-style-7",
+        "background-opacity": 0.35
+      },
+      "paint.lost": {
         "background-color": "#dedede",
         "background-pattern": "texture-style-7",
         "background-opacity": 0.35
@@ -175,6 +182,9 @@
       "source": "mapbox",
       "id": "admin_country",
       "paint": {
+      },
+      "source-layer": "admin",
+      "paint.default": {
         "line-color": "#8b8a8a",
         "line-width": {
           "base": 1.3,
@@ -190,7 +200,6 @@
           ]
         }
       },
-      "source-layer": "admin",
       "paint.danger": {
         "line-color": "#8b8a8a",
         "line-width": {
@@ -225,6 +234,22 @@
       },
       "paint.fear": {
         "line-color": "#8b8a8a",
+        "line-width": {
+          "base": 1.3,
+          "stops": [
+            [
+              3,
+              0.5
+            ],
+            [
+              22,
+              15
+            ]
+          ]
+        }
+      },
+      "paint.lost": {
+        "line-color": "rgba(255,255,255,1)",
         "line-width": {
           "base": 1.3,
           "stops": [
@@ -243,8 +268,6 @@
     {
       "id": "landuse_forest",
       "paint": {
-        "fill-color": "rgba(218,224,218,1)",
-        "fill-antialias": false
       },
       "interactive": true,
       "metadata": {
@@ -256,24 +279,63 @@
       "type": "fill",
       "source": "mapbox",
       "source-layer": "landuse",
+      "paint.default": {
+        "fill-color": "rgba(218,224,218,1)",
+        "fill-antialias": false
+      },
       "paint.danger": {
-        "fill-color": "rgba(5,10,5,1)",
+        "fill-color": "rgba(13,31,13,1)",
         "fill-antialias": false,
-        "fill-opacity": 1
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              0,
+              0.2
+            ],
+            [
+              22,
+              0.34
+            ]
+          ]
+        }
       },
       "paint.hope": {
-        "fill-color": "rgba(168,245,144,1)",
+        "fill-color": "rgba(187,227,148,1)",
         "fill-antialias": false
       },
       "paint.fear": {
-        "fill-color": "rgba(4,8,4,1)",
+        "fill-color": "rgba(13,31,13,1)",
         "fill-antialias": false,
-        "fill-opacity": 1
+        "fill-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              0,
+              0.2
+            ],
+            [
+              22,
+              0.34
+            ]
+          ]
+        }
+      },
+      "paint.lost": {
+        "fill-color": "#92a192",
+        "fill-antialias": false
       }
     },
     {
       "id": "landuse_forest_texture",
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1444722271819.0242"
+      },
+      "ref": "landuse_forest",
+      "paint.default": {
         "fill-color": "rgba(170,189,170,1)",
         "fill-pattern": "texture-style-7",
         "fill-antialias": false,
@@ -284,11 +346,6 @@
         ],
         "fill-translate-anchor": "viewport"
       },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1444722271819.0242"
-      },
-      "ref": "landuse_forest",
       "paint.danger": {
         "fill-color": "rgba(170,189,170,1)",
         "fill-translate-anchor": "viewport",
@@ -317,15 +374,37 @@
         "fill-antialias": false,
         "fill-opacity": 0.08,
         "fill-translate": [
-          10,
-          10
+          0,
+          0
         ],
         "fill-pattern": "texture-06"
+      },
+      "paint.lost": {
+        "fill-color": "rgba(170,189,170,1)",
+        "fill-pattern": "texture-5",
+        "fill-antialias": false,
+        "fill-opacity": 0.2,
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-translate-anchor": "viewport"
       }
     },
     {
       "id": "landuse_forest_border",
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1444722271819.0242"
+      },
+      "layout": {
+      },
+      "type": "line",
+      "source": "mapbox",
+      "source-layer": "landuse",
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": {
           "base": 1,
@@ -350,15 +429,6 @@
         "line-gap-width": 0,
         "line-width": 1
       },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1444722271819.0242"
-      },
-      "layout": {
-      },
-      "type": "line",
-      "source": "mapbox",
-      "source-layer": "landuse",
       "paint.danger": {
         "line-translate-anchor": "map",
         "line-opacity": {
@@ -378,7 +448,7 @@
           0,
           0
         ],
-        "line-color": "rgba(5,10,5,1)",
+        "line-color": "rgba(0,0,0,1)",
         "line-width": 40,
         "line-blur": 20
       },
@@ -413,11 +483,11 @@
           "base": 1,
           "stops": [
             [
-              12,
+              1,
               0.4
             ],
             [
-              22,
+              16,
               1
             ]
           ]
@@ -426,11 +496,23 @@
           0,
           0
         ],
-        "line-color": "rgba(2,8,2,1)",
-        "line-gap-width": 0,
-        "line-blur": 20,
+        "line-color": "rgba(0,0,0,1)",
+        "line-width": 40,
+        "line-blur": 20
+      },
+      "paint.lost": {
+        "line-pattern": "",
+        "line-blur": 30,
+        "line-color": "#92a192",
         "line-offset": 0,
-        "line-width": 40
+        "line-translate-anchor": "map",
+        "line-width": 30,
+        "line-opacity": 1,
+        "line-translate": [
+          0,
+          0
+        ],
+        "line-gap-width": 0
       }
     },
     {
@@ -444,6 +526,12 @@
         "park"
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1444722256884.166"
+      },
+      "paint.default": {
         "fill-color": "rgba(229,235,221,1)",
         "fill-translate-anchor": "map",
         "fill-translate": [
@@ -452,21 +540,17 @@
         ],
         "fill-opacity": 1
       },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1444722256884.166"
-      },
       "paint.danger": {
-        "fill-color": "rgba(5,10,5,1)",
+        "fill-color": "rgba(13,31,13,1)",
         "fill-translate-anchor": "map",
         "fill-translate": [
           0,
           0
         ],
-        "fill-opacity": 1
+        "fill-opacity": 0
       },
       "paint.hope": {
-        "fill-color": "rgba(168,245,144,1)",
+        "fill-color": "rgba(187,227,148,1)",
         "fill-translate-anchor": "map",
         "fill-translate": [
           0,
@@ -475,7 +559,16 @@
         "fill-opacity": 1
       },
       "paint.fear": {
-        "fill-color": "rgba(4,8,4,1)",
+        "fill-color": "rgba(13,31,13,1)",
+        "fill-translate-anchor": "map",
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-opacity": 0
+      },
+      "paint.lost": {
+        "fill-color": "#92a192",
         "fill-translate-anchor": "map",
         "fill-translate": [
           0,
@@ -500,6 +593,9 @@
       "source": "mapbox",
       "id": "landuse_park_border",
       "paint": {
+      },
+      "source-layer": "landuse",
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": {
           "base": 1,
@@ -524,27 +620,16 @@
         "line-gap-width": 0,
         "line-width": 1
       },
-      "source-layer": "landuse",
       "paint.danger": {
-        "line-pattern": "texture-5",
-        "line-opacity": {
-          "base": 1,
-          "stops": [
-            [
-              14,
-              0.2
-            ],
-            [
-              22,
-              0.9
-            ]
-          ]
-        },
+        "line-translate-anchor": "viewport",
+        "line-opacity": 0,
         "line-translate": [
           2,
           2
         ],
-        "line-translate-anchor": "viewport"
+        "line-color": "rgba(0,0,0,1)",
+        "line-blur": 20,
+        "line-width": 40
       },
       "paint.hope": {
         "line-pattern": "texture-5",
@@ -573,6 +658,17 @@
       },
       "paint.fear": {
         "line-translate-anchor": "viewport",
+        "line-opacity": 0,
+        "line-translate": [
+          2,
+          2
+        ],
+        "line-color": "rgba(0,0,0,1)",
+        "line-blur": 20,
+        "line-width": 40
+      },
+      "paint.lost": {
+        "line-width": 30,
         "line-opacity": {
           "base": 1,
           "stops": [
@@ -587,35 +683,26 @@
           ]
         },
         "line-translate": [
-          2,
-          2
+          0,
+          0
         ],
-        "line-color": "rgba(4,8,4,1)",
-        "line-width": 40,
-        "line-blur": 20,
+        "line-translate-anchor": "viewport",
+        "line-blur": 30,
         "line-offset": 0,
-        "line-gap-width": 0
+        "line-gap-width": 0,
+        "line-color": "#92a192"
       }
     },
     {
       "id": "landuse_park_texture",
       "paint": {
-        "fill-color": "#d2edae",
-        "fill-translate-anchor": "map",
-        "fill-translate": [
-          0,
-          0
-        ],
-        "fill-opacity": 0.4,
-        "fill-pattern": "texture-05",
-        "fill-antialias": true
       },
       "interactive": true,
       "metadata": {
         "mapbox:group": "1444722256884.166"
       },
       "ref": "landuse_park",
-      "paint.danger": {
+      "paint.default": {
         "fill-color": "#d2edae",
         "fill-translate-anchor": "map",
         "fill-translate": [
@@ -623,6 +710,17 @@
           0
         ],
         "fill-opacity": 0.4,
+        "fill-pattern": "texture-05",
+        "fill-antialias": true
+      },
+      "paint.danger": {
+        "fill-color": "#d2edae",
+        "fill-translate-anchor": "map",
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-opacity": 0,
         "fill-pattern": "texture-05",
         "fill-antialias": true
       },
@@ -633,7 +731,7 @@
           0,
           0
         ],
-        "fill-opacity": 0.4,
+        "fill-opacity": 0.2,
         "fill-pattern": "texture-05",
         "fill-antialias": true
       },
@@ -644,8 +742,19 @@
           0,
           0
         ],
-        "fill-opacity": 0.4,
+        "fill-opacity": 0,
         "fill-pattern": "texture-05",
+        "fill-antialias": true
+      },
+      "paint.lost": {
+        "fill-color": "#d2edae",
+        "fill-translate-anchor": "map",
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-opacity": 0.1,
+        "fill-pattern": "texture-5",
         "fill-antialias": true
       }
     },
@@ -666,9 +775,11 @@
       "source": "mapbox",
       "id": "landuse_industrial",
       "paint": {
-        "fill-color": "rgba(242,240,240,1)"
       },
       "source-layer": "landuse",
+      "paint.default": {
+        "fill-color": "rgba(242,240,240,1)"
+      },
       "paint.danger": {
         "fill-color": "rgba(0,0,0,1)"
       },
@@ -677,6 +788,10 @@
       },
       "paint.fear": {
         "fill-color": "rgba(0,0,0,1)"
+      },
+      "paint.lost": {
+        "fill-color": "rgba(242,240,240,1)",
+        "fill-opacity": 0
       }
     },
     {
@@ -685,13 +800,15 @@
       "source": "mapbox",
       "source-layer": "water",
       "paint": {
-        "fill-color": "rgba(221,232,235,1)",
-        "fill-opacity": 0,
-        "fill-antialias": true
       },
       "interactive": true,
       "metadata": {
         "mapbox:group": "1444247253728.9062"
+      },
+      "paint.default": {
+        "fill-color": "rgba(221,232,235,1)",
+        "fill-opacity": 0,
+        "fill-antialias": true
       },
       "paint.danger": {
         "fill-color": "rgba(255,0,0,1)",
@@ -715,22 +832,29 @@
           0,
           0
         ]
+      },
+      "paint.lost": {
+        "fill-color": "rgba(221,232,235,1)",
+        "fill-opacity": 0,
+        "fill-antialias": true
       }
     },
     {
       "id": "water",
       "paint": {
-        "fill-color": "rgba(221,232,235,1)",
-        "fill-opacity": 1,
-        "fill-antialias": true
       },
       "interactive": true,
       "metadata": {
         "mapbox:group": "1444247253728.9062"
       },
       "ref": "water_translate",
+      "paint.default": {
+        "fill-color": "rgba(221,232,235,1)",
+        "fill-opacity": 1,
+        "fill-antialias": true
+      },
       "paint.danger": {
-        "fill-color": "rgba(10,10,15,1)",
+        "fill-color": "rgba(17,17,23,1)",
         "fill-opacity": 1,
         "fill-antialias": true
       },
@@ -740,7 +864,12 @@
         "fill-antialias": true
       },
       "paint.fear": {
-        "fill-color": "rgba(27,27,54,1)",
+        "fill-color": "rgba(17,17,23,1)",
+        "fill-opacity": 1,
+        "fill-antialias": true
+      },
+      "paint.lost": {
+        "fill-color": "#bfc8e3",
         "fill-opacity": 1,
         "fill-antialias": true
       }
@@ -748,6 +877,13 @@
     {
       "id": "water_texture",
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1444247253728.9062"
+      },
+      "ref": "water_translate",
+      "paint.default": {
         "fill-color": "#a0cfdf",
         "fill-opacity": 0.05,
         "fill-antialias": true,
@@ -757,14 +893,9 @@
         ],
         "fill-pattern": "texture-style-6"
       },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1444247253728.9062"
-      },
-      "ref": "water_translate",
       "paint.danger": {
         "fill-color": "#a0cfdf",
-        "fill-opacity": 0.6,
+        "fill-opacity": 0.3,
         "fill-antialias": true,
         "fill-translate": [
           0,
@@ -784,13 +915,23 @@
       },
       "paint.fear": {
         "fill-color": "#a0cfdf",
-        "fill-opacity": 0.6,
+        "fill-opacity": 0.3,
         "fill-antialias": true,
         "fill-translate": [
           0,
           0
         ],
         "fill-pattern": "texture-3"
+      },
+      "paint.lost": {
+        "fill-color": "#a0cfdf",
+        "fill-opacity": 0.05,
+        "fill-antialias": true,
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-pattern": "texture-style-7"
       }
     },
     {
@@ -799,6 +940,18 @@
       "source": "mapbox",
       "source-layer": "water",
       "paint": {
+      },
+      "interactive": true,
+      "layout": {
+        "line-join": "miter",
+        "line-cap": "square",
+        "line-miter-limit": 2,
+        "visibility": "visible"
+      },
+      "metadata": {
+        "mapbox:group": "1444247253728.9062"
+      },
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-width": {
           "base": 1.15,
@@ -822,16 +975,6 @@
         ],
         "line-offset": 0
       },
-      "interactive": true,
-      "layout": {
-        "line-join": "miter",
-        "line-cap": "square",
-        "line-miter-limit": 2,
-        "visibility": "visible"
-      },
-      "metadata": {
-        "mapbox:group": "1444247253728.9062"
-      },
       "paint.danger": {
         "line-translate": [
           0,
@@ -853,7 +996,7 @@
         "line-opacity": 0.2,
         "line-blur": 20,
         "line-gap-width": 0,
-        "line-color": "rgba(28,13,74,1)"
+        "line-color": "rgba(74,13,14,1)"
       },
       "paint.hope": {
         "line-pattern": "texture-5",
@@ -896,10 +1039,22 @@
             ]
           ]
         },
-        "line-opacity": 0.2,
+        "line-opacity": 0,
         "line-blur": 20,
         "line-gap-width": 0,
-        "line-color": "rgba(28,13,74,1)"
+        "line-color": "rgba(74,13,14,1)"
+      },
+      "paint.lost": {
+        "line-offset": 0,
+        "line-color": "#bfc8e3",
+        "line-opacity": 1,
+        "line-blur": 20,
+        "line-gap-width": 0,
+        "line-translate": [
+          2,
+          2
+        ],
+        "line-width": 20
       }
     },
     {
@@ -922,6 +1077,12 @@
         ]
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1444247253728.9062"
+      },
+      "paint.default": {
         "line-color": "rgba(151,198,219,1)",
         "line-width": {
           "base": 1.4,
@@ -944,10 +1105,6 @@
           10
         ],
         "line-translate-anchor": "viewport"
-      },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1444247253728.9062"
       },
       "paint.danger": {
         "line-color": "rgba(151,198,219,1)",
@@ -1020,6 +1177,30 @@
           10
         ],
         "line-translate-anchor": "viewport"
+      },
+      "paint.lost": {
+        "line-color": "rgba(151,198,219,1)",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              8,
+              0.5
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-pattern": "texture-5",
+        "line-opacity": 0.2,
+        "line-gap-width": 0,
+        "line-translate": [
+          10,
+          10
+        ],
+        "line-translate-anchor": "viewport"
       }
     },
     {
@@ -1030,6 +1211,13 @@
       "source": "mapbox",
       "id": "aeroway",
       "paint": {
+      },
+      "source-layer": "aeroway",
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1452763742562.3994"
+      },
+      "paint.default": {
         "line-color": "rgba(222,222,222,1)",
         "line-width": {
           "base": 1.15,
@@ -1044,11 +1232,6 @@
             ]
           ]
         }
-      },
-      "source-layer": "aeroway",
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1452763742562.3994"
       },
       "paint.danger": {
         "line-color": "rgba(222,222,222,1)",
@@ -1084,6 +1267,23 @@
         }
       },
       "paint.fear": {
+        "line-color": "rgba(222,222,222,1)",
+        "line-width": {
+          "base": 1.15,
+          "stops": [
+            [
+              11,
+              0
+            ],
+            [
+              22,
+              12
+            ]
+          ]
+        },
+        "line-opacity": 0
+      },
+      "paint.lost": {
         "line-color": "rgba(222,222,222,1)",
         "line-width": {
           "base": 1.15,
@@ -1118,9 +1318,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_94",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "rgba(66,66,66,1)"
@@ -1131,6 +1333,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "rgba(66,66,66,1)"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1149,12 +1354,14 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_94_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": 0.15
       },
-      "source-layer": "hillshade",
       "paint.danger": {
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1162,8 +1369,14 @@
         "line-opacity": 0.15
       },
       "paint.fear": {
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15,
+        "line-width": 1,
+        "line-blur": 10
       }
     },
     {
@@ -1183,9 +1396,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_90",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
@@ -1196,6 +1411,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1214,6 +1432,9 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_90_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": 0.15,
         "line-translate": [
@@ -1221,13 +1442,12 @@
           3
         ]
       },
-      "source-layer": "hillshade",
       "paint.danger": {
         "line-translate": [
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1243,8 +1463,16 @@
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15,
+        "line-translate": [
+          3,
+          3
+        ]
       }
     },
     {
@@ -1264,9 +1492,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_89",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
@@ -1277,6 +1507,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1295,6 +1528,9 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_89_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-translate": [
           3,
           3
@@ -1302,13 +1538,12 @@
         "line-pattern": "texture-5",
         "line-opacity": 0.15
       },
-      "source-layer": "hillshade",
       "paint.danger": {
         "line-translate": [
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1324,8 +1559,16 @@
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-translate": [
+          3,
+          3
+        ],
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15
       }
     },
     {
@@ -1345,9 +1588,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_78",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
@@ -1358,6 +1603,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1376,6 +1624,9 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_78_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-translate": [
           3,
           3
@@ -1383,13 +1634,12 @@
         "line-pattern": "texture-5",
         "line-opacity": 0.15
       },
-      "source-layer": "hillshade",
       "paint.danger": {
         "line-translate": [
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1405,8 +1655,16 @@
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-translate": [
+          3,
+          3
+        ],
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15
       }
     },
     {
@@ -1426,9 +1684,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_67",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
@@ -1439,6 +1699,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1457,6 +1720,9 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_67_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-translate": [
           3,
           3
@@ -1464,13 +1730,12 @@
         "line-pattern": "texture-5",
         "line-opacity": 0.15
       },
-      "source-layer": "hillshade",
       "paint.danger": {
         "line-translate": [
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1486,8 +1751,16 @@
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-translate": [
+          3,
+          3
+        ],
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15
       }
     },
     {
@@ -1507,9 +1780,11 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_56",
       "paint": {
-        "fill-opacity": 0.02
       },
       "source-layer": "hillshade",
+      "paint.default": {
+        "fill-opacity": 0.02
+      },
       "paint.danger": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
@@ -1520,6 +1795,9 @@
       "paint.fear": {
         "fill-opacity": 0.05,
         "fill-color": "#424242"
+      },
+      "paint.lost": {
+        "fill-opacity": 0.02
       }
     },
     {
@@ -1538,6 +1816,9 @@
       "source": "mapbox://mapbox.mapbox-terrain-v2",
       "id": "hillshade_56_border",
       "paint": {
+      },
+      "source-layer": "hillshade",
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": 0.15,
         "line-translate": [
@@ -1545,13 +1826,12 @@
           3
         ]
       },
-      "source-layer": "hillshade",
       "paint.danger": {
         "line-translate": [
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
       },
       "paint.hope": {
@@ -1567,8 +1847,16 @@
           3,
           3
         ],
-        "line-opacity": 0.02,
+        "line-opacity": 0.01,
         "line-color": "rgba(255,255,255,1)"
+      },
+      "paint.lost": {
+        "line-pattern": "texture-5",
+        "line-opacity": 0.15,
+        "line-translate": [
+          3,
+          3
+        ]
       }
     },
     {
@@ -1602,6 +1890,9 @@
       "source": "mapbox",
       "id": "road_minor",
       "paint": {
+      },
+      "source-layer": "road",
+      "paint.default": {
         "line-color": "rgba(212,210,210,1)",
         "line-width": {
           "base": 1.55,
@@ -1633,7 +1924,6 @@
         "line-offset": 0,
         "line-gap-width": 0
       },
-      "source-layer": "road",
       "paint.danger": {
         "line-color": "rgba(29,14,43,1)",
         "line-width": {
@@ -1699,7 +1989,7 @@
         "line-gap-width": 0
       },
       "paint.fear": {
-        "line-color": "rgba(148,9,9,1)",
+        "line-color": "rgba(29,14,43,1)",
         "line-width": {
           "base": 1.55,
           "stops": [
@@ -1719,6 +2009,38 @@
             [
               12,
               0.4
+            ],
+            [
+              22,
+              1
+            ]
+          ]
+        },
+        "line-blur": 0,
+        "line-offset": 0,
+        "line-gap-width": 0
+      },
+      "paint.lost": {
+        "line-color": "rgba(212,210,210,1)",
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              20
+            ]
+          ]
+        },
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              12,
+              0.1
             ],
             [
               22,
@@ -1762,6 +2084,9 @@
       "source": "mapbox",
       "id": "road_minor_texture",
       "paint": {
+      },
+      "source-layer": "road",
+      "paint.default": {
         "line-color": "#efefef",
         "line-width": {
           "base": 1.55,
@@ -1797,7 +2122,6 @@
         "line-gap-width": 0,
         "line-pattern": "texture-style-7"
       },
-      "source-layer": "road",
       "paint.danger": {
         "line-color": "#efefef",
         "line-width": {
@@ -1871,6 +2195,42 @@
         "line-pattern": "texture-style-7"
       },
       "paint.fear": {
+        "line-color": "#efefef",
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-translate": [
+          0,
+          0
+        ],
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              12,
+              0.3
+            ],
+            [
+              22,
+              0.5
+            ]
+          ]
+        },
+        "line-translate-anchor": "map",
+        "line-gap-width": 0,
+        "line-pattern": "texture-style-7"
+      },
+      "paint.lost": {
         "line-color": "#efefef",
         "line-width": {
           "base": 1.55,
@@ -1935,6 +2295,9 @@
       "source": "mapbox",
       "id": "road_major",
       "paint": {
+      },
+      "source-layer": "road",
+      "paint.default": {
         "line-color": "rgba(207,204,204,1)",
         "line-width": {
           "base": 1.4,
@@ -1963,19 +2326,18 @@
           ]
         }
       },
-      "source-layer": "road",
       "paint.danger": {
-        "line-color": "rgba(53,25,74,1)",
+        "line-color": "rgba(46,21,110,1)",
         "line-width": {
           "base": 1.4,
           "stops": [
             [
               6,
-              1
+              0.5
             ],
             [
               20,
-              8
+              4
             ]
           ]
         },
@@ -2023,7 +2385,36 @@
         }
       },
       "paint.fear": {
-        "line-color": "rgba(232,2,2,1)",
+        "line-color": "rgba(46,21,110,1)",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              0.5
+            ],
+            [
+              20,
+              4
+            ]
+          ]
+        },
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              13,
+              0.4
+            ],
+            [
+              16,
+              0.75
+            ]
+          ]
+        }
+      },
+      "paint.lost": {
+        "line-color": "rgba(207,204,204,1)",
         "line-width": {
           "base": 1.4,
           "stops": [
@@ -2033,7 +2424,7 @@
             ],
             [
               20,
-              8
+              20
             ]
           ]
         },
@@ -2059,6 +2450,9 @@
       },
       "id": "road_major_texture",
       "paint": {
+      },
+      "ref": "road_major",
+      "paint.default": {
         "line-color": "#fff",
         "line-width": {
           "base": 1.4,
@@ -2108,7 +2502,6 @@
         },
         "line-translate-anchor": "map"
       },
-      "ref": "road_major",
       "paint.danger": {
         "line-color": "#fff",
         "line-width": {
@@ -2210,6 +2603,56 @@
         "line-translate-anchor": "map"
       },
       "paint.fear": {
+        "line-color": "#fff",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              1
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-pattern": "texture-style-7",
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              12,
+              0.1
+            ],
+            [
+              16,
+              0.2
+            ]
+          ]
+        },
+        "line-translate": {
+          "base": 1,
+          "stops": [
+            [
+              10,
+              [
+                0,
+                0
+              ]
+            ],
+            [
+              22,
+              [
+                3,
+                3
+              ]
+            ]
+          ]
+        },
+        "line-translate-anchor": "map"
+      },
+      "paint.lost": {
         "line-color": "#fff",
         "line-width": {
           "base": 1.4,
@@ -2284,6 +2727,12 @@
         ]
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1452763547675.3313"
+      },
+      "paint.default": {
         "line-color": "rgba(199,167,167,1)",
         "line-width": {
           "base": 1.55,
@@ -2304,10 +2753,6 @@
         ],
         "line-opacity": 0.75,
         "line-blur": 2
-      },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1452763547675.3313"
       },
       "paint.danger": {
         "line-color": "rgba(199,167,167,1)",
@@ -2355,7 +2800,29 @@
         "line-blur": 2
       },
       "paint.fear": {
-        "line-color": "rgba(84,36,36,1)",
+        "line-color": "rgba(199,167,167,1)",
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-dasharray": [
+          0.36,
+          0.18
+        ],
+        "line-opacity": 0.75,
+        "line-blur": 2
+      },
+      "paint.lost": {
+        "line-color": "rgba(199,167,167,1)",
         "line-width": {
           "base": 1.55,
           "stops": [
@@ -2397,6 +2864,12 @@
         ]
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1452763547675.3313"
+      },
+      "paint.default": {
         "line-color": "rgba(199,167,167,1)",
         "line-width": {
           "base": 1.4,
@@ -2417,10 +2890,6 @@
         ],
         "line-opacity": 0.75,
         "line-blur": 2
-      },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1452763547675.3313"
       },
       "paint.danger": {
         "line-color": "rgba(199,167,167,1)",
@@ -2467,7 +2936,29 @@
         "line-blur": 2
       },
       "paint.fear": {
-        "line-color": "rgba(84,36,36,1)",
+        "line-color": "rgba(199,167,167,1)",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              0.5
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-dasharray": [
+          0.28,
+          0.14
+        ],
+        "line-opacity": 0.75,
+        "line-blur": 2
+      },
+      "paint.lost": {
+        "line-color": "rgba(199,167,167,1)",
         "line-width": {
           "base": 1.4,
           "stops": [
@@ -2506,6 +2997,9 @@
       "source": "mapbox",
       "id": "rail_bridge",
       "paint": {
+      },
+      "source-layer": "bridge",
+      "paint.default": {
         "line-opacity": {
           "base": 1,
           "stops": [
@@ -2522,7 +3016,6 @@
         "line-pattern": "texture-5",
         "line-width": 1
       },
-      "source-layer": "bridge",
       "paint.danger": {
         "line-opacity": {
           "base": 1,
@@ -2555,7 +3048,19 @@
           ]
         },
         "line-pattern": "texture-5",
-        "line-width": 1
+        "line-width": {
+          "base": 1,
+          "stops": [
+            [
+              0,
+              0
+            ],
+            [
+              22,
+              1
+            ]
+          ]
+        }
       },
       "paint.fear": {
         "line-opacity": {
@@ -2573,6 +3078,23 @@
         },
         "line-pattern": "texture-5",
         "line-width": 2
+      },
+      "paint.lost": {
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              14,
+              0.4
+            ],
+            [
+              22,
+              1
+            ]
+          ]
+        },
+        "line-pattern": "texture-5",
+        "line-width": 1
       }
     },
     {
@@ -2593,6 +3115,9 @@
       "source": "mapbox",
       "id": "rail",
       "paint": {
+      },
+      "source-layer": "road",
+      "paint.default": {
         "line-color": "rgba(148,148,148,1)",
         "line-pattern": "texture-5",
         "line-opacity": {
@@ -2610,7 +3135,6 @@
         },
         "line-width": 1
       },
-      "source-layer": "road",
       "paint.danger": {
         "line-color": "rgba(148,148,148,1)",
         "line-pattern": "texture-5",
@@ -2645,9 +3169,39 @@
             ]
           ]
         },
-        "line-width": 1
+        "line-width": {
+          "base": 1,
+          "stops": [
+            [
+              1,
+              0
+            ],
+            [
+              22,
+              1
+            ]
+          ]
+        }
       },
       "paint.fear": {
+        "line-color": "rgba(148,148,148,1)",
+        "line-pattern": "texture-5",
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              14,
+              0.2
+            ],
+            [
+              22,
+              0.6
+            ]
+          ]
+        },
+        "line-width": 1
+      },
+      "paint.lost": {
         "line-color": "rgba(148,148,148,1)",
         "line-pattern": "texture-5",
         "line-opacity": {
@@ -2690,6 +3244,12 @@
         ]
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1452763524082.072"
+      },
+      "paint.default": {
         "line-color": "#dedede",
         "line-width": {
           "base": 1.6,
@@ -2717,10 +3277,6 @@
             ]
           ]
         }
-      },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1452763524082.072"
       },
       "paint.danger": {
         "line-color": "rgba(38,38,38,1)",
@@ -2811,6 +3367,35 @@
           ]
         },
         "line-opacity": 0
+      },
+      "paint.lost": {
+        "line-color": "#dedede",
+        "line-width": {
+          "base": 1.6,
+          "stops": [
+            [
+              12,
+              0.5
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        },
+        "line-gap-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        }
       }
     },
     {
@@ -2844,6 +3429,9 @@
       "source": "mapbox",
       "id": "bridge_minor",
       "paint": {
+      },
+      "source-layer": "bridge",
+      "paint.default": {
         "line-color": "#efefef",
         "line-width": {
           "base": 1.55,
@@ -2859,7 +3447,6 @@
           ]
         }
       },
-      "source-layer": "bridge",
       "paint.danger": {
         "line-color": "rgba(53,25,74,1)",
         "line-width": {
@@ -2895,7 +3482,7 @@
         "line-opacity": 1
       },
       "paint.fear": {
-        "line-color": "rgba(74,11,11,1)",
+        "line-color": "rgba(53,25,74,1)",
         "line-width": {
           "base": 1.55,
           "stops": [
@@ -2910,6 +3497,22 @@
           ]
         },
         "line-opacity": 0.5
+      },
+      "paint.lost": {
+        "line-color": "#efefef",
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        }
       }
     },
     {
@@ -2919,6 +3522,9 @@
       },
       "id": "bridge_minor_texture",
       "paint": {
+      },
+      "ref": "bridge_minor",
+      "paint.default": {
         "line-color": "#efefef",
         "line-width": {
           "base": 1.55,
@@ -2936,7 +3542,6 @@
         "line-pattern": "texture-3",
         "line-opacity": 0.65
       },
-      "ref": "bridge_minor",
       "paint.danger": {
         "line-color": "#efefef",
         "line-width": {
@@ -2990,6 +3595,24 @@
         },
         "line-pattern": "texture-3",
         "line-opacity": 0.65
+      },
+      "paint.lost": {
+        "line-color": "#efefef",
+        "line-width": {
+          "base": 1.55,
+          "stops": [
+            [
+              4,
+              0.25
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-pattern": "texture-3",
+        "line-opacity": 0.65
       }
     },
     {
@@ -3012,6 +3635,12 @@
         ]
       ],
       "paint": {
+      },
+      "interactive": true,
+      "metadata": {
+        "mapbox:group": "1452763524082.072"
+      },
+      "paint.default": {
         "line-color": "#dedede",
         "line-width": {
           "base": 1.4,
@@ -3039,10 +3668,6 @@
             ]
           ]
         }
-      },
-      "interactive": true,
-      "metadata": {
-        "mapbox:group": "1452763524082.072"
       },
       "paint.danger": {
         "line-color": "rgba(38,38,38,1)",
@@ -3133,6 +3758,35 @@
           ]
         },
         "line-opacity": 0
+      },
+      "paint.lost": {
+        "line-color": "#dedede",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              12,
+              0.5
+            ],
+            [
+              20,
+              10
+            ]
+          ]
+        },
+        "line-gap-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              0.5
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        }
       }
     },
     {
@@ -3163,6 +3817,9 @@
       "source": "mapbox",
       "id": "bridge_major",
       "paint": {
+      },
+      "source-layer": "bridge",
+      "paint.default": {
         "line-color": "rgba(217,217,217,1)",
         "line-width": {
           "base": 1.4,
@@ -3191,7 +3848,6 @@
           ]
         }
       },
-      "source-layer": "bridge",
       "paint.danger": {
         "line-color": "rgba(53,25,74,1)",
         "line-width": {
@@ -3251,7 +3907,7 @@
         }
       },
       "paint.fear": {
-        "line-color": "rgba(74,11,11,1)",
+        "line-color": "rgba(53,25,74,1)",
         "line-width": {
           "base": 1.4,
           "stops": [
@@ -3275,6 +3931,35 @@
             [
               22,
               0.75
+            ]
+          ]
+        }
+      },
+      "paint.lost": {
+        "line-color": "rgba(217,217,217,1)",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              0.5
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-opacity": {
+          "base": 1,
+          "stops": [
+            [
+              11,
+              0.4
+            ],
+            [
+              22,
+              1
             ]
           ]
         }
@@ -3307,6 +3992,9 @@
       "source": "mapbox",
       "id": "bridge_major_texture",
       "paint": {
+      },
+      "source-layer": "bridge",
+      "paint.default": {
         "line-color": "#fff",
         "line-width": {
           "base": 1.4,
@@ -3324,7 +4012,6 @@
         "line-pattern": "texture-3",
         "line-opacity": 0.65
       },
-      "source-layer": "bridge",
       "paint.danger": {
         "line-color": "#fff",
         "line-width": {
@@ -3378,6 +4065,24 @@
         },
         "line-pattern": "texture-3",
         "line-opacity": 0.65
+      },
+      "paint.lost": {
+        "line-color": "#fff",
+        "line-width": {
+          "base": 1.4,
+          "stops": [
+            [
+              6,
+              0.5
+            ],
+            [
+              20,
+              30
+            ]
+          ]
+        },
+        "line-pattern": "texture-3",
+        "line-opacity": 0.65
       }
     },
     {
@@ -3386,8 +4091,6 @@
       "source": "mapbox",
       "source-layer": "building",
       "paint": {
-        "fill-color": "rgba(227,225,225,1)",
-        "fill-opacity": 0
       },
       "interactive": true,
       "layout": {
@@ -3395,6 +4098,10 @@
       },
       "metadata": {
         "mapbox:group": "1444722304926.7478"
+      },
+      "paint.default": {
+        "fill-color": "rgba(227,225,225,1)",
+        "fill-opacity": 0
       },
       "paint.danger": {
         "fill-color": "rgba(255,0,0,1)",
@@ -3410,34 +4117,44 @@
       },
       "paint.fear": {
         "fill-color": "rgba(255,0,0,1)",
-        "fill-opacity": 0,
+        "fill-opacity": 1,
         "fill-translate": [
-          0,
-          0
+          2,
+          2
         ]
+      },
+      "paint.lost": {
+        "fill-color": "rgba(227,225,225,1)",
+        "fill-opacity": 0
       }
     },
     {
       "id": "building",
       "paint": {
-        "fill-color": "rgba(227,225,225,1)",
-        "fill-opacity": 1
       },
       "interactive": true,
       "metadata": {
         "mapbox:group": "1444722304926.7478"
       },
       "ref": "building_translate",
+      "paint.default": {
+        "fill-color": "rgba(227,225,225,1)",
+        "fill-opacity": 1
+      },
       "paint.danger": {
         "fill-color": "rgba(0,0,0,1)",
         "fill-opacity": 1
       },
       "paint.hope": {
-        "fill-color": "rgba(214,209,167,1)",
+        "fill-color": "rgba(222,216,169,1)",
         "fill-opacity": 1
       },
       "paint.fear": {
         "fill-color": "rgba(0,0,0,1)",
+        "fill-opacity": 1
+      },
+      "paint.lost": {
+        "fill-color": "rgba(227,225,225,1)",
         "fill-opacity": 1
       }
     },
@@ -3447,6 +4164,14 @@
       "source": "mapbox",
       "source-layer": "building",
       "paint": {
+      },
+      "interactive": true,
+      "layout": {
+      },
+      "metadata": {
+        "mapbox:group": "1444722304926.7478"
+      },
+      "paint.default": {
         "line-pattern": "texture-5",
         "line-opacity": 0.2,
         "line-translate": [
@@ -3467,12 +4192,6 @@
             ]
           ]
         }
-      },
-      "interactive": true,
-      "layout": {
-      },
-      "metadata": {
-        "mapbox:group": "1444722304926.7478"
       },
       "paint.danger": {
         "line-pattern": "texture-5",
@@ -3498,7 +4217,7 @@
       },
       "paint.hope": {
         "line-pattern": "texture-5",
-        "line-opacity": 0.35,
+        "line-opacity": 0.25,
         "line-translate": [
           2,
           2
@@ -3519,6 +4238,28 @@
         }
       },
       "paint.fear": {
+        "line-pattern": "texture-5",
+        "line-opacity": 0.2,
+        "line-translate": [
+          2,
+          2
+        ],
+        "line-translate-anchor": "map",
+        "line-width": {
+          "base": 1,
+          "stops": [
+            [
+              14,
+              1
+            ],
+            [
+              22,
+              3
+            ]
+          ]
+        }
+      },
+      "paint.lost": {
         "line-pattern": "texture-5",
         "line-opacity": 0.2,
         "line-translate": [
@@ -3544,6 +4285,15 @@
     {
       "id": "building_texture",
       "paint": {
+      },
+      "interactive": true,
+      "type": "fill",
+      "source": "mapbox",
+      "source-layer": "building",
+      "metadata": {
+        "mapbox:group": "1444722304926.7478"
+      },
+      "paint.default": {
         "fill-color": "rgba(194,192,192,1)",
         "fill-opacity": 0.3,
         "fill-antialias": true,
@@ -3552,13 +4302,6 @@
           0
         ],
         "fill-pattern": "texture-3"
-      },
-      "interactive": true,
-      "type": "fill",
-      "source": "mapbox",
-      "source-layer": "building",
-      "metadata": {
-        "mapbox:group": "1444722304926.7478"
       },
       "paint.danger": {
         "fill-color": "rgba(194,192,192,1)",
@@ -3581,6 +4324,16 @@
         "fill-pattern": "texture-3"
       },
       "paint.fear": {
+        "fill-color": "rgba(194,192,192,1)",
+        "fill-opacity": 0.3,
+        "fill-antialias": true,
+        "fill-translate": [
+          0,
+          0
+        ],
+        "fill-pattern": "texture-3"
+      },
+      "paint.lost": {
         "fill-color": "rgba(194,192,192,1)",
         "fill-opacity": 0.3,
         "fill-antialias": true,
@@ -3637,11 +4390,13 @@
       "source": "mapbox",
       "id": "road_major_label",
       "paint": {
+      },
+      "source-layer": "road_label",
+      "paint.default": {
         "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0.29)",
         "text-halo-width": 2
       },
-      "source-layer": "road_label",
       "paint.danger": {
         "text-color": "#f00",
         "text-halo-color": "rgba(255,255,255,0.29)",
@@ -3653,9 +4408,16 @@
         "text-halo-width": 2
       },
       "paint.fear": {
-        "text-color": "rgba(212,212,212,1)",
+        "text-color": "#f00",
         "text-halo-color": "rgba(255,255,255,0.29)",
-        "text-halo-width": 0
+        "text-halo-width": 0,
+        "text-opacity": 0
+      },
+      "paint.lost": {
+        "text-color": "#666",
+        "text-halo-color": "rgba(255,255,255,0.29)",
+        "text-halo-width": 2,
+        "text-opacity": 0
       }
     },
     {
@@ -3706,12 +4468,14 @@
       "source": "mapbox",
       "id": "poi_label",
       "paint": {
+      },
+      "source-layer": "poi_label",
+      "paint.default": {
         "text-color": "#666",
         "text-halo-blur": 10,
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 4
       },
-      "source-layer": "poi_label",
       "paint.danger": {
         "text-color": "rgba(255,0,0,1)",
         "text-halo-blur": 10,
@@ -3719,16 +4483,24 @@
         "text-halo-width": 0
       },
       "paint.hope": {
-        "text-color": "rgba(186,63,63,1)",
+        "text-color": "rgba(207,50,50,1)",
         "text-halo-blur": 10,
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 4
       },
       "paint.fear": {
-        "text-color": "rgba(212,212,212,1)",
+        "text-color": "rgba(255,0,0,1)",
         "text-halo-blur": 10,
         "text-halo-color": "rgba(255,255,255,0)",
-        "text-halo-width": 0
+        "text-halo-width": 0,
+        "text-opacity": 0
+      },
+      "paint.lost": {
+        "text-color": "#666",
+        "text-halo-blur": 10,
+        "text-halo-color": "rgba(255,255,255,0)",
+        "text-halo-width": 4,
+        "text-opacity": 0
       }
     },
     {
@@ -3778,13 +4550,15 @@
       "source": "mapbox",
       "id": "place_label_other",
       "paint": {
+      },
+      "source-layer": "place_label",
+      "paint.default": {
         "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-opacity": 1,
         "text-halo-blur": 10,
         "text-halo-width": 2
       },
-      "source-layer": "place_label",
       "paint.danger": {
         "text-color": "rgba(255,0,0,1)",
         "text-halo-color": "rgba(255,255,255,0)",
@@ -3793,18 +4567,25 @@
         "text-halo-width": 0
       },
       "paint.hope": {
-        "text-color": "rgba(186,63,63,1)",
+        "text-color": "rgba(207,50,50,1)",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-opacity": 1,
         "text-halo-blur": 10,
         "text-halo-width": 2
       },
       "paint.fear": {
-        "text-color": "rgba(212,212,212,1)",
+        "text-color": "rgba(255,0,0,1)",
         "text-halo-color": "rgba(255,255,255,0)",
-        "text-opacity": 1,
+        "text-opacity": 0,
         "text-halo-blur": 10,
         "text-halo-width": 0
+      },
+      "paint.lost": {
+        "text-color": "#666",
+        "text-halo-color": "rgba(255,255,255,0)",
+        "text-opacity": 0,
+        "text-halo-blur": 10,
+        "text-halo-width": 2
       }
     },
     {
@@ -3850,12 +4631,14 @@
       "source": "mapbox",
       "id": "place_label_city",
       "paint": {
+      },
+      "source-layer": "place_label",
+      "paint.default": {
         "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 1,
         "text-halo-blur": 1
       },
-      "source-layer": "place_label",
       "paint.danger": {
         "text-color": "rgba(255,0,0,1)",
         "text-halo-color": "rgba(255,255,255,0)",
@@ -3863,16 +4646,23 @@
         "text-halo-blur": 1
       },
       "paint.hope": {
-        "text-color": "rgba(186,63,63,1)",
-        "text-halo-color": "rgba(0,0,0,0.09)",
+        "text-color": "rgba(207,50,50,1)",
+        "text-halo-color": "rgba(0,0,0,0)",
         "text-halo-blur": 3,
         "text-halo-width": 2
       },
       "paint.fear": {
-        "text-color": "rgba(212,212,212,1)",
+        "text-color": "rgba(255,0,0,1)",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 0,
         "text-halo-blur": 1
+      },
+      "paint.lost": {
+        "text-color": "rgba(255,255,255,1)",
+        "text-halo-color": "rgba(255,255,255,0)",
+        "text-halo-width": 1,
+        "text-halo-blur": 1,
+        "text-opacity": 0
       }
     },
     {
@@ -3910,12 +4700,14 @@
       "source": "mapbox",
       "id": "country_label",
       "paint": {
+      },
+      "source-layer": "country_label",
+      "paint.default": {
         "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 1,
         "text-halo-blur": 1
       },
-      "source-layer": "country_label",
       "paint.danger": {
         "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0)",
@@ -3923,26 +4715,34 @@
         "text-halo-blur": 1
       },
       "paint.hope": {
-        "text-color": "rgba(186,63,63,1)",
+        "text-color": "rgba(207,50,50,1)",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 1,
         "text-halo-blur": 1
       },
       "paint.fear": {
-        "text-color": "rgba(212,212,212,1)",
+        "text-color": "#666",
         "text-halo-color": "rgba(255,255,255,0)",
         "text-halo-width": 0,
         "text-halo-blur": 1
+      },
+      "paint.lost": {
+        "text-halo-blur": 1,
+        "text-halo-color": "rgba(255,255,255,0)",
+        "text-halo-width": 1,
+        "text-color": "rgba(255,255,255,1)"
       }
     },
     {
       "paint": {
-        "background-opacity": 0.25,
-        "background-pattern": "texture-style-7"
       },
       "id": "grain_overlay",
       "interactive": true,
       "ref": "background_texture",
+      "paint.default": {
+        "background-opacity": 0.25,
+        "background-pattern": "texture-style-7"
+      },
       "paint.danger": {
         "background-opacity": 0.25,
         "background-pattern": "texture-style-7"
@@ -3954,6 +4754,10 @@
       "paint.fear": {
         "background-opacity": 0.25,
         "background-pattern": "texture-style-7"
+      },
+      "paint.lost": {
+        "background-opacity": 0.15,
+        "background-pattern": "texture-5"
       }
     }
   ],
