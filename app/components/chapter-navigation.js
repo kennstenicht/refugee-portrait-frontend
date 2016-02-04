@@ -9,7 +9,7 @@ const {
 
 export default Component.extend(Gestures, {
   classNames: ['chapter-navigation'],
-  classNameBindings: ['modifierDirection', 'modifierVisible'],
+  classNameBindings: ['modifierDirection', 'modifierVisible', 'modifierMood'],
 
   // BEM Modifier
   modifierDirection: computed('direction', function () {
@@ -18,6 +18,12 @@ export default Component.extend(Gestures, {
 
   modifierVisible: computed('targeting.isVisible', function () {
     return this.get('targeting.isVisible') ? 'chapter-navigation--visible' : 'chapter-navigation--hidden';
+  }),
+
+  modifierMood: computed('targeting.currentMood', function () {
+    if (this.get('targeting.currentMood')) {
+      return 'chapter-navigation--'+this.get('targeting.currentMood');
+    }
   }),
 
   // Gesture Settings

@@ -8,21 +8,48 @@
     height: 40px;
     border-radius: 50%;
     background-color: $gray-dark;
+    transition: $transition-default;
+    color: $white;
+    text-align: center;
+    padding: 10px 10px 4px 11px;
+    @include inuit-font-size(24px);
+    @extend %mono-font;
   }
 
+  &--overview &__button {
+    background-color: $gray-lighter;
+    color: $gray;
+  }
   &__content {
     position: fixed;
-    top: 80px;
-    left: 80px;
-    width: 0px;
-    height: 0px;
+    top: 60px;
+    left: 60px;
+    width: 40px;
+    height: 40px;
     z-index: 997;
     visibility: hidden;
     border-radius: 50%;
-    background-image: url(images/help.png);
+    background-color: rgba($gray-dark, 0.9);
     background-size: 2300px 2300px;
     background-repeat: no-repeat;
-    transition: $transition-default;
+    transition: all 0.5s ease-in-out;
+
+    &__element {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transition-delay: 300;
+      transition: $transition-default;
+      color: $white;
+      opacity: 0;
+      width: 600px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+
+      &__headline {
+        @extend h1;
+      }
+    }
   }
 
   &--overview &__content{
@@ -31,6 +58,9 @@
     width: 2300px;
     height: 2300px;
     visibility: visible;
-    transition: $transition-default;
+
+    &__element {
+      opacity: 1;
+    }
   }
 }

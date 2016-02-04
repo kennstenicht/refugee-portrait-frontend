@@ -1,6 +1,10 @@
 {{#touch-toggle callback='toggleHelp'}}
-  <div class="overlay-help__button"></div>
+  <div class="overlay-help__button">?</div>
 {{/touch-toggle}}
 <div class="overlay-help__content">
   {{yield}}
+
+  <div class="overlay-help__content__element">
+    <div class="overlay-help__content__element__headline">Hilfe zum Umgang mit der Visualisierung</div>
+  </div>
 </div>

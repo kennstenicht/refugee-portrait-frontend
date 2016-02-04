@@ -59,12 +59,13 @@
 
     &__close {
       position: absolute;
-      top: 10px;
+      top: 0px;
       right: 10px;
       width: 30px;
       height: 30px;
-      background: $white;
+      color: $white;
       z-index: 2;
+      font-size: 35px;
     }
 
     &__media {

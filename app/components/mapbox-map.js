@@ -40,6 +40,7 @@ export default Component.extend(MapboxGl, Gestures, {
 
   didInsertElement: function () {
     this.get('targeting').set(this.get('identifier'), this.get('map'));
+    this.get('targeting.map').setClasses(['default']);
 
     this.get('map').on('moveend', bind(this.get('targeting'), this.get('targeting').moveEnd));
     this.get('map').on('zoom', bind(this.get('targeting'), this.get('targeting').checkFeatures));

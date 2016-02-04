@@ -76,6 +76,12 @@ export default Service.extend(Evented, MathHelper, {
       this.setMood(newChapter.get('feeling'));
     }, transitionSpeed-2000);
 
+    run.later(this, function () {
+      if(this.get('mapAnimation')){
+        this.showChapter();
+      }
+    }, transitionSpeed);
+
     run.next(this, function () {
       this.set('currentChapter', newChapter);
       this.trigger('newChapter', newChapter, transitionSpeed);
@@ -103,13 +109,13 @@ export default Service.extend(Evented, MathHelper, {
 
   showChapter: function () {
     this.set('isVisible', true);
+    this.get('map').setLayoutProperty('route_chapters', 'visibility', 'none');
+    this.get('map').setLayoutProperty('route', 'visibility', 'none');
   },
 
   moveEnd: function () {
     if(this.get('routeAnimation')) {
       this.routeToChapter();
-    } else if(this.get('currentChapter') && this.get('mapAnimation')){
-      this.showChapter();
     }
   },
 
@@ -121,6 +127,8 @@ export default Service.extend(Evented, MathHelper, {
       this.setMood('default');
       this.zoomOut();
       this.trigger('newChapter', '', 2000);
+      this.get('map').setLayoutProperty('route_chapters', 'visibility', 'visible');
+      this.get('map').setLayoutProperty('route', 'visibility', 'visible');
     }, this.get('chapterAnimationSpeed'));
   },
 
@@ -206,7 +214,7 @@ export default Service.extend(Evented, MathHelper, {
         0,
         600,
         2000,
-        2000
+        12000
       );
 
       return transitionSpeed;

@@ -10,7 +10,7 @@ export default Component.extend({
   classNameBindings: ['modifierVisble'],
 
   // Variables
-  help: 'overview',
+  help: null,
 
   // BEM Modifier
   modifierVisble: computed('help', function () {

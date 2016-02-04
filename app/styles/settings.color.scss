@@ -38,7 +38,7 @@ $moods: (
     timeline-progressbar: $gray,
     timeline-scrollbar: $gray-darker,
     timeline-navigator: $gray-darker,
-    hotspot: $gray-dark
+    hotspot: $gray-darker
   ),
   fear: (
     font: $gray-lighter,
@@ -47,16 +47,16 @@ $moods: (
     timeline-progressbar: $gray,
     timeline-scrollbar: $gray-darker,
     timeline-navigator: $gray-darker,
-    hotspot: $gray-darker
+    hotspot: $gray-dark
   ),
-  frustrated: (
+  lost: (
     font: $inuit-base-text-color,
     timeline-background: $gray-lighter,
     timeline-item: $gray,
     timeline-progressbar: $gray-light,
     timeline-scrollbar: $gray-light,
     timeline-navigator: $gray-lighter,
-    hotspot: $gray-light
+    hotspot: $gray-lighter
   ),
   hope: (
     font: $inuit-base-text-color,

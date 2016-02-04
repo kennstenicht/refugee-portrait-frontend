@@ -110,7 +110,7 @@
 
   &__weather {
     position: fixed;
-    z-index: 3;
+    z-index: 2;
   }
 
   @each $mood, $map in $moods {
