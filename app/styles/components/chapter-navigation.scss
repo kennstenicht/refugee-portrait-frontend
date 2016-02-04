@@ -17,7 +17,7 @@
   &--prev {
     left: 0px;
     background: {
-      image: url('icons/arrow-prev.png');
+      image: url('icons/arrows/arrow-prev-default.png');
       position: center right 70px;
     }
   }
@@ -25,8 +25,18 @@
   &--next {
     right: 0px;
     background: {
-      image: url('icons/arrow-next.png');
+      image: url('icons/arrows/arrow-next-default.png');
       position: center left 70px;
+    }
+  }
+
+  @each $mood, $map in $moods {
+    &--#{$mood}.chapter-navigation--prev {
+      background-image: url('icons/arrows/arrow-prev-#{$mood}.png');
+    }
+
+    &--#{$mood}.chapter-navigation--next {
+      background-image: url('icons/arrows/arrow-next-#{$mood}.png');
     }
   }
 
