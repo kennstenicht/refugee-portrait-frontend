@@ -49,6 +49,14 @@
       &__headline {
         @extend h1;
       }
+
+      &__button {
+        background: {
+          color: $gray-lighter;
+        }
+        color: $gray;
+        padding: 5px 15px;
+      }
     }
   }
 

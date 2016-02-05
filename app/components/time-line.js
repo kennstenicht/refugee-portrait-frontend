@@ -8,9 +8,7 @@ import moment from 'moment';
 const {
   Component,
   computed,
-  inject,
-  on,
-  $
+  inject
 } = Ember;
 
 export default Component.extend(Gestures, MathHelper, {

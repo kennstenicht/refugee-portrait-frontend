@@ -20,7 +20,6 @@ export default Component.extend(Gestures, {
   targeting: inject.service('targeting'),
 
   didInsertElement: function () {
-    console.log(this.get('closeHintPos'));
     this.$().css({
       top: this.get('closeHintPos.y') + "px",
       left: this.get('closeHintPos.x') + "px"

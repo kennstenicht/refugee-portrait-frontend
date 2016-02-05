@@ -14,7 +14,6 @@ export default Component.extend({
 
   // BEM Modifier
   modifierVisble: computed('help', function () {
-    console.log(this.get('help'));
     if(this.get('help')) {
       return 'overlay-help--' + this.get('help');
     }

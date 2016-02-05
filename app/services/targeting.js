@@ -4,7 +4,6 @@ import MathHelper from '../mixins/math-helper';
 const {
   Service,
   Evented,
-  computed,
   run,
   $,
   run: {
@@ -68,13 +67,13 @@ export default Service.extend(Evented, MathHelper, {
   },
 
   moveToChapter: function (newChapter) {
-    let transitionSpeed = this.calcTransitionSpeed(newChapter.get('camera')) || 2000;
+    let transitionSpeed = this.calcTransitionSpeed(newChapter.get('camera')) || 4000;
     this.set('transitionSpeed', transitionSpeed);
 
     this.moveToTarget(newChapter.get('camera'), transitionSpeed, false);
     run.later(this, function () {
       this.setMood(newChapter.get('feeling'));
-    }, transitionSpeed-2000);
+    }, transitionSpeed-4000);
 
     run.later(this, function () {
       if(this.get('mapAnimation')){
@@ -96,10 +95,10 @@ export default Service.extend(Evented, MathHelper, {
       bearing: target.bearing || 0,
       pitch: target.pitch || 0,
       easing: function (t) {
-        if (linear) return t;
+        if (linear) { return t; }
 
-        if (t <= 0) return 0;
-        if (t >= 1) return 1;
+        if (t <= 0) { return 0; }
+        if (t >= 1) { return 1; }
         var t2 = t * t,
             t3 = t2 * t;
         return 4 * (t < 0.5 ? t3 : 3 * (t - t2) + t3 - 0.75);
@@ -213,7 +212,7 @@ export default Service.extend(Evented, MathHelper, {
         distance,
         0,
         600,
-        2000,
+        4000,
         12000
       );
 
@@ -239,11 +238,11 @@ export default Service.extend(Evented, MathHelper, {
 
   checkFeatureAt: function (e, touchType) {
     this.get('map').featuresAt(e, {radius: 20, layer: 'route_chapters'}, bind(this, function (err, features) {
-      if(err || !features.length) return;
+      if(err || !features.length) { return; }
 
       let feature = features.get('firstObject'),
         chapter = this.get('chapters').findBy('id', feature.properties.id);
-      if(touchType == 'press') {
+      if(touchType === 'press') {
         this.setPreview(chapter);
       } else {
         this.setChapter(chapter);

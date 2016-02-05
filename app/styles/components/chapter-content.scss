@@ -139,7 +139,7 @@
 
   // Custom Style of Chapter 2
   &--2 &__background {
-    opacity: 0.05;
+    opacity: 0.1;
   }
 
   &--2 &__journal {
@@ -238,6 +238,11 @@
     transform: translate(-500px, -250px);
   }
 
+
+  // Custom Style of Chapter 8
+  &--9 &__background {
+    opacity: 0.15;
+  }
 
 
   // Custom Style of Chapter 10

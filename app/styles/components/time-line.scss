@@ -21,6 +21,7 @@
         color: map-get(map-get($moods, default), timeline-progressbar);
       };
       box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
+      transition: $transition-slow;
     }
     &--start {
       left: 0px;
@@ -92,6 +93,7 @@
             image: url('textures/grain-10.png');
           }
           box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
+          transition: $transition-slow;
         }
 
         &__axis {

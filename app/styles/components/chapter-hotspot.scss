@@ -75,6 +75,18 @@
     &__content {
       padding: 20px;
       @include inuit-font-size($small-font, false);
+
+      &__subtitle {
+        font-weight: bold;
+      }
+
+      &__title {
+        margin-bottom: 10px;
+      }
+
+      &__source {
+        margin-top: 10px;
+      }
     }
   }
 

@@ -31,7 +31,7 @@ export default Component.extend(MathHelper, {
       100
     );
 
-    return 'transition-duration: ' + this.get('targeting.transitionSpeed') + 'ms; width: ' + position + '%';
+    return new Ember.Handlebars.SafeString('transition-duration: ' + this.get('targeting.transitionSpeed') + 'ms; width: ' + position + '%');
   }),
 
   // Targeting Service

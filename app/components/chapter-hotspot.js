@@ -48,16 +48,6 @@ export default Component.extend(Gestures, {
     fluid: true,
   },
 
-  // Gesture Events
-  // pinchin: function () {
-  //   this.set('open', false);
-  // },
-  //
-  // tap: function (e) {
-  //   this.toggleProperty('open');
-  //   e.stopPropagation();
-  // },
-
   actions: {
     openHotspot: function () {
       this.set('open', true);

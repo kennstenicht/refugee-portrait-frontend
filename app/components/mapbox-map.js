@@ -7,7 +7,6 @@ const {
   computed,
   run: {
     bind,
-    next,
     later
   },
   inject
@@ -19,7 +18,7 @@ export default Component.extend(MapboxGl, Gestures, {
 
   modifierVisible: computed('targeting.isVisible', function () {
     if(this.get('targeting.isVisible')) {
-      return 'mapbox-map--detail'
+      return 'mapbox-map--detail';
     }
   }),
 

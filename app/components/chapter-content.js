@@ -54,8 +54,8 @@ export default Component.extend(Gestures, {
     this.set('closeHintPos', e.gesture.center);
     this.set('closeHint', true);
     Ember.run.later(this, function () {
+      if (this.isDestroyed) { return; }
       this.set('closeHint', false);
     }, 4000);
-    //this.get('targeting').backToStory();
   }
 });
