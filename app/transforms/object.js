@@ -1,7 +1,15 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-export default DS.Transform.extend({
+const {
+  $
+} = Ember;
+
+const {
+  Transform
+} = DS;
+
+export default Transform.extend({
   deserialize: function(value) {
     if (!$.isPlainObject(value)) {
       return {};

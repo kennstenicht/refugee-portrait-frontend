@@ -5,7 +5,8 @@
     "-Promise",
     "turf",
     "mapboxgl",
-    "Hammer"
+    "Hammer",
+    "Sly"
   ],
   "browser": true,
   "boss": true,

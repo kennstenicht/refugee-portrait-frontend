@@ -2,10 +2,7 @@ import Ember from 'ember';
 
 const {
   Controller,
-  on,
-  run: {
-    bind
-  }
+  on
 } = Ember;
 
 export default Controller.extend({

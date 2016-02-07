@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 const {
-  Component,
-  Object
+  Component
 } = Ember;
 
 export default Component.extend({

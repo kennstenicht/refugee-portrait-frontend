@@ -18,7 +18,7 @@ export default Component.extend({
   }),
 
   updateCurrent: function (chapter) {
-    if(!chapter) return;
+    if(!chapter) {return;}
 
     this.get('currentChapterSource').setData({
           "type": "Feature",

@@ -6,7 +6,8 @@ const {
   inject,
   run: {
     bind
-  }
+  },
+  $
 } = Ember;
 
 export default Component.extend({
@@ -35,7 +36,7 @@ export default Component.extend({
         bearing: this.get('targeting.map').getBearing(),
         pitch: this.get('targeting.map').getPitch(),
         zoom: this.get('targeting.map').getZoom(),
-      }
+      };
       // let newRouetPoint = this.get('targeting.map').unproject([e.clientX, e.clientY]);
       if(!this.get('targeting.currentChapter.route')) {
         this.get('targeting.currentChapter').set('route', []);
