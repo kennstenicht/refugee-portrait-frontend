@@ -51,11 +51,16 @@
       }
 
       &__button {
+        display: inline-block;
         background: {
-          color: $gray-lighter;
+          color: $green;
         }
-        color: $gray;
+        color: $white;
         padding: 5px 15px;
+        border-radius: 3px;
+        text-transform: uppercase;
+        @include inuit-font-size($small-font);
+        margin-top: 15px;
       }
     }
   }

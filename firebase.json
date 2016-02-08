@@ -1,0 +1,9 @@
+{
+  "firebase": "refugee-portrait",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
